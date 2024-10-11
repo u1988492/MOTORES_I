@@ -15,13 +15,26 @@ public class InteractionSystem : MonoBehaviour
     private bool canInteract = false;
     private GameObject currentInteractable;
     private bool isZoomed = false;
+    private InventorySystem inventorySystem;
+
+    void Start()
+    {
+        inventorySystem = GetComponent<InventorySystem>();
+        if (inventorySystem == null)
+        {
+            inventorySystem = gameObject.AddComponent<InventorySystem>();
+        }
+    }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))  // Presionar 'I' para ver el inventario
+        {
+            DisplayInventory();
+        }
         if (!isZoomed)
         {
             CheckForInteractables();
-            CheckForRecolectables();
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -31,12 +44,10 @@ public class InteractionSystem : MonoBehaviour
 
     void CheckForInteractables()
     {
-        Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * interactionDistance, Color.red); //Debug
-
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, interactionDistance))
         {
-            if (hit.collider.CompareTag("Interactable"))
+            if (hit.collider.CompareTag("Interactable") || hit.collider.CompareTag("Recolectable"))
             {
                 canInteract = true;
                 currentInteractable = hit.collider.gameObject;
@@ -45,35 +56,14 @@ public class InteractionSystem : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Interact();
-                }
-            }
-            else
-            {
-                ResetInteraction();
-            }
-        }
-        else
-        {
-            ResetInteraction();
-        }
-    }
-
-    void CheckForRecolectables()
-    {
-        RaycastHit hit;
-        if(Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, interactionDistance))
-        {
-            if (hit.collider.CompareTag("Recolectable"))
-            {
-                canInteract = true;
-                currentInteractable = hit.collider.gameObject;
-                interactionText.text = interactionPrompt;
-                interactionText.gameObject.SetActive(true);
-
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Recolect();
+                    if (hit.collider.CompareTag("Interactable"))
+                    {
+                        Interact();
+                    }
+                    else if (hit.collider.CompareTag("Recolectable"))
+                    {
+                        Recolect();
+                    }
                 }
             }
             else
@@ -113,7 +103,9 @@ public class InteractionSystem : MonoBehaviour
         RecolectableObject recolectableObject = currentInteractable.GetComponent<RecolectableObject>();
         string nameObject = recolectableObject.nameObject;
 
-        Debug.Log(nameObject);
+        inventorySystem.AddItem(nameObject);
+
+        interactionText.gameObject.SetActive(false);
 
         recolectableObject.Recolect();
     }
@@ -144,5 +136,10 @@ public class InteractionSystem : MonoBehaviour
         canInteract = false;
         currentInteractable = null;
         interactionText.gameObject.SetActive(false);
+    }
+
+    void DisplayInventory()
+    {
+        inventorySystem.DisplayInventory();
     }
 }
