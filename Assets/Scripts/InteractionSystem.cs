@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class InteractionSystem : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class InteractionSystem : MonoBehaviour
         if (!isZoomed)
         {
             CheckForInteractables();
+            CheckForRecolectables();
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -36,7 +38,6 @@ public class InteractionSystem : MonoBehaviour
         {
             if (hit.collider.CompareTag("Interactable"))
             {
-                Debug.Log("Se detectó un objeto");
                 canInteract = true;
                 currentInteractable = hit.collider.gameObject;
                 interactionText.text = interactionPrompt;
@@ -44,8 +45,35 @@ public class InteractionSystem : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("Pulsó E");
                     Interact();
+                }
+            }
+            else
+            {
+                ResetInteraction();
+            }
+        }
+        else
+        {
+            ResetInteraction();
+        }
+    }
+
+    void CheckForRecolectables()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, interactionDistance))
+        {
+            if (hit.collider.CompareTag("Recolectable"))
+            {
+                canInteract = true;
+                currentInteractable = hit.collider.gameObject;
+                interactionText.text = interactionPrompt;
+                interactionText.gameObject.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Recolect();
                 }
             }
             else
@@ -61,62 +89,13 @@ public class InteractionSystem : MonoBehaviour
 
     void Interact()
     {
-        Debug.Log("Método Interact() llamado");
-
-        if (currentInteractable == null)
-        {
-            Debug.LogError("currentInteractable es null");
-            return;
-        }
-
         isZoomed = true;
-        Debug.Log("Iniciando interacción en modo zoom");
-
-        if (mainCamera == null)
-        {
-            Debug.LogError("mainCamera es null");
-            return;
-        }
-
         mainCamera.gameObject.SetActive(false);
-        Debug.Log("Cámara principal desactivada");
 
         InteractableObject interactableScript = currentInteractable.GetComponent<InteractableObject>();
-        if (interactableScript == null)
-        {
-            Debug.LogError("El objeto interactuable no tiene el componente InteractableObject");
-            return;
-        }
 
         int zoomCameraIndex = interactableScript.zoomCameraIndex;
-        Debug.Log($"Índice de cámara de zoom del objeto: {zoomCameraIndex}");
-
-        if (zoomCameras == null)
-        {
-            Debug.LogError("El array zoomCameras es null");
-            return;
-        }
-
-        if (zoomCameraIndex >= 0 && zoomCameraIndex < zoomCameras.Length)
-        {
-            if (zoomCameras[zoomCameraIndex] == null)
-            {
-                Debug.LogError($"La cámara en el índice {zoomCameraIndex} es null");
-                return;
-            }
-            zoomCameras[zoomCameraIndex].gameObject.SetActive(true);
-            Debug.Log($"Cámara de zoom {zoomCameraIndex} activada: {zoomCameras[zoomCameraIndex].name}");
-        }
-        else
-        {
-            Debug.LogError($"Índice de cámara de zoom inválido: {zoomCameraIndex}. El array de cámaras tiene {zoomCameras.Length} elementos.");
-            return;
-        }
-
-        // Activa la cámara de zoom correspondiente
-        //int zoomCameraIndex = currentInteractable.GetComponent<InteractableObject>().zoomCameraIndex;
-        //Debug.Log("La cámara que tiene el índice: " + zoomCameraIndex);
-        //zoomCameras[zoomCameraIndex].gameObject.SetActive(true);
+        zoomCameras[zoomCameraIndex].gameObject.SetActive(true);
 
         // Activa el cursor
         Cursor.visible = true;
@@ -127,6 +106,16 @@ public class InteractionSystem : MonoBehaviour
 
         // Desactiva el movimiento del jugador
         GetComponent<PlayerMovement>().enabled = false;
+    }
+
+    void Recolect()
+    {
+        RecolectableObject recolectableObject = currentInteractable.GetComponent<RecolectableObject>();
+        string nameObject = recolectableObject.nameObject;
+
+        Debug.Log(nameObject);
+
+        recolectableObject.Recolect();
     }
 
     void ExitZoom()
