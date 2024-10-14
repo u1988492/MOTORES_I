@@ -36,9 +36,13 @@ public class InteractionSystem : MonoBehaviour
         {
             CheckForInteractables();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else
         {
-            ExitZoom();
+            HandleZoomedInteraction();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ExitZoom();
+            }
         }
     }
 
@@ -98,6 +102,24 @@ public class InteractionSystem : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false;
     }
 
+    void HandleZoomedInteraction()
+    {
+        if (Input.GetMouseButtonDown(0)) // Click izquierdo del ratón
+        {
+            Ray ray = zoomCameras[GetActiveZoomCameraIndex()].ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
+                if (puzzle != null)
+                {
+                    puzzle.Interact(inventorySystem);
+                }
+            }
+        }
+    }
+
     void Recolect()
     {
         RecolectableObject recolectableObject = currentInteractable.GetComponent<RecolectableObject>();
@@ -108,6 +130,18 @@ public class InteractionSystem : MonoBehaviour
         interactionText.gameObject.SetActive(false);
 
         recolectableObject.Recolect();
+    }
+
+    int GetActiveZoomCameraIndex()
+    {
+        for (int i = 0; i < zoomCameras.Length; i++)
+        {
+            if (zoomCameras[i].gameObject.activeInHierarchy)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     void ExitZoom()
