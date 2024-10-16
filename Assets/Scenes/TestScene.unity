@@ -261,6 +261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f88c118bcdce4642bf08ccac2fc5897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 90
+  rotationAmount: 90
+  isOpening: 0
 --- !u!114 &110539488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,8 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredKeyName: LPuerta1
-  associatedDoor: {fileID: 110539487}
-  lockAnimator: {fileID: 0}
+  door: {fileID: 110539486}
 --- !u!65 &494694905
 BoxCollider:
   m_ObjectHideFlags: 0

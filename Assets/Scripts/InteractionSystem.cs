@@ -144,7 +144,7 @@ public class InteractionSystem : MonoBehaviour
         return -1;
     }
 
-    void ExitZoom()
+    public void ExitZoom()
     {
         isZoomed = false;
 
