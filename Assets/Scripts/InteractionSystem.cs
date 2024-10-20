@@ -51,7 +51,7 @@ public class InteractionSystem : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, interactionDistance))
         {
-            if (hit.collider.CompareTag("Interactable") || hit.collider.CompareTag("Recolectable"))
+            if (hit.collider.CompareTag("Interactable") || hit.collider.CompareTag("Recolectable") ||hit.collider.CompareTag("Usable"))
             {
                 canInteract = true;
                 currentInteractable = hit.collider.gameObject;
@@ -67,6 +67,14 @@ public class InteractionSystem : MonoBehaviour
                     else if (hit.collider.CompareTag("Recolectable"))
                     {
                         Recolect();
+                    }
+                    else if (hit.collider.CompareTag("Usable"))
+                    {
+                        IUsable usableObject = hit.collider.GetComponent<IUsable>();
+                        if (usableObject != null)
+                        {
+                            Use(usableObject);
+                        }
                     }
                 }
             }
@@ -130,6 +138,11 @@ public class InteractionSystem : MonoBehaviour
         interactionText.gameObject.SetActive(false);
 
         recolectableObject.Recolect();
+    }
+
+    void Use(IUsable usableObject)
+    {
+        usableObject.Usar(inventorySystem);
     }
 
     int GetActiveZoomCameraIndex()
