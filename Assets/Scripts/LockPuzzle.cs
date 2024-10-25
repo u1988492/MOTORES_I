@@ -6,6 +6,7 @@ public class LockPuzzle : MonoBehaviour, IPuzzle
 {
     public string requiredKeyName;
     public GameObject door;
+    public Collider interactionZone;
 
     private bool isUnlocked = false;
 
@@ -30,11 +31,8 @@ public class LockPuzzle : MonoBehaviour, IPuzzle
 
     private void OpenLock()
     {   
-        //isOpening = true;
-
         door.GetComponent<DoorObject>().OpenDoor();
-
-        //isOpening = false;
         isUnlocked = true;
+        interactionZone.tag = "Untagged";
     }
 }

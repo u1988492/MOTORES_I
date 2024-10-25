@@ -51,32 +51,33 @@ public class InteractionSystem : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, interactionDistance))
         {
-            if (hit.collider.CompareTag("Interactable") || hit.collider.CompareTag("Recolectable") ||hit.collider.CompareTag("Usable"))
-            {
-                canInteract = true;
-                currentInteractable = hit.collider.gameObject;
-                interactionText.text = interactionPrompt;
-                interactionText.gameObject.SetActive(true);
+            bool shouldInteract = false;
 
-                if (Input.GetKeyDown(KeyCode.E))
+            // Comprueba si es un objeto interactuable y si golpea la zona correcta
+            if (hit.collider.CompareTag("Interactable"))
+            {
+                InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>();
+                if (interactable != null)
                 {
-                    if (hit.collider.CompareTag("Interactable"))
+                    // Si tiene zona de interacción específica, comprueba si golpeó esa zona
+                    if (interactable.interactionZone == null || hit.collider == interactable.interactionZone)
                     {
-                        Interact();
-                    }
-                    else if (hit.collider.CompareTag("Recolectable"))
-                    {
-                        Recolect();
-                    }
-                    else if (hit.collider.CompareTag("Usable"))
-                    {
-                        IUsable usableObject = hit.collider.GetComponent<IUsable>();
-                        if (usableObject != null)
-                        {
-                            Use(usableObject);
-                        }
+                        shouldInteract = true;
+                        currentInteractable = interactable.gameObject;
                     }
                 }
+            }
+            // Para recolectables y usables mantiene el comportamiento original
+            else if (hit.collider.CompareTag("Recolectable") || hit.collider.CompareTag("Usable"))
+            {
+                shouldInteract = true;
+                currentInteractable = hit.collider.gameObject;
+            }
+
+            // Si podemos interactuar, muestra el prompt y maneja la interacción
+            if (shouldInteract)
+            {
+                HandleInteraction(hit.collider);
             }
             else
             {
@@ -89,12 +90,44 @@ public class InteractionSystem : MonoBehaviour
         }
     }
 
+    void HandleInteraction(Collider hitCollider)
+    {
+        canInteract = true;
+        interactionText.text = interactionPrompt;
+        interactionText.gameObject.SetActive(true);
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (hitCollider.CompareTag("Interactable"))
+            {
+                Interact();
+            }
+            else if (hitCollider.CompareTag("Recolectable"))
+            {
+                Recolect();
+            }
+            else if (hitCollider.CompareTag("Usable"))
+            {
+                IUsable usableObject = hitCollider.GetComponent<IUsable>();
+                if (usableObject != null)
+                {
+                    Use(usableObject);
+                }
+            }
+        }
+    }
+
     void Interact()
     {
         isZoomed = true;
         mainCamera.gameObject.SetActive(false);
 
         InteractableObject interactableScript = currentInteractable.GetComponent<InteractableObject>();
+
+        if (interactableScript.interactionZone != null)
+        {
+            interactableScript.interactionZone.enabled = false;
+        }
 
         int zoomCameraIndex = interactableScript.zoomCameraIndex;
         zoomCameras[zoomCameraIndex].gameObject.SetActive(true);
@@ -160,6 +193,15 @@ public class InteractionSystem : MonoBehaviour
     public void ExitZoom()
     {
         isZoomed = false;
+
+        if (currentInteractable != null)
+        {
+            InteractableObject interactableScript = currentInteractable.GetComponent<InteractableObject>();
+            if (interactableScript.interactionZone != null)
+            {
+                interactableScript.interactionZone.enabled = true;
+            }
+        }
 
         // Reactiva la cámara principal
         mainCamera.gameObject.SetActive(true);
