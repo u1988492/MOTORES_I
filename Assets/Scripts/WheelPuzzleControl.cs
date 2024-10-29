@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WheelControl : MonoBehaviour {
-    private int[] result, correctCombination;
+    public int[] result, correctCombination;
     public GameObject door;
     public Collider interactionZone;
     private void Start(){
