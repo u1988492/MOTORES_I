@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WheelControl : MonoBehaviour {
-    public int[] result, correctCombination;
+    private int[] result;
+        
+    public int[] correctCombination;
     public GameObject door;
     public Collider interactionZone;
+
     private void Start(){
         result  = new int[] {0, 0, 0};
-        correctCombination = new int[] {9, 7, 2};
         Wheel.Rotated += CheckResults;
     }
 
