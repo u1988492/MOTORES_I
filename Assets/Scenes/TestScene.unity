@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 249190172}
   - component: {fileID: 249190171}
   - component: {fileID: 249190170}
+  - component: {fileID: 249190173}
   m_Layer: 0
   m_Name: Figure1Key
   m_TagString: Recolectable
@@ -918,6 +919,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249190168}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &249190173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249190168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameObject: Figure1Key
 --- !u!1 &277261335
 GameObject:
   m_ObjectHideFlags: 0
@@ -5965,7 +5979,7 @@ Transform:
   m_GameObject: {fileID: 349465256}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: 5.62, y: 0, z: 0}
+  m_LocalPosition: {x: 5.6, y: 0, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7267,6 +7281,7 @@ GameObject:
   - component: {fileID: 944296887}
   - component: {fileID: 944296886}
   - component: {fileID: 944296885}
+  - component: {fileID: 944296888}
   m_Layer: 0
   m_Name: Figure2Key
   m_TagString: Recolectable
@@ -7362,6 +7377,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944296883}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &944296888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944296883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameObject: Figure2Key
 --- !u!1 &973583034
 GameObject:
   m_ObjectHideFlags: 0
@@ -7479,8 +7507,8 @@ GameObject:
   - component: {fileID: 990691894}
   - component: {fileID: 990691893}
   - component: {fileID: 990691892}
-  - component: {fileID: 990691891}
   - component: {fileID: 990691890}
+  - component: {fileID: 990691891}
   m_Layer: 0
   m_Name: AltarBase
   m_TagString: Interactable
@@ -7497,7 +7525,7 @@ Transform:
   m_GameObject: {fileID: 990691888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.971, y: -1.315, z: 2.402}
+  m_LocalPosition: {x: 0.971, y: -1.641, z: 2.402}
   m_LocalScale: {x: 0.634, y: 0.0922, z: 0.3846}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7517,7 +7545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 6
+  zoomCameraIndex: 7
   interactionZone: {fileID: 0}
 --- !u!114 &990691891
 MonoBehaviour:
@@ -7614,6 +7642,7 @@ GameObject:
   - component: {fileID: 996469937}
   - component: {fileID: 996469936}
   - component: {fileID: 996469935}
+  - component: {fileID: 996469938}
   m_Layer: 0
   m_Name: Figure3Key
   m_TagString: Recolectable
@@ -7709,6 +7738,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996469933}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &996469938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996469933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameObject: Figure3Key
 --- !u!1 &1009369471
 GameObject:
   m_ObjectHideFlags: 0
@@ -8787,6 +8829,8 @@ MonoBehaviour:
   - {fileID: 1828993674}
   - {fileID: 1946654059}
   - {fileID: 594841621}
+  - {fileID: 349465260}
+  - {fileID: 1547887540}
   interactionDistance: 5
   interactionText: {fileID: 1650679840}
   interactionPrompt: Pulsa 'E' para interactuar
@@ -8862,7 +8906,7 @@ Transform:
   m_GameObject: {fileID: 1547887536}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.03997612, z: -0, w: 0.99920064}
-  m_LocalPosition: {x: -0.17, y: 1, z: -1.39}
+  m_LocalPosition: {x: 0.25, y: 1, z: -1.97}
   m_LocalScale: {x: 1.5812569, y: 23.22451, z: 0.3237511}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10480,7 +10524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 7
+  zoomCameraIndex: 6
   interactionZone: {fileID: 686545242}
 --- !u!65 &1839311959
 BoxCollider:
