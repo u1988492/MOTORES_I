@@ -7006,7 +7006,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669585573}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f1571a165d19e147b3fb5a8dbe82891, type: 3}
   m_Name: 
@@ -7019,7 +7019,7 @@ MonoBehaviour:
   - {fileID: 638916987}
   - {fileID: 1381797637}
   - {fileID: 584335205}
-  interactionZone: {fileID: 0}
+  interactionZone: {fileID: 1304651020}
 --- !u!1 &686545241
 GameObject:
   m_ObjectHideFlags: 0
@@ -7791,6 +7791,7 @@ GameObject:
   - component: {fileID: 990691894}
   - component: {fileID: 990691893}
   - component: {fileID: 990691892}
+  - component: {fileID: 990691895}
   m_Layer: 0
   m_Name: AltarBase
   m_TagString: Untagged
@@ -7887,6 +7888,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990691888}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &990691895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990691888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1571a165d19e147b3fb5a8dbe82891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredFigureNames:
+  - Figure1Key
+  - Figure2Key
+  - Figure3Key
+  figureSlots:
+  - {fileID: 638916987}
+  - {fileID: 1381797637}
+  - {fileID: 584335205}
+  interactionZone: {fileID: 1304651020}
 --- !u!1 &996469933
 GameObject:
   m_ObjectHideFlags: 0
