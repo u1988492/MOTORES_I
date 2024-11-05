@@ -131,9 +131,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 20601245}
+  - component: {fileID: 20601247}
+  - component: {fileID: 20601246}
   m_Layer: 0
   m_Name: SafeBoxPuzzle
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +156,35 @@ Transform:
   - {fileID: 1839311956}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &20601246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20601244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17af0b31b58de6843b09b955949831f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 90
+  rotationAmount: 90
+  isOpening: 0
+--- !u!114 &20601247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20601244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomCameraIndex: 6
+  interactionZone: {fileID: 686545242}
 --- !u!1 &39134474
 GameObject:
   m_ObjectHideFlags: 0
@@ -8691,7 +8722,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 669585574}
-  - component: {fileID: 669585575}
   m_Layer: 0
   m_Name: Figures
   m_TagString: Untagged
@@ -8717,27 +8747,6 @@ Transform:
   - {fileID: 584335206}
   m_Father: {fileID: 990691889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &669585575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669585573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f1571a165d19e147b3fb5a8dbe82891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredFigureNames:
-  - Figure1Key
-  - Figure2Key
-  - Figure3Key
-  figureSlots:
-  - {fileID: 638916987}
-  - {fileID: 1381797637}
-  - {fileID: 584335205}
-  interactionZone: {fileID: 0}
 --- !u!1 &686545241
 GameObject:
   m_ObjectHideFlags: 0
@@ -9801,6 +9810,7 @@ GameObject:
   - component: {fileID: 990691894}
   - component: {fileID: 990691893}
   - component: {fileID: 990691892}
+  - component: {fileID: 990691895}
   m_Layer: 0
   m_Name: AltarBase
   m_TagString: Untagged
@@ -9897,6 +9907,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990691888}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &990691895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990691888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1571a165d19e147b3fb5a8dbe82891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredFigureNames:
+  - Figure1Key
+  - Figure2Key
+  - Figure3Key
+  figureSlots:
+  - {fileID: 638916987}
+  - {fileID: 1381797637}
+  - {fileID: 584335205}
+  interactionZone: {fileID: 1304651020}
 --- !u!1 &996469933
 GameObject:
   m_ObjectHideFlags: 0
@@ -13568,11 +13599,10 @@ GameObject:
   - component: {fileID: 1839311961}
   - component: {fileID: 1839311960}
   - component: {fileID: 1839311959}
-  - component: {fileID: 1839311958}
-  - component: {fileID: 1839311957}
+  - component: {fileID: 1839311962}
   m_Layer: 0
   m_Name: Safebox
-  m_TagString: Interactable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13595,35 +13625,6 @@ Transform:
   - {fileID: 349465257}
   m_Father: {fileID: 20601245}
   m_LocalEulerAnglesHint: {x: 0, y: 85.418, z: 0}
---- !u!114 &1839311957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839311955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f88c118bcdce4642bf08ccac2fc5897, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 90
-  rotationAmount: 90
-  isOpening: 0
---- !u!114 &1839311958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839311955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomCameraIndex: 6
-  interactionZone: {fileID: 686545242}
 --- !u!65 &1839311959
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13695,6 +13696,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839311955}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1839311962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839311955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab0b39b84b34c0e46a95dec54d9f596e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionZone: {fileID: 686545242}
+  safebox: {fileID: 20601246}
+  dial: {fileID: 2077131617}
+  positions: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &1849838205
 GameObject:
   m_ObjectHideFlags: 0
@@ -14651,7 +14668,7 @@ GameObject:
   - component: {fileID: 2077131620}
   - component: {fileID: 2077131619}
   m_Layer: 0
-  m_Name: BoxLock
+  m_Name: Dial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

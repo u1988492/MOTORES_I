@@ -17,6 +17,7 @@ public class Keypad : MonoBehaviour
     public void ButtonClicked(string number)
     {
         userInput += number;
+        Debug.Log("Number introduced: " + number);
         if(userInput.Length >= 4)
         {
             //check password

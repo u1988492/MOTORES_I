@@ -59,7 +59,7 @@ public class InteractionSystem : MonoBehaviour
                 InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>();
                 if (interactable != null)
                 {
-                    // Si tiene zona de interacción específica, comprueba si golpeó esa zona
+                    // Si tiene zona de interacciï¿½n especï¿½fica, comprueba si golpeï¿½ esa zona
                     if (interactable.interactionZone == null || hit.collider == interactable.interactionZone)
                     {
                         shouldInteract = true;
@@ -74,7 +74,7 @@ public class InteractionSystem : MonoBehaviour
                 currentInteractable = hit.collider.gameObject;
             }
 
-            // Si podemos interactuar, muestra el prompt y maneja la interacción
+            // Si podemos interactuar, muestra el prompt y maneja la interacciï¿½n
             if (shouldInteract)
             {
                 HandleInteraction(hit.collider);
@@ -136,7 +136,7 @@ public class InteractionSystem : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        // Desactiva el texto de interacción
+        // Desactiva el texto de interacciï¿½n
         interactionText.gameObject.SetActive(false);
 
         // Desactiva el movimiento del jugador
@@ -145,7 +145,7 @@ public class InteractionSystem : MonoBehaviour
 
     void HandleZoomedInteraction()
     {
-        if (Input.GetMouseButtonDown(0)) // Click izquierdo del ratón
+        if (Input.GetMouseButtonDown(0)) // Click izquierdo del ratï¿½n
         {
             Ray ray = zoomCameras[GetActiveZoomCameraIndex()].ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -203,10 +203,10 @@ public class InteractionSystem : MonoBehaviour
             }
         }
 
-        // Reactiva la cámara principal
+        // Reactiva la cï¿½mara principal
         mainCamera.gameObject.SetActive(true);
 
-        // Desactiva todas las cámaras de zoom
+        // Desactiva todas las cï¿½maras de zoom
         foreach (Camera cam in zoomCameras)
         {
             cam.gameObject.SetActive(false);

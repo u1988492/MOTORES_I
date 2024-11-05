@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class SafeBox_Puzzle : MonoBehaviour, IPuzzle
@@ -23,19 +24,27 @@ public class SafeBox_Puzzle : MonoBehaviour, IPuzzle
     private int currentStep = 0; //paso actual en la combinación, contando las entradas correctas
     private string currentDirection = "R"; //dirección del movimiento
 
+    private bool isActive = false;
+
     void Start(){
         //inicializar
         for(int i = 0; i < 40; i++) positions[i] = i;
     }
 
-
-     public void Interact(InventorySystem inventory){
+    void Update(){
+        if(!isActive) return;
         if(Input.GetKeyDown(KeyCode.LeftArrow)){
+            Debug.Log("Girando a la izq");
             TurnLeft();
         }
         else if(Input.GetKeyDown(KeyCode.RightArrow)){
+            Debug.Log("Girando a la decha");
             TurnRight();
-        }
+        }  
+    }
+
+     public void Interact(InventorySystem inventory){
+        isActive = true;
      }
 
     private void UpdateDialRotation(){
@@ -81,6 +90,10 @@ public class SafeBox_Puzzle : MonoBehaviour, IPuzzle
         }
     }
 
+    public void ResetPuzzle(){
+        isActive = false;
+        ResetLock();
+    }
     private void ResetLock(){
         currentPos = 0;
         currentStep = 0;
