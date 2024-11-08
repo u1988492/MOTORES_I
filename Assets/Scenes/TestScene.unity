@@ -9297,6 +9297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   password: 1234
   door: {fileID: 853210588}
+  interactionZone: {fileID: 0}
 --- !u!114 &904482699
 MonoBehaviour:
   m_ObjectHideFlags: 0

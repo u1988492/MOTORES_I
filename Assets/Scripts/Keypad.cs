@@ -7,6 +7,7 @@ public class Keypad : MonoBehaviour
     public string password = "1234";
     public GameObject door;
     private string userInput = "";
+    public Collider interactionZone;
 
 
 
@@ -15,7 +16,7 @@ public class Keypad : MonoBehaviour
         userInput = "";
 
     }
-
+    
     public void ButtonClicked(string number)
     {
         userInput += number;
@@ -23,8 +24,7 @@ public class Keypad : MonoBehaviour
         if(userInput.Length >= 4)
         {
             //check password
-            if(userInput == password)
-            {
+            if(userInput == password){
                 Debug.Log("Entry Allowed");
                 OpenDoor();
             }
@@ -39,5 +39,6 @@ public class Keypad : MonoBehaviour
     private void OpenDoor()
     {
         door.GetComponent<DoorObject>().OpenDoor();
+        interactionZone.tag = "Untagged";
     }
 }
