@@ -5,7 +5,9 @@ using UnityEngine;
 public class Keypad : MonoBehaviour
 {
     public string password = "1234";
+    public GameObject door;
     private string userInput = "";
+
 
 
     private void Start()
@@ -24,6 +26,7 @@ public class Keypad : MonoBehaviour
             if(userInput == password)
             {
                 Debug.Log("Entry Allowed");
+                OpenDoor();
             }
             else {
                 Debug.Log("Not this time");
@@ -31,5 +34,10 @@ public class Keypad : MonoBehaviour
             }
 
         }
+    }
+
+    private void OpenDoor()
+    {
+        door.GetComponent<DoorObject>().OpenDoor();
     }
 }
