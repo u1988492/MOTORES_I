@@ -13,13 +13,13 @@ public class InteractionSystem : MonoBehaviour
     public string interactionPrompt = "Pulsa 'E' para interactuar";
 
     private bool canInteract = false;
-    private GameObject currentInteractable;
+    private GameObject currentInteractable; //Guardar el objeto interactuable
     private bool isZoomed = false;
-    private InventorySystem inventorySystem;
+    private InventorySystem inventorySystem; //Inventario
 
     void Start()
     {
-        inventorySystem = GetComponent<InventorySystem>();
+        inventorySystem = GetComponent<InventorySystem>(); //Asegurarnos que tiene el inventario
         if (inventorySystem == null)
         {
             inventorySystem = gameObject.AddComponent<InventorySystem>();
@@ -32,11 +32,11 @@ public class InteractionSystem : MonoBehaviour
         {
             DisplayInventory();
         }
-        if (!isZoomed)
+        if (!isZoomed) //Si no está dentro de un puzzle, busca cosas interactuables
         {
             CheckForInteractables();
         }
-        else
+        else //Sino, verificamos dentro del puzzle clicks del ratón
         {
             HandleZoomedInteraction();
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -56,10 +56,10 @@ public class InteractionSystem : MonoBehaviour
             // Comprueba si es un objeto interactuable y si golpea la zona correcta
             if (hit.collider.CompareTag("Interactable"))
             {
-                InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>();
+                InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>(); //Verificamos si el padre del objeto tiene colisión
                 if (interactable != null)
                 {
-                    // Si tiene zona de interacci�n espec�fica, comprueba si golpe� esa zona
+                    // Si tiene zona de interacci�n espec�fica, comprueba si golpe� esa zona (ya sea el objeto o su padre)
                     if (interactable.interactionZone == null || hit.collider == interactable.interactionZone)
                     {
                         shouldInteract = true;
@@ -93,10 +93,10 @@ public class InteractionSystem : MonoBehaviour
     void HandleInteraction(Collider hitCollider)
     {
         canInteract = true;
-        interactionText.text = interactionPrompt;
+        interactionText.text = interactionPrompt; //mostramos texto
         interactionText.gameObject.SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) //Si se pulsa la E: 
         {
             if (hitCollider.CompareTag("Interactable"))
             {
@@ -108,7 +108,7 @@ public class InteractionSystem : MonoBehaviour
             }
             else if (hitCollider.CompareTag("Usable"))
             {
-                IUsable usableObject = hitCollider.GetComponent<IUsable>();
+                IUsable usableObject = hitCollider.GetComponent<IUsable>(); //usamos una interfaz 
                 if (usableObject != null)
                 {
                     Use(usableObject);
@@ -120,23 +120,23 @@ public class InteractionSystem : MonoBehaviour
     void Interact()
     {
         isZoomed = true;
-        mainCamera.gameObject.SetActive(false);
+        mainCamera.gameObject.SetActive(false); //Desactivamos cámara
 
         InteractableObject interactableScript = currentInteractable.GetComponent<InteractableObject>();
 
         if (interactableScript.interactionZone != null)
         {
-            interactableScript.interactionZone.enabled = false;
+            interactableScript.interactionZone.enabled = false; //Desactivamos zona de interacción
         }
 
         int zoomCameraIndex = interactableScript.zoomCameraIndex;
-        zoomCameras[zoomCameraIndex].gameObject.SetActive(true);
+        zoomCameras[zoomCameraIndex].gameObject.SetActive(true); //activamos la cámara del puzzle
 
         // Activa el cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        // Desactiva el texto de interacci�n
+        // Desactiva el texto de interacción
         interactionText.gameObject.SetActive(false);
 
         // Desactiva el movimiento del jugador
@@ -155,7 +155,7 @@ public class InteractionSystem : MonoBehaviour
                 IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
                 if (puzzle != null)
                 {
-                    puzzle.Interact(inventorySystem);
+                    puzzle.Interact(inventorySystem); //Si se detecta la interfaz de puzle y que da click, se interactua con el puzzle
                 }
             }
         }
@@ -164,18 +164,18 @@ public class InteractionSystem : MonoBehaviour
     void Recolect()
     {
         RecolectableObject recolectableObject = currentInteractable.GetComponent<RecolectableObject>();
-        string nameObject = recolectableObject.nameObject;
+        string nameObject = recolectableObject.nameObject; //Conseguimos nombre del objeto
 
-        inventorySystem.AddItem(nameObject);
+        inventorySystem.AddItem(nameObject); //lo añadimos
 
-        interactionText.gameObject.SetActive(false);
+        interactionText.gameObject.SetActive(false); //lo desactivamos
 
         recolectableObject.Recolect();
     }
 
     void Use(IUsable usableObject)
     {
-        usableObject.Usar(inventorySystem);
+        usableObject.Usar(inventorySystem); //Interfaz para usar el objeto
     }
 
     int GetActiveZoomCameraIndex()
@@ -206,7 +206,7 @@ public class InteractionSystem : MonoBehaviour
         // Reactiva la c�mara principal
         mainCamera.gameObject.SetActive(true);
 
-        // Desactiva todas las c�maras de zoom
+        // Desactiva todas las cámaras de zoom
         foreach (Camera cam in zoomCameras)
         {
             cam.gameObject.SetActive(false);

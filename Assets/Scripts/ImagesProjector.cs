@@ -5,23 +5,24 @@ using UnityEngine.Rendering.Universal;
 
 public class ImagesProjector : MonoBehaviour
 {
-    public Material[] materials;
-    public DecalProjector decalProjector;
+    public Material[] materials; //Lista de materiales con las imágenes
+    public DecalProjector decalProjector; //Objeto que genera la imagen en la pared
     public float timeSwitchImages = 5f;
 
     private float timer;
     private int i = 0;
     void Start()
     {
-        decalProjector = GetComponent<DecalProjector>();
+        decalProjector = GetComponent<DecalProjector>(); //Conseguir materiales
         decalProjector.material = materials[0];
-        i++;
+        i++; 
     }
+
     void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer > timeSwitchImages)
+        if (timer > timeSwitchImages) //Al llegar al tiempo se cambia material
         {
             switchMaterial();
             i++;

@@ -8,27 +8,27 @@ public class DoorObject : MonoBehaviour
     public float rotationAmount = 90f;
     
     private float currentRotation = 0f;
-    private InteractionSystem interactionSystem;
+    private InteractionSystem interactionSystem; //Importante para poder salir de la cámara al abrir la puerta
     
     public bool isOpening = false;
 
     private void Start()
     {
-        interactionSystem = FindObjectOfType<InteractionSystem>();
+        interactionSystem = FindObjectOfType<InteractionSystem>(); //Detectar zona de Interacción
         if (interactionSystem == null)
         {
             Debug.LogError("No se encontró InteractionSystem en la escena");
         }
     }
 
-    private IEnumerator OpeningDoor()
+    private IEnumerator OpeningDoor() //"Animación" de abrir puerta
     {
         isOpening = true;
         Debug.Log("Puerta abriéndose...");
 
         if (interactionSystem != null)
         {
-            interactionSystem.ExitZoom();
+            interactionSystem.ExitZoom(); //Salir del zoom 
         }
 
         // Importante: Obtenemos el transform del padre (el pivote)
@@ -52,6 +52,6 @@ public class DoorObject : MonoBehaviour
 
     public void OpenDoor()
     {
-        StartCoroutine(OpeningDoor());
+        StartCoroutine(OpeningDoor()); //Empieza el método de abrir puerta 
     }
 }

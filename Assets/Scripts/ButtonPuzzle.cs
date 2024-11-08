@@ -9,7 +9,7 @@ public class ButtonPuzzle : MonoBehaviour, IPuzzle
 
     private bool isUnlocked = false;
 
-    public void Interact(InventorySystem inventory)
+    public void Interact(InventorySystem inventory) //Función interactuar --> Abrir puerta
     {
         if (!isUnlocked) 
         {

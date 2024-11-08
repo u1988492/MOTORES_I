@@ -9,16 +9,16 @@ public class InventorySystem : MonoBehaviour
         public string itemName;
         public int quantity;
 
-        public InventoryItem(string name, int qty)
+        public InventoryItem(string name, int qty) //Constructor de un objeto
         {
             itemName = name;
             quantity = qty;
         }
     }
 
-    private Dictionary<string, InventoryItem> inventory = new Dictionary<string, InventoryItem>();
+    private Dictionary<string, InventoryItem> inventory = new Dictionary<string, InventoryItem>(); //se Guarda un diccionario con el nombre y el item
 
-    public void AddItem(string itemName, int quantity = 1)
+    public void AddItem(string itemName, int quantity = 1) //añadir item
     {
         if (inventory.ContainsKey(itemName))
         {
@@ -31,7 +31,7 @@ public class InventorySystem : MonoBehaviour
         Debug.Log($"Added {quantity} {itemName}(s) to inventory. Total: {inventory[itemName].quantity}");
     }
 
-    public bool RemoveItem(string itemName, int quantity = 1)
+    public bool RemoveItem(string itemName, int quantity = 1) //quitar item
     {
         if (inventory.ContainsKey(itemName) && inventory[itemName].quantity >= quantity)
         {
@@ -47,7 +47,7 @@ public class InventorySystem : MonoBehaviour
         return false;
     }
 
-    public int GetItemCount(string itemName)
+    public int GetItemCount(string itemName) //saber cantidad de item
     {
         if (inventory.ContainsKey(itemName))
         {
@@ -56,7 +56,7 @@ public class InventorySystem : MonoBehaviour
         return 0;
     }
 
-    public void DisplayInventory()
+    public void DisplayInventory() //mostrar inventario
     {
         Debug.Log("Current Inventory:");
         foreach (var item in inventory.Values)
