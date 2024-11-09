@@ -1,30 +1,31 @@
-/*This script controls the rotation of the individual object 'WHEEL'
-The numberShown maximum will depend on the number of the faces of the wheel - change if needed
-The Rotation of the wheel will depend on the Transform attributes of the wheel - change if needed
+/*Este script controla la rotación individual del objeto 'WHEEL'
+El numberShown maximo dependerña dek número de caras que tenga la rueda - cambiar cuando sea necesario
+La Rotation de la rueda dependerá de los atributos  Transform attributes de la rueda - cambiar cuando sea necesario
 */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Wheel : MonoBehaviour {
+public class Wheel : MonoBehaviour, IPuzzle {
 
-    public static event Action<string, int> Rotated = delegate {}; //sends the information needed to the wheel puzzle control script
-    private bool coroutineAllowed; //if the wheel is not rotating, it will be true
-    private int numberShown;
+    public static event Action<string, int> Rotated = delegate {}; //envía la información necesaria al script WheelPuzzleControl
+    private bool coroutineAllowed; //si la rueda no está rodando, será true
+    private int numberShown; //número que se muestra en la parte frontal de la rueda
 
     private void Start() {
         coroutineAllowed = true;
         numberShown = 0;
     }
 
-    private void OnMouseDown() {
+    public void Interact(InventorySystem inventory) { //Llama a RotateWheel solo cuando esté en la interfaz IPuzzle
         if(coroutineAllowed){
             StartCoroutine("RotateWheel");
         }
     }
 
-    private IEnumerator RotateWheel() {
+    private IEnumerator RotateWheel() { //función que rota la rueda
+
         coroutineAllowed = false;
 
         for (int i = 0; i <= 11; i++){
@@ -39,6 +40,6 @@ public class Wheel : MonoBehaviour {
             numberShown = 0;
         }
 
-        Rotated(name, numberShown);
+        Rotated(name, numberShown); //se actualizan los valores en WheelPuzzleControl
     }
 }

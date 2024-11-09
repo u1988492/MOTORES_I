@@ -7064,7 +7064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45389524d3ad1df4fa922eb91d5be1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctCombination: 
+  correctCombination: 090000000700000002000000
   door: {fileID: 1781874427}
   interactionZone: {fileID: 1902369914}
 --- !u!1 &348722270
@@ -10539,9 +10539,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209433158}
+  - component: {fileID: 1209433159}
   m_Layer: 0
-  m_Name: DoorPivot (1)
-  m_TagString: Untagged
+  m_Name: 3WheelPuzzle
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10563,6 +10564,20 @@ Transform:
   - {fileID: 329620176}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1209433159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209433157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomCameraIndex: 5
+  interactionZone: {fileID: 1902369914}
 --- !u!1 &1228309401
 GameObject:
   m_ObjectHideFlags: 0
@@ -12940,8 +12955,7 @@ GameObject:
   - component: {fileID: 1781874433}
   - component: {fileID: 1781874432}
   - component: {fileID: 1781874431}
-  - component: {fileID: 1781874430}
-  - component: {fileID: 1781874429}
+  - component: {fileID: 1781874434}
   m_Layer: 0
   m_Name: Door
   m_TagString: Interactable
@@ -12966,35 +12980,6 @@ Transform:
   - {fileID: 594841618}
   m_Father: {fileID: 1209433158}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1781874429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781874427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f88c118bcdce4642bf08ccac2fc5897, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 90
-  rotationAmount: 90
-  isOpening: 0
---- !u!114 &1781874430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781874427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomCameraIndex: 5
-  interactionZone: {fileID: 1902369914}
 --- !u!65 &1781874431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13066,6 +13051,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781874427}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1781874434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781874427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f88c118bcdce4642bf08ccac2fc5897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 90
+  rotationAmount: 90
+  isOpening: 0
 --- !u!1 &1789999049
 GameObject:
   m_ObjectHideFlags: 0

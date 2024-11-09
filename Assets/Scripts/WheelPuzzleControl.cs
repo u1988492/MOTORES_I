@@ -1,12 +1,11 @@
-/*This script controls the whole object of the rotating wheel lock
-MUST CHANGE WHEN NEEDED: correctCombination -  wheelName (add or remove as many as needed) - object which has to be opened*/
+/*Este script controla todo el objeto del candado de tres ruedas
+CAMBIAR CUANDO SEA NECESARIO PARA EL JUEGO: correctCombination /  wheelName (añadir o quitar las que sean necesarias) / objeto que debe ser abierto (ahora es DoorObject)*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WheelControl : MonoBehaviour {
     private int[] result;
-        
     public int[] correctCombination;
     public GameObject door;
     public Collider interactionZone;
