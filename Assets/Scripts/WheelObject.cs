@@ -24,6 +24,10 @@ public class Wheel : MonoBehaviour, IPuzzle {
         }
     }
 
+    public void StopInteract()
+    {
+        //Vacío
+    }
     private IEnumerator RotateWheel() { //función que rota la rueda
 
         coroutineAllowed = false;

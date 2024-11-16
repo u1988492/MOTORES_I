@@ -12,4 +12,9 @@ public class ButtonScript : MonoBehaviour, IPuzzle
     public void Interact(InventorySystem inventory){
         KeyPadClicked.Invoke();
     }
+
+    public void StopInteract()
+    {
+        //Vacío
+    }
 }

@@ -47,6 +47,10 @@ public class AltarPuzzle : MonoBehaviour, IPuzzle
         }
     }
 
+    public void StopInteract()
+    {
+        //Vacío
+    }
     private void PlaceFigure(InventorySystem inventory, int n){
         figureSlots[n].SetActive(true); //mostrar
         placedFigures[n] = true; //marcar como colocada 

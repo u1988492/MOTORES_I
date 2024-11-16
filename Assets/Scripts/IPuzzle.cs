@@ -6,4 +6,5 @@ public interface IPuzzle
 {
     // Este método será llamado cuando el jugador interactúe con el puzle
     void Interact(InventorySystem inventory);
+    void StopInteract();
 }

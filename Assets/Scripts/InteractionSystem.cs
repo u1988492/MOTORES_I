@@ -14,6 +14,7 @@ public class InteractionSystem : MonoBehaviour
 
     private bool canInteract = false;
     private GameObject currentInteractable; //Guardar el objeto interactuable
+    private IPuzzle currentPuzzle;
     private bool isZoomed = false;
     private InventorySystem inventorySystem; //Inventario
 
@@ -147,15 +148,16 @@ public class InteractionSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // Click izquierdo del rat�n
         {
+            Debug.Log("Pulsé");
             Ray ray = zoomCameras[GetActiveZoomCameraIndex()].ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                IPuzzle puzzle = hit.collider.GetComponent<IPuzzle>();
-                if (puzzle != null)
+                currentPuzzle = hit.collider.GetComponent<IPuzzle>();
+                if (currentPuzzle != null)
                 {
-                    puzzle.Interact(inventorySystem); //Si se detecta la interfaz de puzle y que da click, se interactua con el puzzle
+                    currentPuzzle.Interact(inventorySystem); //Si se detecta la interfaz de puzle y que da click, se interactua con el puzzle
                 }
             }
         }
@@ -193,6 +195,11 @@ public class InteractionSystem : MonoBehaviour
     public void ExitZoom()
     {
         isZoomed = false;
+
+        if (currentPuzzle != null)
+        {
+            currentPuzzle.StopInteract();
+        }
 
         if (currentInteractable != null)
         {

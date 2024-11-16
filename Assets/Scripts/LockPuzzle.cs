@@ -29,6 +29,11 @@ public class LockPuzzle : MonoBehaviour, IPuzzle
         }
     }
 
+    public void StopInteract()
+    {
+        //Vacío
+    }
+
     private void OpenLock()
     {   
         door.GetComponent<DoorObject>().OpenDoor();
