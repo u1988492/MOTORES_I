@@ -148,7 +148,7 @@ public class InteractionSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // Click izquierdo del rat�n
         {
-            Debug.Log("Pulsé");
+            //Debug.Log("Pulsé");
             Ray ray = zoomCameras[GetActiveZoomCameraIndex()].ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 

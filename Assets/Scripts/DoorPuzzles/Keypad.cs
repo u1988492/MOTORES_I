@@ -4,35 +4,51 @@ using UnityEngine;
 
 public class Keypad : MonoBehaviour
 {
-    public string password = "1234";
+    public int password = 1234;
+    public int password_length = 4;
     public GameObject door;
-    private string userInput = "";
+    private int userInput = 0;
     public Collider interactionZone;
 
-
+    private int pos = 0;
 
     private void Start()
     {
-        userInput = "";
-
+        userInput = 0;
+        pos = password_length-1;
     }
-    
-    public void ButtonClicked(string number)
+
+    public void ButtonClicked(int number)
     {
-        userInput += number;
-        Debug.Log("Number introduced: " + number);
-        if(userInput.Length >= 4)
+        if (number < 0 && pos < password_length - 1)
         {
-            //check password
-            if(userInput == password){
+            int factor = (int)Mathf.Pow(10, pos + 1);
+            userInput -= (userInput / factor % 10) * factor;  // Eliminar el último dígito
+            pos++;            // Recuperar una posición
+        }
+        else if(pos >= 0)
+        {
+            userInput += number * (int)Mathf.Pow(10, pos);
+            pos--;
+        }
+
+        Debug.Log("Current password: " + userInput);
+
+        // Verifica si se alcanzó la longitud esperada
+        if (pos < 0)
+        {
+            // Check password
+            if (userInput == password)
+            {
                 Debug.Log("Entry Allowed");
                 OpenDoor();
             }
-            else {
+            else
+            {
                 Debug.Log("Not this time");
-                userInput = "";
+                userInput = 0;
+                pos = password_length - 1;
             }
-
         }
     }
 
