@@ -50,17 +50,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Darkness: 0.238
+    - _Darkness: 0
+    - _Highlight_Cutoff: 0.485
     - _LightCutoff: 0.017
-    - _Light_cutoff: 0.067
+    - _Light_cutoff: 0.216
+    - _Line_Thickness: 0.7
+    - _Midtone_Cutoff: 0.4
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _Color: {r: 0.8566037, g: 0.6356886, b: 0.32163036, a: 0}
+    - _Highlight_Color: {r: 1, g: 0.8625322, b: 0.7830188, a: 0}
+    - _Light_Color: {r: 1, g: 0.36792436, b: 0.36792436, a: 0}
+    - _Line_Color: {r: 0, g: 0, b: 0, a: 0}
     - _MaterialColor: {r: 0.8415094, g: 0.5963416, b: 0.24610168, a: 0}
     - _Material_color: {r: 0.8415094, g: 0.5963416, b: 0.24610168, a: 0}
+    - _Midtone_Color: {r: 1, g: 0.8663691, b: 0.5566037, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow_color: {r: 0.4867924, g: 0.21216798, b: 0.36601356, a: 0}
+    - _Shadow_color: {r: 0.7509433, g: 0.74102515, b: 0.7466241, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8450536524485235737
 MonoBehaviour:
