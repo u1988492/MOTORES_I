@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Walls
+  m_Name: Lock
   m_Shader: {fileID: 4800000, guid: 85dacbbf1dd229c4ebbd737314309e88, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -30,9 +30,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _RimSharpness: 16
-    - _Smoothness: 16
+    - _Smoothness: 20
     m_Colors:
-    - _Color: {r: 0.3735848, g: 0.3735848, b: 0.3735848, a: 1}
+    - _Color: {r: 0.2392157, g: 0.27058825, b: 0.3137255, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _WorldColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Floor
-  m_Shader: {fileID: -6465566751694194690, guid: 10faddd3d0963564fbd3e89f086d3a97,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: 85dacbbf1dd229c4ebbd737314309e88, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,45 +23,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Base_texture:
+    - _ColorMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: -1.88, y: 4}
+        m_Offset: {x: 3.5, y: 0.75}
     m_Ints: []
     m_Floats:
-    - _Highlight_Cutoff: 1
-    - _Light_cutoff: 0.71
-    - _Line_Thickness: 0
-    - _Midtone_Cutoff: 1
-    - _QueueControl: 0
-    - _QueueOffset: 0
+    - _RimSharpness: 16
+    - _Smoothness: 4.7
     m_Colors:
-    - _Highlight_Color: {r: 1, g: 1, b: 1, a: 0.6666667}
-    - _Light_Color: {r: 0.4352941, g: 0.7294118, b: 0.78039217, a: 1}
-    - _Material_color: {r: 0.56078434, g: 0.40000004, b: 0.29411766, a: 0}
+    - _Color: {r: 0.4037736, g: 0.37101462, b: 0.37101462, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _WorldColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &2283186070567832570
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 7
