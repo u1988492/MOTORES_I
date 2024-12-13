@@ -29,15 +29,6 @@ SOFTWARE.
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/SpaceTransforms.hlsl"
 
-HLSLPROGRAM
-
-// These #pragma directives set up Main Light Shadows.
-#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
-#pragma multi_compile _ _SHADOWS_SOFT
-#pragma multi_compile _ _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
-
-ENDHLSL
-
 #ifndef SHADERGRAPH_PREVIEW
 
 struct EdgeConstraints{
@@ -77,7 +68,7 @@ float3 CalculateCelShading(Light l, SurfaceVariables s){
     rim *= pow(diffuse, s.rimThreshold);
 
     diffuse = smoothstep(0.0f, s.ec.diffuse, diffuse);
-    specular = s.smoothness * smoothstep(0.005f, 0.005f + s.ec.specular * smoothness, specular);
+    specular = s.smoothness * smoothstep(0.005f, 0.005f + s.ec.specular * s.smoothness, specular);
     rim = s.rimStrength * smoothstep(
         s.rimAmount - 0.5f * s.ec.rim,
         s.rimAmount + 0.5f * s.ec.rim,
