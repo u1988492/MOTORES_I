@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
     public Button playButton;
     public Button exitButton;
 
-    public string startGameScene = "TestScene";
+    public string startGameScene = "Bunker";
 
     // Start is called before the first frame update
     void Start()

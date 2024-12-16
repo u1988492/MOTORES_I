@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 1089722031}
   exitButton: {fileID: 1297997462}
-  startGameScene: TestScene
+  startGameScene: Bunker
 --- !u!1 &272663763
 GameObject:
   m_ObjectHideFlags: 0
