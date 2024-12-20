@@ -12,7 +12,7 @@ public class PlankObject : MonoBehaviour, IPuzzle{
 
 
     public void Interact(InventorySystem inventory) { //Llama a RemovePlank solo cuando esté en la interfaz IPuzzle
-        if (inventory.GetItemCount(requiredToolName) > 0)
+        if (inventory.GetItem(requiredToolName))
         {
             if (coroutineAllowed)
             {

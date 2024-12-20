@@ -18,7 +18,7 @@ public class ProjectorObject : MonoBehaviour, IUsable
     {
         if (!isObtained)
         {
-            if(inventory.GetItemCount(requiredProjectorImages) > 0)
+            if(inventory.GetItem(requiredProjectorImages))
             {
                 inventory.RemoveItem(requiredProjectorImages);
                 projector.SetActive(true);

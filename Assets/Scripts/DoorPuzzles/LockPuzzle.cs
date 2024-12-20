@@ -13,7 +13,7 @@ public class LockPuzzle : MonoBehaviour, IPuzzle
     public void Interact(InventorySystem inventory)
     {
         if (!isUnlocked) {
-            if (!door.GetComponent<DoorObject>().isOpening && inventory.GetItemCount(requiredKeyName) > 0)
+            if (!door.GetComponent<DoorObject>().isOpening && inventory.GetItem(requiredKeyName))
             {
                 inventory.RemoveItem(requiredKeyName);
                 OpenLock();

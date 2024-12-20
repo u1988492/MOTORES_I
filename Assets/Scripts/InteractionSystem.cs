@@ -17,6 +17,8 @@ public class InteractionSystem : MonoBehaviour
     private IPuzzle currentPuzzle;
     private bool isZoomed = false;
     private InventorySystem inventorySystem; //Inventario
+    private bool isInventoryOpen = false;
+    private FirstPersonCamera cameraController; //Controlador para la cámara
 
     void Start()
     {
@@ -25,6 +27,7 @@ public class InteractionSystem : MonoBehaviour
         {
             inventorySystem = gameObject.AddComponent<InventorySystem>();
         }
+        cameraController = mainCamera.GetComponent<FirstPersonCamera>();
     }
 
     void Update()
@@ -236,6 +239,24 @@ public class InteractionSystem : MonoBehaviour
 
     void DisplayInventory()
     {
-        inventorySystem.DisplayInventory();
+
+        isInventoryOpen = !isInventoryOpen;
+
+        if (!isInventoryOpen)
+        {
+            GetComponent<PlayerMovement>().enabled = true;
+            cameraController.enabled = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        } 
+        else
+        {
+            GetComponent<PlayerMovement>().enabled = false;
+            cameraController.enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        
+        inventorySystem.ToggleVisibilityInventory();
     }
 }

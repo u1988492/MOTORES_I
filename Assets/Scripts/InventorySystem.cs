@@ -1,67 +1,127 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
+    [System.Serializable] // Esto hace que la clase sea visible en el Inspector
     public class InventoryItem
     {
         public string itemName;
-        public int quantity;
+        public Sprite itemSprite;
 
-        public InventoryItem(string name, int qty) //Constructor de un objeto
-        {
-            itemName = name;
-            quantity = qty;
-        }
     }
 
-    private Dictionary<string, InventoryItem> inventory = new Dictionary<string, InventoryItem>(); //se Guarda un diccionario con el nombre y el item
+    public InventoryItem[] availableItems; //"Diccionario" de los objetos de la sala
+    public GameObject inventoryPanel; // Panel de Inventario
+    public GameObject slotPrefab;     // Prefab del Slot (para intercambiarlo por la imagen de Sprite)
+    public int slotsCount = 5;        // Número de slots 
 
-    public void AddItem(string itemName, int quantity = 1) //añadir item
+
+    private List<GameObject> inventorySlots = new List<GameObject>(); //Aquí habrá los slots del inventario
+    private Dictionary<int, InventoryItem> inventoryItems = new Dictionary<int, InventoryItem>(); //Diccionario de la posición que tiene cada objeto en el inv y su objeto
+
+
+    void Start()
     {
-        if (inventory.ContainsKey(itemName))
+        for(int i= 0; i < slotsCount; i++) //Crear los slots vacíos
         {
-            inventory[itemName].quantity += quantity;
+            GameObject slot = Instantiate(slotPrefab, inventoryPanel.transform);
+            inventorySlots.Add(slot);
         }
-        else
-        {
-            inventory[itemName] = new InventoryItem(itemName, quantity);
-        }
-        Debug.Log($"Added {quantity} {itemName}(s) to inventory. Total: {inventory[itemName].quantity}");
+
+        inventoryPanel.SetActive(false); //Desactivamos inventario
     }
 
-    public bool RemoveItem(string itemName, int quantity = 1) //quitar item
+    public void ToggleVisibilityInventory()
     {
-        if (inventory.ContainsKey(itemName) && inventory[itemName].quantity >= quantity)
+        inventoryPanel.SetActive(!inventoryPanel.activeSelf); //Intercambiamos visibilidad
+    }
+
+    public void AddItemToSlot(string itemName, int slotIndex) //Añadir objeto a un Slot
+    {
+        if(slotIndex >= 0 && slotIndex < inventorySlots.Count) //Si existe la slot
         {
-            inventory[itemName].quantity -= quantity;
-            if (inventory[itemName].quantity == 0)
-            {
-                inventory.Remove(itemName);
+            InventoryItem itemToAdd = System.Array.Find(availableItems, item => item.itemName == itemName); //Buscamos si ese objeto existe en el diccionario
+
+            if(itemToAdd != null){ //Si lo hace
+
+                //Guardar el item en el diccionario
+                inventoryItems[slotIndex] = itemToAdd;
+
+                //Actualizar la imagen del slot
+                Image slotImage = inventorySlots[slotIndex].GetComponent<Image>();
+                slotImage.sprite = itemToAdd.itemSprite;
+                slotImage.color = new Color(1, 1, 1, 1); //Hacer visible
             }
-            Debug.Log($"Removed {quantity} {itemName}(s) from inventory.");
-            return true;
         }
-        Debug.Log($"Not enough {itemName} in inventory.");
+    }
+
+    public void RemoveItemFromSlot(int slotIndex) //Quitar objeto de slot
+    {
+        if (inventoryItems.ContainsKey(slotIndex)) //Si en en los objetos hay alguno con la slot puesta
+        {
+            inventoryItems.Remove(slotIndex); //Lo quitamos
+
+            //Borramos su imagen
+            Image SlotImage = inventorySlots[slotIndex].GetComponent<Image>();
+            SlotImage.sprite = null;
+            SlotImage.color = new Color(1,1,1,0);
+        }
+    }
+
+    public bool GetItem(string itemName) //Comprobar si existe un objeto
+    {
+        foreach (var slot in inventoryItems) 
+        {
+            if (slot.Value.itemName == itemName) //Buscamos en todos los objetos si existe uno con el nombre pedido
+            {
+                return true;
+            }
+        }
         return false;
     }
 
-    public int GetItemCount(string itemName) //saber cantidad de item
+    public void AddItem(string itemName) //Añadir objeto
     {
-        if (inventory.ContainsKey(itemName))
+        int emptySlot = FindEmptySlot(); 
+        if(emptySlot != -1) //Si hay una slot vacía se añade
         {
-            return inventory[itemName].quantity;
+            AddItemToSlot(itemName, emptySlot);
         }
-        return 0;
     }
 
-    public void DisplayInventory() //mostrar inventario
+    public void RemoveItem(string itemName) //Quitar objeto
     {
-        Debug.Log("Current Inventory:");
-        foreach (var item in inventory.Values)
+        int slotItem = FindSlotWithItem(itemName);
+        if(slotItem != -1) //Si hay una slot con el nombre del objeto lo quitamos
         {
-            Debug.Log($"{item.itemName}: {item.quantity}");
+            RemoveItemFromSlot(slotItem);
         }
+    }
+
+    private int FindEmptySlot() //Buscar slots vacías
+    {
+        for(int i=0; i<slotsCount; i++)
+        {
+            if (!inventoryItems.ContainsKey(i)) //Si no hay en el diccionario de objetos alguno con ese índice, se devuelve ese índice
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int FindSlotWithItem(string itemName) //Buscar slots con nombre
+    {
+        foreach(var slot in inventoryItems)
+        {
+            if(slot.Value.itemName == itemName) //Si existe el objeto con el nombre, se devuelve el índice del slot
+            {
+                return slot.Key;
+            }
+        }
+        return -1;
     }
 }

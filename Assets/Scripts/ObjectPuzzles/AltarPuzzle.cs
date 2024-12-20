@@ -33,7 +33,7 @@ public class AltarPuzzle : MonoBehaviour, IPuzzle
         if (!isUnlocked) {
             for(int i=0; i<requiredFigureNames.Length; i++){
                 //si está la figura en el inventario y no está colocada
-                if(inventory.GetItemCount(requiredFigureNames[i])>0 && !placedFigures[i]){
+                if(inventory.GetItem(requiredFigureNames[i]) && !placedFigures[i]){
                     PlaceFigure(inventory, i); //colocar
                 }
             }
