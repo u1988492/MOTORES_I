@@ -17,12 +17,15 @@ public class InteractionSystem : MonoBehaviour
     private IPuzzle currentPuzzle;
     private bool isZoomed = false;
     private InventorySystem inventorySystem; //Inventario
+    private PauseSystem pauseSystem; 
     private bool isInventoryOpen = false;
+    private bool isMenuOpen = false;
     private FirstPersonCamera cameraController; //Controlador para la cámara
 
     void Start()
     {
         inventorySystem = GetComponent<InventorySystem>(); //Asegurarnos que tiene el inventario
+        pauseSystem = GetComponent<PauseSystem>();
         if (inventorySystem == null)
         {
             inventorySystem = gameObject.AddComponent<InventorySystem>();
@@ -32,22 +35,29 @@ public class InteractionSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))  // Presionar 'I' para ver el inventario
+        if (Input.GetKeyDown(KeyCode.Escape)) // Presionar 'ESC' para ver el Menú de pausa
         {
-            DisplayInventory();
+            DisplayMenu();
         }
-        if (!isZoomed) //Si no está dentro de un puzzle, busca cosas interactuables
-        {
-            CheckForInteractables();
-        }
-        else //Sino, verificamos dentro del puzzle clicks del ratón
-        {
-            HandleZoomedInteraction();
-            if (Input.GetKeyDown(KeyCode.Escape))
+        else if(!isMenuOpen){
+            if (Input.GetKeyDown(KeyCode.I))  // Presionar 'I' para ver el inventario
             {
-                ExitZoom();
+                DisplayInventory();
+            }
+            if (!isZoomed) //Si no está dentro de un puzzle, busca cosas interactuables
+            {
+                CheckForInteractables();
+            }
+            else //Sino, verificamos dentro del puzzle clicks del ratón
+            {
+                HandleZoomedInteraction();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    ExitZoom();
+                }
             }
         }
+
     }
 
     void CheckForInteractables()
@@ -237,6 +247,22 @@ public class InteractionSystem : MonoBehaviour
         interactionText.gameObject.SetActive(false);
     }
 
+    void ActivePlayer()
+    {
+        GetComponent<PlayerMovement>().enabled = true;
+        cameraController.enabled = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void DesactivePlayer()
+    {
+        GetComponent<PlayerMovement>().enabled = false;
+        cameraController.enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     void DisplayInventory()
     {
 
@@ -244,19 +270,28 @@ public class InteractionSystem : MonoBehaviour
 
         if (!isInventoryOpen)
         {
-            GetComponent<PlayerMovement>().enabled = true;
-            cameraController.enabled = true;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            ActivePlayer();
         } 
         else
         {
-            GetComponent<PlayerMovement>().enabled = false;
-            cameraController.enabled = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            DesactivePlayer();
         }
         
         inventorySystem.ToggleVisibilityInventory();
+    }
+
+     public void DisplayMenu() //Público para poder llamarlo desde el menú de Pausa
+    {
+        isMenuOpen = !isMenuOpen;
+        if (!isMenuOpen)
+        {
+            ActivePlayer();
+        }
+        else
+        {
+            DesactivePlayer();
+        }
+
+        pauseSystem.ToggleVisibilityMenu();
     }
 }
