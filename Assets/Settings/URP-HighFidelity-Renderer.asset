@@ -36,7 +36,7 @@ MonoBehaviour:
   m_Name: ScreenSpaceOutlines
   m_EditorClassIdentifier: 
   m_Active: 1
-  injectionPoint: 600
+  injectionPoint: 550
   fetchColorBuffer: 1
   requirements: 7
   passMaterial: {fileID: 2100000, guid: 3b3ce37403eb8914b99c6589d9987bdb, type: 2}
