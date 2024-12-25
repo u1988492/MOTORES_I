@@ -39,7 +39,7 @@ Material:
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
     - _OutlineSoftness: 0
-    - _OutlineWidth: 0.16
+    - _OutlineWidth: 0.03
     - _PerspectiveFilter: 0.875
     - _ScaleRatioA: 0.90909094
     - _ScaleRatioB: 0.73125
@@ -66,7 +66,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 1, b: 0.78358245, a: 1}
+    - _OutlineColor: {r: 0.01416161, g: 0.14716971, b: 0.015008849, a: 1}
     - _UnderlayColor: {r: 0, g: 0.013732031, b: 0.02288449, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &11400000

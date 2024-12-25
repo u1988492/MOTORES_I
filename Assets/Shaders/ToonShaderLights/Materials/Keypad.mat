@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Walls
+  m_Name: Keypad
   m_Shader: {fileID: -6465566751694194690, guid: cd5563f3bdb96484b943752ce18c25ed,
     type: 3}
   m_Parent: {fileID: 0}
@@ -59,6 +59,6 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Base_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
+    - _Base_Color: {r: 0.3509434, g: 0.3509434, b: 0.3509434, a: 0}
     - _Cutoff_Threshold: {r: -10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
