@@ -17,7 +17,7 @@ public class ButtonScript : MonoBehaviour, IPuzzle
     private void Start()
     {
         originalPosition = transform.localPosition;
-        pressedPosition = originalPosition - (Vector3.forward * pressDepth);
+        pressedPosition = originalPosition - (Vector3.right * pressDepth);
     }
 
     public void Interact(InventorySystem inventory)
