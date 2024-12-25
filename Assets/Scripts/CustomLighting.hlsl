@@ -1,3 +1,5 @@
+// FOLLOWED TUTORIAL BU DANIEL ILETT
+
 #ifndef ADDITIONAL_LIGHT_INCLUDED
 #define ADDITIONAL_LIGHT_INCLUDED
 
@@ -32,6 +34,22 @@ void AdditionalLight_float(float3 WorldPos, int lightID,
                 Attenuation = light.distanceAttenuation;
             }
         #endif
+}
+
+void AllAdditionalLights_float(float3 WorldPos, float3 WorldNormal, float2 CutoffThresholds, out float3 LightColor){
+    LightColor = 0.0f;
+    #ifndef SHADERGRAPH_PREVIEW
+        int lightCount = GetAdditionalLightsCount();
+        for(int i=0; i<lightCount; ++i){
+            Light light = GetAdditionalLight(i, WorldPos);
+            float3 color = dot(light.direction, WorldNormal);
+            color = smoothstep(CutoffThresholds.x, CutoffThresholds.y, color);
+            color *= light.color;
+            color *= light.distanceAttenuation;
+
+            LightColor += color;
+        }
+    #endif
 }
 
 
