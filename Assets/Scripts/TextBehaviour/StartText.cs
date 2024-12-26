@@ -7,6 +7,7 @@ public class SceneTransition : MonoBehaviour
 {
     public Image fadeImage; // Fondo
     public TextMeshProUGUI dialogueText; // Texto para mostrar
+    public TextMeshProUGUI promptText; // Texto informativo
     public float canvasFadeDuration = 1f; // Duración de la transición
     public float textDelay = 1f; // Tiempo de espera del  texto
 
@@ -16,6 +17,7 @@ public class SceneTransition : MonoBehaviour
 
     private TypewriterEffect typewriterEffect; // Referencia al efecto de máquina de escribir
     public float typingSpeed = 0.1f; // Velocidad de la máquina de escribir
+    public bool hasFinished = false; // Variable para controlar si se ha acabado la cinemática
 
     private void Awake() // Añade el script y configura la velocidad de la máquina de escribir
     {
@@ -49,7 +51,7 @@ public class SceneTransition : MonoBehaviour
 
         // Comienza la primera línea de diálogo
         yield return ShowDialogue(dialogues[currentDialogueIndex]);
-
+        
         // Cambia el diálogo tras un clic o tecla
         while (currentDialogueIndex < dialogues.Length - 1)
         {
@@ -63,6 +65,8 @@ public class SceneTransition : MonoBehaviour
                 isWaitingForInput = false;
             }
         }
+
+        hasFinished = true;
 
         // Espera a que el texto haya desaparecido y empieza el fade out del canvas
         yield return new WaitForSeconds(textDelay); 
@@ -80,4 +84,5 @@ public class SceneTransition : MonoBehaviour
         
         yield return new WaitUntil(() => dialogueFinished); // Espera a que termine de escribir el texto
     }
+
 }
