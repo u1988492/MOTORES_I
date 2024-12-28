@@ -10,7 +10,10 @@ public class InteractionSystem : MonoBehaviour
     public Camera[] zoomCameras;
     public float interactionDistance = 5f;
     public TMP_Text interactionText;
+    public TMP_Text zoomPromptText;
     public string interactionPrompt = "'E' to interact";
+    public string zoomPrompt = "'E' to exit interaction";
+
     
     private bool canInteract = false;
     private GameObject currentInteractable; //Guardar el objeto interactuable
@@ -158,6 +161,13 @@ public class InteractionSystem : MonoBehaviour
 
         // Desactiva el movimiento del jugador
         GetComponent<PlayerMovement>().enabled = false;
+
+        // Muestra el texto del prompt de zoom
+        if (zoomPromptText != null)
+        {
+            zoomPromptText.text = zoomPrompt;
+            zoomPromptText.gameObject.SetActive(true);
+        }
     }
 
     void HandleZoomedInteraction()
@@ -241,6 +251,12 @@ public class InteractionSystem : MonoBehaviour
 
         // Reactiva el movimiento del jugador
         GetComponent<PlayerMovement>().enabled = true;
+
+        // Oculta el texto del prompt de zoom
+        if (zoomPromptText != null)
+        {
+            zoomPromptText.gameObject.SetActive(false);
+        }
     }
 
     void ResetInteraction()
