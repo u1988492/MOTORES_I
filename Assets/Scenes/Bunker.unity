@@ -4217,7 +4217,7 @@ Transform:
   m_GameObject: {fileID: 484250412}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9999956, z: -0, w: 0.0029904544}
-  m_LocalPosition: {x: 58.07, y: 3.87, z: -73.78}
+  m_LocalPosition: {x: 59.51, y: 3.87, z: -73.77}
   m_LocalScale: {x: 3.99868, y: 5.99935, z: 0.47256}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8605,7 +8605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: ProjectorImage
+  nameObject: Slides
 --- !u!65 &1014893637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10177,7 +10177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materials:
   - {fileID: 2100000, guid: df17026c2ce8207489debb3a8599fa94, type: 2}
-  - {fileID: 2100000, guid: 76a2f3fcee5167c4494e2bfb55014422, type: 2}
   decalProjector: {fileID: 1164294145}
   timeSwitchImages: 5
 --- !u!114 &1164294144
@@ -15523,6 +15522,8 @@ MonoBehaviour:
     itemSprite: {fileID: 21300000, guid: 108a42d10ea0fb64c92df2d63e751721, type: 3}
   - itemName: Palanca
     itemSprite: {fileID: 21300000, guid: eb2d65b728534d24eb4fa75c8216a950, type: 3}
+  - itemName: Slides
+    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
   inventoryPanel: {fileID: 1041256957}
   slotPrefab: {fileID: 3427537139271953025, guid: c66ba4762cd3d6c448e66f7657744628,
     type: 3}
@@ -22868,7 +22869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7359c5c1beb8ed64bbd75a8fddccf014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredProjectorImages: ProjectorImage
+  requiredProjectorImages: Slides
   projector: {fileID: 198630093}
 --- !u!65 &3469287838560579212
 BoxCollider:
