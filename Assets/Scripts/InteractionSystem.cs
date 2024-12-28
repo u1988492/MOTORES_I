@@ -10,8 +10,11 @@ public class InteractionSystem : MonoBehaviour
     public Camera[] zoomCameras;
     public float interactionDistance = 5f;
     public TMP_Text interactionText;
-    public string interactionPrompt = "Pulsa 'E' para interactuar";
+    public TMP_Text zoomPromptText;
+    public string interactionPrompt = "'E' to interact";
+    public string zoomPrompt = "'E' to exit interaction";
 
+    
     private bool canInteract = false;
     private GameObject currentInteractable; //Guardar el objeto interactuable
     private IPuzzle currentPuzzle;
@@ -21,6 +24,7 @@ public class InteractionSystem : MonoBehaviour
     private bool isInventoryOpen = false;
     private bool isMenuOpen = false;
     private FirstPersonCamera cameraController; //Controlador para la cámara
+    private bool isDialogueActive = false; // Nueva variable para bloquear el movimiento
 
     void Start()
     {
@@ -35,6 +39,8 @@ public class InteractionSystem : MonoBehaviour
 
     void Update()
     {
+        if (isDialogueActive) return; // Si el diálogo está activo, bloquea todas las acciones
+        
         if (Input.GetKeyDown(KeyCode.Escape)) // Presionar 'ESC' para ver el Menú de pausa
         {
             DisplayMenu();
@@ -155,6 +161,13 @@ public class InteractionSystem : MonoBehaviour
 
         // Desactiva el movimiento del jugador
         GetComponent<PlayerMovement>().enabled = false;
+
+        // Muestra el texto del prompt de zoom
+        if (zoomPromptText != null)
+        {
+            zoomPromptText.text = zoomPrompt;
+            zoomPromptText.gameObject.SetActive(true);
+        }
     }
 
     void HandleZoomedInteraction()
@@ -238,6 +251,12 @@ public class InteractionSystem : MonoBehaviour
 
         // Reactiva el movimiento del jugador
         GetComponent<PlayerMovement>().enabled = true;
+
+        // Oculta el texto del prompt de zoom
+        if (zoomPromptText != null)
+        {
+            zoomPromptText.gameObject.SetActive(false);
+        }
     }
 
     void ResetInteraction()
@@ -293,5 +312,23 @@ public class InteractionSystem : MonoBehaviour
         }
 
         pauseSystem.ToggleVisibilityMenu();
+    }
+
+        public void OnDialogue()
+    {
+        isDialogueActive = !isDialogueActive;
+
+        if (!isDialogueActive)
+        {
+            GetComponent<PlayerMovement>().enabled = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        } 
+        else
+        {
+            GetComponent<PlayerMovement>().enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }
