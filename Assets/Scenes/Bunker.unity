@@ -5798,7 +5798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 952224685}
   dialogueText: {fileID: 1476268211}
-  promptText: {fileID: 0}
+  promptText: {fileID: 1234939116}
   canvasFadeDuration: 2
   textDelay: 1
   dialogues:
@@ -15314,7 +15314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PULSA E
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 25a0aabc34bd6084caa23daf54d0ce78, type: 2}
   m_sharedMaterial: {fileID: 8469642138532864701, guid: 25a0aabc34bd6084caa23daf54d0ce78,

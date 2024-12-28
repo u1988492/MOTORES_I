@@ -19,8 +19,11 @@ public class SceneTransition : MonoBehaviour
     public float typingSpeed = 0.1f; // Velocidad de la máquina de escribir
     public bool hasFinished = false; // Variable para controlar si se ha acabado la cinemática
 
+    private InteractionSystem interactionSystem;
+
     private void Awake() // Añade el script y configura la velocidad de la máquina de escribir
     {
+        interactionSystem = FindObjectOfType<InteractionSystem>(); // Busca el script InteractionSystem en la escena
         typewriterEffect = gameObject.AddComponent<TypewriterEffect>(); 
         typewriterEffect.typingSpeed = typingSpeed;
     }
@@ -45,6 +48,8 @@ public class SceneTransition : MonoBehaviour
 
     private IEnumerator ShowIntro()
     {
+         interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
+
         // Se muestra el canvas al inicio y espera un poco antes de mostrar el texto
         fadeImage.canvasRenderer.SetAlpha(1f);
         yield return new WaitForSeconds(textDelay);
@@ -71,10 +76,13 @@ public class SceneTransition : MonoBehaviour
         // Espera a que el texto haya desaparecido y empieza el fade out del canvas
         yield return new WaitForSeconds(textDelay); 
         fadeImage.CrossFadeAlpha(0f, canvasFadeDuration, false);
+        promptText.canvasRenderer.SetAlpha(0f);
 
         // Espera que el canvas haya hecho el fade out y lo destruye
         yield return new WaitForSeconds(canvasFadeDuration); 
         Destroy(fadeImage.transform.root.gameObject);
+
+        interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
     }
 
     private IEnumerator ShowDialogue(string dialogue) //Aplicación del efecto de máquina de escibrir en la línea

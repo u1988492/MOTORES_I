@@ -21,6 +21,7 @@ public class InteractionSystem : MonoBehaviour
     private bool isInventoryOpen = false;
     private bool isMenuOpen = false;
     private FirstPersonCamera cameraController; //Controlador para la cámara
+    private bool isDialogueActive = false; // Nueva variable para bloquear el movimiento
 
     void Start()
     {
@@ -35,6 +36,8 @@ public class InteractionSystem : MonoBehaviour
 
     void Update()
     {
+        if (isDialogueActive) return; // Si el diálogo está activo, bloquea todas las acciones
+        
         if (Input.GetKeyDown(KeyCode.Escape)) // Presionar 'ESC' para ver el Menú de pausa
         {
             DisplayMenu();
@@ -293,5 +296,23 @@ public class InteractionSystem : MonoBehaviour
         }
 
         pauseSystem.ToggleVisibilityMenu();
+    }
+
+        public void OnDialogue()
+    {
+        isDialogueActive = !isDialogueActive;
+
+        if (!isDialogueActive)
+        {
+            GetComponent<PlayerMovement>().enabled = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        } 
+        else
+        {
+            GetComponent<PlayerMovement>().enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }
