@@ -10,8 +10,8 @@ public class InteractionSystem : MonoBehaviour
     public Camera[] zoomCameras;
     public float interactionDistance = 5f;
     public TMP_Text interactionText;
-    public string interactionPrompt = "Pulsa 'E' para interactuar";
-
+    public string interactionPrompt = "'E' to interact";
+    
     private bool canInteract = false;
     private GameObject currentInteractable; //Guardar el objeto interactuable
     private IPuzzle currentPuzzle;
