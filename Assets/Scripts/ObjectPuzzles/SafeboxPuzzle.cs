@@ -39,7 +39,6 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
     void Start()
     {
         varemo = 360f / numbersAvailable; //Así sabemos el varemo entre los números
-        Debug.Log(varemo);
     }
 
     // Update is called once per frame

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using Cinemachine;
 
 public class TESTInteractionSystem : MonoBehaviour
 {
     public Camera mainCamera;
-    public Camera[] zoomCameras;
     public float interactionDistance = 5f;
     public TMP_Text interactionText;
     public TMP_Text zoomPromptText;
@@ -16,7 +14,10 @@ public class TESTInteractionSystem : MonoBehaviour
     public string zoomPrompt = "'E' to exit interaction";
 
 
-    private bool canInteract = false;
+    [HideInInspector]
+    public EnhancedFirstPersonCamera cameraController; // Hacemos público el controlador de cámara
+
+    private bool canInteract = true;
     private GameObject currentInteractable; //Guardar el objeto interactuable
     private IPuzzle currentPuzzle;
     private bool isZoomed = false;
@@ -24,33 +25,35 @@ public class TESTInteractionSystem : MonoBehaviour
     private PauseSystem pauseSystem;
     private bool isInventoryOpen = false;
     private bool isMenuOpen = false;
-    private FirstPersonCamera cameraController; //Controlador para la cámara
+    //private FirstPersonCamera cameraController; //Controlador para la cámara
     private bool isDialogueActive = false; // Nueva variable para bloquear el movimiento
+    private bool isCameraChanging = false;
 
-    public CinemachineVirtualCamera firstPersonVCam;
-    private CinemachineVirtualCamera currentPuzzleCam;
-    private CinemachineBrain cinemachineBrain;
-
-    private Vector3 cameraPositionBeforeInteract;
-    private Quaternion cameraRotationBeforeInteract;
-    private bool isTransitioning = false;
+    //private EnhancedFirstPersonCamera cameraController;
+    private Camera currentPuzzleCamera;
 
     void Start()
     {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+            Debug.LogWarning("Main Camera no asignada, usando Camera.main");
+        }
+
+        cameraController = mainCamera?.GetComponent<EnhancedFirstPersonCamera>();
+        if (cameraController == null && mainCamera != null)
+        {
+            cameraController = mainCamera.gameObject.AddComponent<EnhancedFirstPersonCamera>();
+            Debug.LogWarning("EnhancedFirstPersonCamera no encontrado, añadido automáticamente");
+        }
+
         inventorySystem = GetComponent<InventorySystem>(); //Asegurarnos que tiene el inventario
         pauseSystem = GetComponent<PauseSystem>();
         if (inventorySystem == null)
         {
             inventorySystem = gameObject.AddComponent<InventorySystem>();
         }
-        cameraController = mainCamera.GetComponent<FirstPersonCamera>();
-
-        cinemachineBrain = mainCamera.GetComponent<CinemachineBrain>();
-        if (cinemachineBrain == null)
-        {
-            Debug.LogError("No CinemachineBrain found on main camera!");
-        }
-
+        cameraController = mainCamera.GetComponent<EnhancedFirstPersonCamera>();
     }
 
     void Update()
@@ -67,14 +70,14 @@ public class TESTInteractionSystem : MonoBehaviour
             {
                 DisplayInventory();
             }
-            if (!isZoomed) //Si no está dentro de un puzzle, busca cosas interactuables
+            if (!isZoomed && !isCameraChanging) //Si no está dentro de un puzzle, busca cosas interactuables
             {
                 CheckForInteractables();
             }
             else //Sino, verificamos dentro del puzzle clicks del ratón
             {
                 HandleZoomedInteraction();
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && !isCameraChanging)
                 {
                     ExitZoom();
                 }
@@ -91,12 +94,20 @@ public class TESTInteractionSystem : MonoBehaviour
             bool shouldInteract = false;
 
             // Comprueba si es un objeto interactuable y si golpea la zona correcta
-            if (hit.collider.CompareTag("Interactable"))
+            if (hit.collider != null && hit.collider.CompareTag("Interactable"))
             {
-                InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>(); //Verificamos si el padre del objeto tiene colisión
+                // Primero verificamos si el objeto tiene el componente InteractableObject directamente
+                InteractableObject interactable = hit.collider.GetComponent<InteractableObject>();
+
+                // Si no lo tiene directamente, buscamos en el padre
+                if (interactable == null)
+                {
+                    interactable = hit.collider.GetComponentInParent<InteractableObject>();
+                }
+
                 if (interactable != null)
                 {
-                    // Si tiene zona de interacci�n espec�fica, comprueba si golpe� esa zona (ya sea el objeto o su padre)
+                    // Si tiene zona de interacción específica, comprueba si golpeó esa zona
                     if (interactable.interactionZone == null || hit.collider == interactable.interactionZone)
                     {
                         shouldInteract = true;
@@ -105,13 +116,13 @@ public class TESTInteractionSystem : MonoBehaviour
                 }
             }
             // Para recolectables y usables mantiene el comportamiento original
-            else if (hit.collider.CompareTag("Recolectable") || hit.collider.CompareTag("Usable"))
+            else if (hit.collider != null && (hit.collider.CompareTag("Recolectable") || hit.collider.CompareTag("Usable")))
             {
                 shouldInteract = true;
                 currentInteractable = hit.collider.gameObject;
             }
 
-            // Si podemos interactuar, muestra el prompt y maneja la interacci�n
+            // Si podemos interactuar, muestra el prompt y maneja la interacción
             if (shouldInteract)
             {
                 HandleInteraction(hit.collider);
@@ -129,7 +140,7 @@ public class TESTInteractionSystem : MonoBehaviour
 
     void HandleInteraction(Collider hitCollider)
     {
-        canInteract = true;
+        canInteract = false;
         interactionText.text = interactionPrompt; //mostramos texto
         interactionText.gameObject.SetActive(true);
 
@@ -152,40 +163,56 @@ public class TESTInteractionSystem : MonoBehaviour
                 }
             }
         }
+        canInteract = true;
+
     }
 
     void Interact()
     {
+        if (currentInteractable == null)
+        {
+            Debug.LogError("No hay objeto interactuable");
+            return;
+        }
+
+        InteractableObject interactableScript = currentInteractable.GetComponent<InteractableObject>();
+        if (interactableScript == null)
+        {
+            Debug.LogError("El objeto no tiene componente InteractableObject");
+            return;
+        }
+
+        if (interactableScript.Camera == null)
+        {
+            Debug.LogError("La cámara del objeto interactuable no está asignada");
+            return;
+        }
+
         isZoomed = true;
-        isTransitioning = true;
+        currentPuzzleCamera = interactableScript.Camera;
 
-        // Guardar la posición de la cámara ANTES de la transición
-        cameraPositionBeforeInteract = mainCamera.transform.position;
-        cameraRotationBeforeInteract = mainCamera.transform.rotation;
+        if (interactableScript.interactionZone != null)
+        {
+            interactableScript.interactionZone.enabled = false;
+        }
 
-        // Desactivar temporalmente el follow de FirstPerson
-        firstPersonVCam.Follow = null;
+        // Aseguramos que el cameraController existe
+        if (cameraController != null)
+        {
+            cameraController.TransitionToTarget(currentPuzzleCamera);
+            StartCoroutine(ActivateZoomCameraAfterTransition());
+        }
+        else
+        {
+            Debug.LogError("No se encontró el EnhancedFirstPersonCamera");
+            return;
+        }
 
-        TESTInteractableObject interactableScript = currentInteractable.GetComponent<TESTInteractableObject>();
-        currentPuzzleCam = interactableScript.puzzleCamera;
-
-        // Cambiar prioridades
-        firstPersonVCam.Priority = 0;
-        currentPuzzleCam.Priority = 10;
-
-        StartCoroutine(WaitForTransition());
-
-        // Activa el cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
-        // Desactiva el texto de interacción
         interactionText.gameObject.SetActive(false);
-
-        // Desactiva el movimiento del jugador
         GetComponent<PlayerMovement>().enabled = false;
 
-        // Muestra el texto del prompt de zoom
         if (zoomPromptText != null)
         {
             zoomPromptText.text = zoomPrompt;
@@ -193,19 +220,20 @@ public class TESTInteractionSystem : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForTransition()
+
+    private IEnumerator ActivateZoomCameraAfterTransition()
     {
-        // Esperar a que termine la transición
-        yield return new WaitForSeconds(0.5f); // Ajusta este tiempo según tu duración de blend
-        isTransitioning = false;
+        yield return new WaitForSeconds(cameraController.transitionDuration);
+        mainCamera.gameObject.SetActive(false);
+        currentPuzzleCamera.gameObject.SetActive(true);
+        isCameraChanging = false;
     }
 
     void HandleZoomedInteraction()
     {
-        if (Input.GetMouseButtonDown(0)) // Click izquierdo del rat�n
+        if (Input.GetMouseButtonDown(0))
         {
-            //Debug.Log("Pulsé");
-            Ray ray = zoomCameras[GetActiveZoomCameraIndex()].ScreenPointToRay(Input.mousePosition);
+            Ray ray = currentPuzzleCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
@@ -213,7 +241,7 @@ public class TESTInteractionSystem : MonoBehaviour
                 currentPuzzle = hit.collider.GetComponent<IPuzzle>();
                 if (currentPuzzle != null)
                 {
-                    currentPuzzle.Interact(inventorySystem); //Si se detecta la interfaz de puzle y que da click, se interactua con el puzzle
+                    currentPuzzle.Interact(inventorySystem);
                 }
             }
         }
@@ -236,7 +264,7 @@ public class TESTInteractionSystem : MonoBehaviour
         usableObject.Usar(inventorySystem); //Interfaz para usar el objeto
     }
 
-    int GetActiveZoomCameraIndex()
+    /*int GetActiveZoomCameraIndex()
     {
         for (int i = 0; i < zoomCameras.Length; i++)
         {
@@ -246,30 +274,36 @@ public class TESTInteractionSystem : MonoBehaviour
             }
         }
         return -1;
-    }
+    }*/
 
-    public void ExitZoom() {
-
+    public void ExitZoom()
+    {
         isZoomed = false;
-        isTransitioning = true;
+        isCameraChanging = true;
 
-        // Primero restaurar la cámara a su posición original
-        mainCamera.transform.position = cameraPositionBeforeInteract;
-        mainCamera.transform.rotation = cameraRotationBeforeInteract;
+        if (currentPuzzle != null)
+        {
+            currentPuzzle.StopInteract();
+        }
 
-        // Cambiar prioridades
-        currentPuzzleCam.Priority = 0;
-        firstPersonVCam.Priority = 10;
+        if (currentInteractable != null)
+        {
+            InteractableObject interactableScript = currentInteractable.GetComponent<InteractableObject>();
+            if (interactableScript.interactionZone != null)
+            {
+                interactableScript.interactionZone.enabled = true;
+            }
+        }
 
-        // Restaurar el follow DESPUÉS de haber movido la cámara
-        StartCoroutine(RestoreAfterExit());
+        // Reactiva la cámara principal y hace la transición de vuelta
+        mainCamera.gameObject.SetActive(true);
+        cameraController.TransitionBack();
+
+        StartCoroutine(DeactivatePuzzleCameraAfterTransition());
 
         // Oculta y bloquea el cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
-        // Reactiva el movimiento del jugador
-        GetComponent<PlayerMovement>().enabled = true;
 
         // Oculta el texto del prompt de zoom
         if (zoomPromptText != null)
@@ -277,13 +311,19 @@ public class TESTInteractionSystem : MonoBehaviour
             zoomPromptText.gameObject.SetActive(false);
         }
     }
-    private IEnumerator RestoreAfterExit()
-    {
-        yield return new WaitForSeconds(0.1f);
-        firstPersonVCam.Follow = mainCamera.transform;
-        isTransitioning = false;
-    }
 
+    private IEnumerator DeactivatePuzzleCameraAfterTransition()
+    {
+        yield return new WaitForSeconds(cameraController.transitionDuration);
+        if (currentPuzzleCamera != null)
+        {
+            currentPuzzleCamera.gameObject.SetActive(false);
+            currentPuzzleCamera = null;
+        }
+        isCameraChanging = false;
+        // Reactiva el movimiento del jugador
+        GetComponent<PlayerMovement>().enabled = true;
+    }
 
     void ResetInteraction()
     {

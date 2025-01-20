@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 6
+  Camera: {fileID: 0}
   interactionZone: {fileID: 686545242}
 --- !u!1 &39134474
 GameObject:
@@ -778,6 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 2
+  Camera: {fileID: 1072975431}
   interactionZone: {fileID: 1329924508}
 --- !u!65 &110539489
 BoxCollider:
@@ -1561,6 +1563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 3
+  Camera: {fileID: 0}
   interactionZone: {fileID: 0}
 --- !u!65 &218009122
 BoxCollider:
@@ -9458,6 +9461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 7
+  Camera: {fileID: 0}
   interactionZone: {fileID: 1304651020}
 --- !u!1 &583807887
 GameObject:
@@ -11663,6 +11667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 8
+  Camera: {fileID: 0}
   interactionZone: {fileID: 840422553}
 --- !u!1 &921732072
 GameObject:
@@ -11785,6 +11790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 0
+  Camera: {fileID: 0}
   interactionZone: {fileID: 0}
 --- !u!1 &939414062
 GameObject:
@@ -11819,6 +11825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 1
+  Camera: {fileID: 0}
   interactionZone: {fileID: 0}
 --- !u!65 &939414064
 BoxCollider:
@@ -13005,7 +13012,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 9
+  zoomCameraIndex: 90
+  Camera: {fileID: 1747511766}
   interactionZone: {fileID: 47237780}
 --- !u!65 &1058443856
 BoxCollider:
@@ -13262,7 +13270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 0
+  zoomCameraIndex: 60
+  Camera: {fileID: 594841621}
   interactionZone: {fileID: 1902369914}
 --- !u!114 &1209433160
 MonoBehaviour:
@@ -14318,6 +14327,7 @@ GameObject:
   - component: {fileID: 1372456580}
   - component: {fileID: 1372456579}
   - component: {fileID: 1372456578}
+  - component: {fileID: 1372456582}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -14332,7 +14342,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372456577}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd62b9e7fdf8b0c49b96cfda3410a410, type: 3}
   m_Name: 
@@ -14448,6 +14458,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1511964813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372456582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372456577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96de8e3f63a23684fa8d140a56424d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBody: {fileID: 1511964813}
+  transitionDuration: 1
 --- !u!1 &1381797637
 GameObject:
   m_ObjectHideFlags: 0
@@ -14965,16 +14989,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1511964813}
-  - component: {fileID: 1511964812}
   - component: {fileID: 1511964818}
-  - component: {fileID: 1511964814}
+  - component: {fileID: 1511964819}
   - component: {fileID: 1511964817}
   - component: {fileID: 1511964815}
   - component: {fileID: 1511964816}
   - component: {fileID: 1511964811}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15005,27 +15028,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1511964812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511964810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c56d5686ed42c04487f4af3c6db00a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1511964811}
-  speed: 5
-  gravity: -1
-  jumpHeight: 3
-  groundCheck: {fileID: 1826173934}
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!4 &1511964813
 Transform:
   m_ObjectHideFlags: 0
@@ -15044,36 +15046,6 @@ Transform:
   - {fileID: 2026348922}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -45.991, z: 0}
---- !u!114 &1511964814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511964810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1573525b152bf5243bca516e9fd83d05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1372456580}
-  zoomCameras:
-  - {fileID: 779102873}
-  - {fileID: 2034040661}
-  - {fileID: 1072975431}
-  - {fileID: 1828993674}
-  - {fileID: 1946654059}
-  - {fileID: 594841621}
-  - {fileID: 349465260}
-  - {fileID: 1547887540}
-  - {fileID: 1700917758}
-  - {fileID: 1747511766}
-  - {fileID: 155410041}
-  interactionDistance: 5
-  interactionText: {fileID: 1650679840}
-  zoomPromptText: {fileID: 0}
-  interactionPrompt: Pulsa 'E' para interactuar
-  zoomPrompt: '''E'' to exit interaction'
 --- !u!114 &1511964815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15114,7 +15086,7 @@ MonoBehaviour:
   returnButtonEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1511964814}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InteractionSystem, Assembly-CSharp
         m_MethodName: DisplayMenu
         m_Mode: 1
@@ -15141,20 +15113,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511964810}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fee83e5ecddf7848ac88c112daadf3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1372456580}
-  zoomCameras:
-  - {fileID: 0}
   interactionDistance: 5
   interactionText: {fileID: 1650679840}
   zoomPromptText: {fileID: 0}
   interactionPrompt: '''E'' to interact'
   zoomPrompt: '''E'' to exit interaction'
-  firstPersonVCam: {fileID: 0}
+  cameraController: {fileID: 0}
 --- !u!114 &1511964818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15162,7 +15132,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511964810}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c00cda99fbbdc841ab020dccdc663cf, type: 3}
   m_Name: 
@@ -15176,6 +15146,25 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &1511964819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511964810}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1573525b152bf5243bca516e9fd83d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  zoomCameras: []
+  interactionDistance: 5
+  interactionText: {fileID: 0}
+  zoomPromptText: {fileID: 0}
+  interactionPrompt: '''E'' to interact'
+  zoomPrompt: '''E'' to exit interaction'
 --- !u!1 &1522802681
 GameObject:
   m_ObjectHideFlags: 0
@@ -15515,6 +15504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 4
+  Camera: {fileID: 1946654059}
   interactionZone: {fileID: 225047966}
 --- !u!65 &1577555288
 BoxCollider:
@@ -20701,6 +20691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 10
+  Camera: {fileID: 0}
   interactionZone: {fileID: 189591340}
 --- !u!4 &7820294633176518584
 Transform:
