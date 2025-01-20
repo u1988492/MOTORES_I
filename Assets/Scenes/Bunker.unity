@@ -17250,7 +17250,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   audioMixer: {fileID: 24100000, guid: 2b2370c751c1ef94585bbcbadc019575, type: 2}
-  ConfigMenu: {fileID: 2123093978}
+  configMenu: {fileID: 2123093978}
   optionReturnButton: {fileID: 602020540}
   mouseSensiblity: {fileID: 1029240064}
   volume: {fileID: 1418589264}

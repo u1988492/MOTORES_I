@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Cinemachine;
 
-public class InteractionSystem : MonoBehaviour
+public class TESTInteractionSystem : MonoBehaviour
 {
     public Camera mainCamera;
     public Camera[] zoomCameras;
@@ -14,17 +15,25 @@ public class InteractionSystem : MonoBehaviour
     public string interactionPrompt = "'E' to interact";
     public string zoomPrompt = "'E' to exit interaction";
 
-    
+
     private bool canInteract = false;
     private GameObject currentInteractable; //Guardar el objeto interactuable
     private IPuzzle currentPuzzle;
     private bool isZoomed = false;
     private InventorySystem inventorySystem; //Inventario
-    private PauseSystem pauseSystem; 
+    private PauseSystem pauseSystem;
     private bool isInventoryOpen = false;
     private bool isMenuOpen = false;
     private FirstPersonCamera cameraController; //Controlador para la cámara
     private bool isDialogueActive = false; // Nueva variable para bloquear el movimiento
+
+    public CinemachineVirtualCamera firstPersonVCam;
+    private CinemachineVirtualCamera currentPuzzleCam;
+    private CinemachineBrain cinemachineBrain;
+
+    private Vector3 cameraPositionBeforeInteract;
+    private Quaternion cameraRotationBeforeInteract;
+    private bool isTransitioning = false;
 
     void Start()
     {
@@ -35,17 +44,25 @@ public class InteractionSystem : MonoBehaviour
             inventorySystem = gameObject.AddComponent<InventorySystem>();
         }
         cameraController = mainCamera.GetComponent<FirstPersonCamera>();
+
+        cinemachineBrain = mainCamera.GetComponent<CinemachineBrain>();
+        if (cinemachineBrain == null)
+        {
+            Debug.LogError("No CinemachineBrain found on main camera!");
+        }
+
     }
 
     void Update()
     {
         if (isDialogueActive) return; // Si el diálogo está activo, bloquea todas las acciones
-        
+
         if (Input.GetKeyDown(KeyCode.Escape)) // Presionar 'ESC' para ver el Menú de pausa
         {
             DisplayMenu();
         }
-        else if(!isMenuOpen){
+        else if (!isMenuOpen)
+        {
             if (Input.GetKeyDown(KeyCode.I))  // Presionar 'I' para ver el inventario
             {
                 DisplayInventory();
@@ -140,17 +157,23 @@ public class InteractionSystem : MonoBehaviour
     void Interact()
     {
         isZoomed = true;
-        mainCamera.gameObject.SetActive(false); //Desactivamos cámara
+        isTransitioning = true;
 
-        InteractableObject interactableScript = currentInteractable.GetComponent<InteractableObject>();
+        // Guardar la posición de la cámara ANTES de la transición
+        cameraPositionBeforeInteract = mainCamera.transform.position;
+        cameraRotationBeforeInteract = mainCamera.transform.rotation;
 
-        if (interactableScript.interactionZone != null)
-        {
-            interactableScript.interactionZone.enabled = false; //Desactivamos zona de interacción
-        }
+        // Desactivar temporalmente el follow de FirstPerson
+        firstPersonVCam.Follow = null;
 
-        int zoomCameraIndex = interactableScript.zoomCameraIndex;
-        zoomCameras[zoomCameraIndex].gameObject.SetActive(true); //activamos la cámara del puzzle
+        TESTInteractableObject interactableScript = currentInteractable.GetComponent<TESTInteractableObject>();
+        currentPuzzleCam = interactableScript.puzzleCamera;
+
+        // Cambiar prioridades
+        firstPersonVCam.Priority = 0;
+        currentPuzzleCam.Priority = 10;
+
+        StartCoroutine(WaitForTransition());
 
         // Activa el cursor
         Cursor.visible = true;
@@ -168,6 +191,13 @@ public class InteractionSystem : MonoBehaviour
             zoomPromptText.text = zoomPrompt;
             zoomPromptText.gameObject.SetActive(true);
         }
+    }
+
+    private IEnumerator WaitForTransition()
+    {
+        // Esperar a que termine la transición
+        yield return new WaitForSeconds(0.5f); // Ajusta este tiempo según tu duración de blend
+        isTransitioning = false;
     }
 
     void HandleZoomedInteraction()
@@ -218,32 +248,21 @@ public class InteractionSystem : MonoBehaviour
         return -1;
     }
 
-    public void ExitZoom()
-    {
+    public void ExitZoom() {
+
         isZoomed = false;
+        isTransitioning = true;
 
-        if (currentPuzzle != null)
-        {
-            currentPuzzle.StopInteract();
-        }
+        // Primero restaurar la cámara a su posición original
+        mainCamera.transform.position = cameraPositionBeforeInteract;
+        mainCamera.transform.rotation = cameraRotationBeforeInteract;
 
-        if (currentInteractable != null)
-        {
-            InteractableObject interactableScript = currentInteractable.GetComponent<InteractableObject>();
-            if (interactableScript.interactionZone != null)
-            {
-                interactableScript.interactionZone.enabled = true;
-            }
-        }
+        // Cambiar prioridades
+        currentPuzzleCam.Priority = 0;
+        firstPersonVCam.Priority = 10;
 
-        // Reactiva la c�mara principal
-        mainCamera.gameObject.SetActive(true);
-
-        // Desactiva todas las cámaras de zoom
-        foreach (Camera cam in zoomCameras)
-        {
-            cam.gameObject.SetActive(false);
-        }
+        // Restaurar el follow DESPUÉS de haber movido la cámara
+        StartCoroutine(RestoreAfterExit());
 
         // Oculta y bloquea el cursor
         Cursor.visible = false;
@@ -258,6 +277,13 @@ public class InteractionSystem : MonoBehaviour
             zoomPromptText.gameObject.SetActive(false);
         }
     }
+    private IEnumerator RestoreAfterExit()
+    {
+        yield return new WaitForSeconds(0.1f);
+        firstPersonVCam.Follow = mainCamera.transform;
+        isTransitioning = false;
+    }
+
 
     void ResetInteraction()
     {
@@ -290,16 +316,16 @@ public class InteractionSystem : MonoBehaviour
         if (!isInventoryOpen)
         {
             ActivePlayer();
-        } 
+        }
         else
         {
             DesactivePlayer();
         }
-        
+
         inventorySystem.ToggleVisibilityInventory();
     }
 
-     public void DisplayMenu() //Público para poder llamarlo desde el menú de Pausa
+    public void DisplayMenu() //Público para poder llamarlo desde el menú de Pausa
     {
         if (!pauseSystem.isESCPressed())
         {
@@ -308,7 +334,7 @@ public class InteractionSystem : MonoBehaviour
         else
         {
             DesactivePlayer();
-            
+
         }
 
         //pauseSystem.isESCPressed(ref isMenuOpen);
@@ -323,7 +349,7 @@ public class InteractionSystem : MonoBehaviour
             GetComponent<PlayerMovement>().enabled = true;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-        } 
+        }
         else
         {
             GetComponent<PlayerMovement>().enabled = false;

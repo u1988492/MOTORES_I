@@ -19,12 +19,14 @@ public class PauseSystem : MonoBehaviour
 
     [Header("Configuración")]
     public AudioMixer audioMixer;
-    public GameObject ConfigMenu;
+    public GameObject configMenu;
     public Button optionReturnButton;
     public Slider mouseSensiblity;
     public Slider volume;
     public TMP_Text sensibilityText;
     public TMP_Text volumeText;
+
+    public static bool optionMenu = false;
 
     [Header("Escenas")]
     public string MainMenuScene = "MainMenu";
@@ -37,18 +39,27 @@ public class PauseSystem : MonoBehaviour
         optionButton.onClick.AddListener(OptionMenu);
         exitButton.onClick.AddListener(ExitGame);
 
-        ConfigMenu.SetActive(false);
+        configMenu.SetActive(false);
         //Configuración
         optionReturnButton.onClick.AddListener(OptionMenu);
         mouseSensiblity.onValueChanged.AddListener(HandleSensitivityChange);
         volume.onValueChanged.AddListener(HandleVolumeChange);
     }
 
-    public void ToggleVisibilityMenu()
+    public bool isESCPressed()
     {
-        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        if((configMenu.activeSelf == false && pauseMenu.activeSelf == false) || (configMenu.activeSelf == true))
+        {
+            pauseMenu.SetActive(true);
+            configMenu.SetActive(false);
+            return true;
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
+            return false;
+        }
     }
-
     void ReturnGame()
     {
         returnButtonEvent.Invoke(); //Invocamos la función
@@ -61,8 +72,17 @@ public class PauseSystem : MonoBehaviour
 
     void OptionMenu()
     {
-        ToggleVisibilityMenu();
-        ConfigMenu.SetActive(!ConfigMenu.activeSelf);
+        if (pauseMenu.activeSelf == false)
+        {
+            pauseMenu.SetActive(true);
+            configMenu.SetActive(false);
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
+            configMenu.SetActive(true);
+        }
+        
     }
 
     void HandleSensitivityChange(float value)
