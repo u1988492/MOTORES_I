@@ -1799,6 +1799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 0
+  Camera: {fileID: 0}
   interactionZone: {fileID: 1261228857}
 --- !u!65 &178466633
 BoxCollider:
@@ -2321,6 +2322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 3
+  Camera: {fileID: 0}
   interactionZone: {fileID: 1215275002}
 --- !u!1001 &270478769
 PrefabInstance:
@@ -6508,6 +6510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 0
+  Camera: {fileID: 0}
   interactionZone: {fileID: 0}
 --- !u!65 &710981060
 BoxCollider:
@@ -7009,7 +7012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &776068613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7571,6 +7574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 2
+  Camera: {fileID: 0}
   interactionZone: {fileID: 822614927}
 --- !u!1 &823705239
 GameObject:
@@ -11344,6 +11348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 5
+  Camera: {fileID: 0}
   interactionZone: {fileID: 0}
 --- !u!114 &1164294145
 MonoBehaviour:
@@ -13704,6 +13709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 1
+  Camera: {fileID: 0}
   interactionZone: {fileID: 1589230756}
 --- !u!65 &1490576430
 BoxCollider:
@@ -13842,6 +13848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 3
+  Camera: {fileID: 0}
   interactionZone: {fileID: 1593347454}
 --- !u!65 &1508786248
 BoxCollider:
@@ -16177,6 +16184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 4
+  Camera: {fileID: 0}
   interactionZone: {fileID: 272209045}
 --- !u!65 &1744908263
 BoxCollider:

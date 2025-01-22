@@ -88,9 +88,22 @@ public class SceneTransition : MonoBehaviour
     private IEnumerator ShowDialogue(string dialogue) //Aplicación del efecto de máquina de escibrir en la línea
     {
         bool dialogueFinished = false;
-        typewriterEffect.StartTyping(dialogue, dialogueText, () => dialogueFinished = true);
+        bool skipEffectTriggered = false; // Flag para ver si el usuario hace skip del texto o no
+
+        typewriterEffect.StartTyping(dialogue, dialogueText, () => dialogueFinished = true); // Espera a que termine de escribir el texto o el usuario lo salte
         
-        yield return new WaitUntil(() => dialogueFinished); // Espera a que termine de escribir el texto
+        while (!dialogueFinished){
+            if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !skipEffectTriggered){
+
+                typewriterEffect.SkipTyping(); // Salta el efecto
+            }
+
+            yield return null; // Espera hasta el siguiente frame
+        }
+                
+        skipEffectTriggered = false; // Reset del skip flag
+
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space));// Espera a que termine de escribir el texto
     }
 
 }
