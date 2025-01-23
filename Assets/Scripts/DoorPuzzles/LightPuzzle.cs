@@ -12,6 +12,7 @@ public class LightPuzzle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        userInput = new List<bool>();
         for(var i = 0; i < numberLights; i++)
         {
             userInput.Add(false);
