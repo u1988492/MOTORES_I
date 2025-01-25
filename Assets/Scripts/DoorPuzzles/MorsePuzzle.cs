@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UIElements;
 
 public enum States
@@ -86,6 +87,7 @@ public class MorsePuzzle : MonoBehaviour
     };
 
     public List<char> word;
+    public List<TMP_Text> lettersText;
     public float timeBetweenWord = 5f;
     public float timeBetweenLetters = 3f;
     public float timeBetweenStates = 2f;
@@ -114,6 +116,7 @@ public class MorsePuzzle : MonoBehaviour
         for (int i = 0; i < word.Count; i++)
         {
             userInput.Add(new Letter());
+            lettersText[i].text = "A";
         }
 
         StartCoroutine(ShowWord());
@@ -169,23 +172,29 @@ public class MorsePuzzle : MonoBehaviour
 
     public void LetterUp(int pos)
     {
-        if (userInput[pos].num <= 1)
+        Debug.Log("Pulsaste pos: " + pos + " tiene número: " + userInput[pos].num);
+        if (userInput[pos].num > 1)
         {
             userInput[pos].num -= 1;
-            userInput[pos].let = letterPos[pos];
+            userInput[pos].let = letterPos[userInput[pos].num];
+            lettersText[pos].text = letterPos[userInput[pos].num].ToString();
 
         }
+        Debug.Log("Y ahora tiene número: " + userInput[pos].num);
         CheckSolution();
     }
 
     public void LetterDown(int pos)
     {
-        if (userInput[pos].num >= 26)
+        Debug.Log("Pulsaste pos: " + pos + " tiene número: " + userInput[pos].num);
+        if (userInput[pos].num < 26)
         {
             userInput[pos].num += 1;
-            userInput[pos].let = letterPos[pos];
+            userInput[pos].let = letterPos[userInput[pos].num];
+            lettersText[pos].text = letterPos[userInput[pos].num].ToString();
 
         }
+        Debug.Log("Y ahora tiene número: " + userInput[pos].num);
         CheckSolution();
     }
 
@@ -206,7 +215,7 @@ public class MorsePuzzle : MonoBehaviour
             }
         }
 
-        Debug.Log("Ganaste");
+        if(isSolutionCorrect) Debug.Log("Ganaste");
     }
 }
 

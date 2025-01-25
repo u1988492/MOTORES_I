@@ -1799,7 +1799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 0
-  Camera: {fileID: 0}
+  Camera: {fileID: 1915071287}
   interactionZone: {fileID: 1261228857}
 --- !u!65 &178466633
 BoxCollider:
@@ -2322,7 +2322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 3
-  Camera: {fileID: 0}
+  Camera: {fileID: 1685976799}
   interactionZone: {fileID: 1215275002}
 --- !u!1001 &270478769
 PrefabInstance:
@@ -7012,7 +7012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &776068613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7574,7 +7574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 2
-  Camera: {fileID: 0}
+  Camera: {fileID: 110140098}
   interactionZone: {fileID: 822614927}
 --- !u!1 &823705239
 GameObject:
@@ -10962,7 +10962,7 @@ GameObject:
   - component: {fileID: 1121567613}
   - component: {fileID: 1121567610}
   - component: {fileID: 1121567612}
-  - component: {fileID: 1121567611}
+  - component: {fileID: 1121567614}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -11021,19 +11021,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1121567611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121567609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd62b9e7fdf8b0c49b96cfda3410a410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBody: {fileID: 1840969042}
 --- !u!114 &1121567612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11093,6 +11080,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1840969042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1121567614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121567609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96de8e3f63a23684fa8d140a56424d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBody: {fileID: 1840969042}
+  transitionDuration: 1
 --- !u!1001 &1141720101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13709,7 +13710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 1
-  Camera: {fileID: 0}
+  Camera: {fileID: 1724835764}
   interactionZone: {fileID: 1589230756}
 --- !u!65 &1490576430
 BoxCollider:
@@ -13848,7 +13849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 3
-  Camera: {fileID: 0}
+  Camera: {fileID: 1911653574}
   interactionZone: {fileID: 1593347454}
 --- !u!65 &1508786248
 BoxCollider:
@@ -16184,7 +16185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomCameraIndex: 4
-  Camera: {fileID: 0}
+  Camera: {fileID: 1850098828}
   interactionZone: {fileID: 272209045}
 --- !u!65 &1744908263
 BoxCollider:
@@ -17175,18 +17176,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1121567610}
-  zoomCameras:
-  - {fileID: 1915071287}
-  - {fileID: 1724835764}
-  - {fileID: 110140098}
-  - {fileID: 1911653574}
-  - {fileID: 1850098828}
-  - {fileID: 484250416}
   interactionDistance: 5
   interactionText: {fileID: 1941994697}
   zoomPromptText: {fileID: 1099171309}
   interactionPrompt: '''E'' to interact'
   zoomPrompt: '''E'' to exit interaction'
+  cameraController: {fileID: 0}
 --- !u!114 &1840969041
 MonoBehaviour:
   m_ObjectHideFlags: 0
