@@ -40,16 +40,16 @@ Material:
     m_Floats:
     - _Depth_fade_distance: 0
     - _Foam_Scale: 50
-    - _Foam_Speed: 0.01
+    - _Foam_Speed: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Wave_Scale: 1
-    - _Wave_Size: 0.1
-    - _Wave_Speed: 0.5
+    - _Wave_Size: 0.22
+    - _Wave_Speed: 0
     m_Colors:
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Shallow_Color: {r: 0, g: 0.5596617, b: 0.9547169, a: 0}
-    - _Surface_Color: {r: 0, g: 0.6184241, b: 0.7509433, a: 0}
+    - _Shallow_Color: {r: 0, g: 0.41970628, b: 0.7132075, a: 0}
+    - _Surface_Color: {r: 0.13396227, g: 0.8503705, b: 1, a: 0}
     - _Wave_Direction: {r: 1, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1662667730201151994
