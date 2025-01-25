@@ -74,7 +74,7 @@ public class InteractionSystem : MonoBehaviour
             {
                 CheckForInteractables();
             }
-            else //Sino, verificamos dentro del puzzle clicks del ratón
+            else if (!isCameraChanging)//Sino, verificamos dentro del puzzle clicks del ratón
             {
                 HandleZoomedInteraction();
                 if (Input.GetKeyDown(KeyCode.E) && !isCameraChanging)
@@ -200,6 +200,7 @@ public class InteractionSystem : MonoBehaviour
         if (cameraController != null)
         {
             cameraController.TransitionToTarget(currentPuzzleCamera);
+            isCameraChanging = true;
             StartCoroutine(ActivateZoomCameraAfterTransition());
         }
         else
@@ -263,19 +264,6 @@ public class InteractionSystem : MonoBehaviour
     {
         usableObject.Usar(inventorySystem); //Interfaz para usar el objeto
     }
-
-    /*int GetActiveZoomCameraIndex()
-    {
-        for (int i = 0; i < zoomCameras.Length; i++)
-        {
-            if (zoomCameras[i].gameObject.activeInHierarchy)
-            {
-                return i;
-            }
-        }
-        return -1;
-    }*/
-
     public void ExitZoom()
     {
         isZoomed = false;
@@ -296,7 +284,13 @@ public class InteractionSystem : MonoBehaviour
         }
 
         // Reactiva la cámara principal y hace la transición de vuelta
+
         mainCamera.gameObject.SetActive(true);
+        if (currentPuzzleCamera != null)
+        {
+            currentPuzzleCamera.gameObject.SetActive(false);
+            currentPuzzleCamera = null;
+        }
         cameraController.TransitionBack();
 
         StartCoroutine(DeactivatePuzzleCameraAfterTransition());
@@ -310,6 +304,7 @@ public class InteractionSystem : MonoBehaviour
         {
             zoomPromptText.gameObject.SetActive(false);
         }
+
     }
 
     private IEnumerator DeactivatePuzzleCameraAfterTransition()
@@ -323,6 +318,7 @@ public class InteractionSystem : MonoBehaviour
         isCameraChanging = false;
         // Reactiva el movimiento del jugador
         GetComponent<PlayerMovement>().enabled = true;
+        mainCamera.gameObject.SetActive(true);
     }
 
     void ResetInteraction()
