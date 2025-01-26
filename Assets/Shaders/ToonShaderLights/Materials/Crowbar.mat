@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Trtee
+  m_Name: Crowbar
   m_Shader: {fileID: -6465566751694194690, guid: cd5563f3bdb96484b943752ce18c25ed,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,7 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base_Texture:
-        m_Texture: {fileID: 2800000, guid: e1babe2307af383429164bd1620b0f99, type: 3}
+        m_Texture: {fileID: 2800000, guid: 043ae6b3f80bf2c42ac92fa8a90d8570, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emissive_Texture:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -55,10 +59,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Ambient_Light_Strength: 0.2
+    - _Ambient_Light_Strength: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _Base_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Cutoff_Threshold: {r: -1.5, g: 14.71, b: 0, a: 0}
+    - _Cutoff_Threshold: {r: -10, g: 10, b: 0, a: 0}
+    - _Emissive_Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
