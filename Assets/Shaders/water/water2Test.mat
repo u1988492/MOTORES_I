@@ -75,6 +75,6 @@ Material:
     m_Colors:
     - _Depth_Color: {r: 0, g: 0.0036433754, b: 0.13962269, a: 0}
     - _Edge_Color: {r: 0.07183336, g: 0.109363355, b: 0.22264141, a: 0}
-    - _Main_Tint: {r: 0.011764725, g: 0.08341234, b: 0.827451, a: 0}
+    - _Main_Tint: {r: 0.0353078, g: 0.11748485, b: 0.98490566, a: 0}
     - _Wave_Direction: {r: 1, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
