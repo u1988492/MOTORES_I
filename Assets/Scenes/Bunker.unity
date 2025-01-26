@@ -1797,9 +1797,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 0
   Camera: {fileID: 1915071287}
   interactionZone: {fileID: 1261228857}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &178466633
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2321,9 +2322,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 3
   Camera: {fileID: 1685976799}
   interactionZone: {fileID: 1215275002}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1001 &270478769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2894,7 +2896,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1840873059}
-  - {fileID: 1105340912}
   - {fileID: 145862173}
   - {fileID: 833854418}
   - {fileID: 91279531}
@@ -3042,7 +3043,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 305650873}
+    m_TransformParent: {fileID: 1426476124}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 85332a844ebaaa1489b6d6b7a08ee613,
         type: 3}
@@ -3062,7 +3063,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 85332a844ebaaa1489b6d6b7a08ee613,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.68
+      value: -12.25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85332a844ebaaa1489b6d6b7a08ee613,
         type: 3}
@@ -3072,7 +3073,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 85332a844ebaaa1489b6d6b7a08ee613,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.842
+      value: 15.761997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 85332a844ebaaa1489b6d6b7a08ee613,
         type: 3}
@@ -5905,6 +5906,52 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594800686}
   m_Mesh: {fileID: -2628482395200241503, guid: 9a3984804dee281428ad1d04b8baaaa0, type: 3}
+--- !u!1 &595176668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 595176670}
+  - component: {fileID: 595176669}
+  m_Layer: 0
+  m_Name: VisionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &595176669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595176668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00787a2115195cd4c8d2bbb4dcd1daa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGuardianVisionUnlocked: 1
+  isGuardianVisionActive: 0
+--- !u!4 &595176670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595176668}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 214.59007, y: 13.369964, z: -9.795583}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &602020538
 GameObject:
   m_ObjectHideFlags: 0
@@ -6147,8 +6194,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629085638}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.442585, y: 17.070312, z: -185.1552}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.442581, y: 17.070312, z: -185.1552}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6423,9 +6470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 0
   Camera: {fileID: 0}
   interactionZone: {fileID: 0}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &710981060
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7488,9 +7536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 2
   Camera: {fileID: 110140098}
   interactionZone: {fileID: 822614927}
+  normalMaterial: {fileID: 2100000, guid: f24d7e743e0b386428088db2e12e3e17, type: 2}
+  emissiveMaterial: {fileID: 2100000, guid: 6da3071afc143ef419899c40ffefb9c6, type: 2}
 --- !u!1 &823705239
 GameObject:
   m_ObjectHideFlags: 0
@@ -9452,6 +9501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: Slides
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &1014893637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10845,6 +10896,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: Palanca
+  normalMaterial: {fileID: 2100000, guid: d6546f33c4387d041ae71d0c9cef0b96, type: 2}
+  emissiveMaterial: {fileID: 2100000, guid: 0410557296e3a804ba865526b835232f, type: 2}
 --- !u!64 &1105340916
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11264,9 +11317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 5
   Camera: {fileID: 0}
   interactionZone: {fileID: 0}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!114 &1164294145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12977,6 +13031,7 @@ Transform:
   - {fileID: 964495551}
   - {fileID: 1852373980}
   - {fileID: 1882364424}
+  - {fileID: 1105340912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1463509365
@@ -13483,8 +13538,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486373792}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53.487293, y: -26.677673, z: 128.90533}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -53.48729, y: -26.677673, z: 128.90533}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13556,9 +13611,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 1
   Camera: {fileID: 1724835764}
   interactionZone: {fileID: 1589230756}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &1490576430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13694,9 +13750,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 3
   Camera: {fileID: 1911653574}
   interactionZone: {fileID: 1593347454}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &1508786248
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14126,6 +14183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: Tarjeta
+  normalMaterial: {fileID: 2100000, guid: 24a410dbf09a1aa4caa0915505b5d16e, type: 2}
+  emissiveMaterial: {fileID: 2100000, guid: ac5a4f3eaf06a1f49bb104465d637b52, type: 2}
 --- !u!1 &1589230755
 GameObject:
   m_ObjectHideFlags: 0
@@ -16039,9 +16098,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 4
   Camera: {fileID: 1850098828}
   interactionZone: {fileID: 272209045}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &1744908263
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17032,6 +17092,8 @@ MonoBehaviour:
   interactionPrompt: '''E'' to interact'
   zoomPrompt: '''E'' to exit interaction'
   cameraController: {fileID: 0}
+  normalPostProcess: {fileID: 629085638}
+  guardianPostProcess: {fileID: 1486373792}
 --- !u!114 &1840969041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24822,3 +24884,4 @@ SceneRoots:
   - {fileID: 1694004974}
   - {fileID: 629085640}
   - {fileID: 1486373794}
+  - {fileID: 595176670}

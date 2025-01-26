@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Unity.Burst.CompilerServices;
 
 public class InteractionSystem : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class InteractionSystem : MonoBehaviour
 
     [HideInInspector]
     public EnhancedFirstPersonCamera cameraController; // Hacemos público el controlador de cámara
+
+    [SerializeField]
+    public GameObject normalPostProcess;
+    public GameObject guardianPostProcess;
 
     private bool canInteract = true;
     private GameObject currentInteractable; //Guardar el objeto interactuable
@@ -69,6 +74,10 @@ public class InteractionSystem : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.I))  // Presionar 'I' para ver el inventario
             {
                 DisplayInventory();
+            }
+            if (Input.GetKeyDown(KeyCode.V) && GameManager.instance.IsVisionUnlocked())
+            {
+                ChangePostProcess();
             }
             if (!isZoomed && !isCameraChanging) //Si no está dentro de un puzzle, busca cosas interactuables
             {
@@ -125,6 +134,8 @@ public class InteractionSystem : MonoBehaviour
             // Si podemos interactuar, muestra el prompt y maneja la interacción
             if (shouldInteract)
             {
+                if (currentInteractable.CompareTag("Recolectable")) currentInteractable.GetComponent<RecolectableObject>().toEmissive();
+                else if (currentInteractable.CompareTag("Interactable")) currentInteractable.GetComponent<InteractableObject>().toEmissive();
                 HandleInteraction(hit.collider);
             }
             else
@@ -220,8 +231,6 @@ public class InteractionSystem : MonoBehaviour
             zoomPromptText.gameObject.SetActive(true);
         }
     }
-
-
     private IEnumerator ActivateZoomCameraAfterTransition()
     {
         yield return new WaitForSeconds(cameraController.transitionDuration);
@@ -324,6 +333,11 @@ public class InteractionSystem : MonoBehaviour
     void ResetInteraction()
     {
         canInteract = false;
+        if (currentInteractable != null)
+        {
+            if (currentInteractable.CompareTag("Recolectable")) currentInteractable.GetComponent<RecolectableObject>().toNormal();
+            else if (currentInteractable.CompareTag("Interactable")) currentInteractable.GetComponent<InteractableObject>().toNormal();
+        }
         currentInteractable = null;
         interactionText.gameObject.SetActive(false);
     }
@@ -391,6 +405,22 @@ public class InteractionSystem : MonoBehaviour
             GetComponent<PlayerMovement>().enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    void ChangePostProcess()
+    {
+        if (GameManager.instance.IsVisionActive()) //Si está activa, desactivarla
+        {
+            normalPostProcess.SetActive(true);
+            guardianPostProcess.SetActive(false);
+            GameManager.instance.DesactiveVision();
+        }
+        else
+        {
+            guardianPostProcess.SetActive(true);
+            normalPostProcess.SetActive(false);
+            GameManager.instance.ActiveVision();
         }
     }
 }

@@ -87,7 +87,7 @@ public class PauseSystem : MonoBehaviour
 
     void HandleSensitivityChange(float value)
     {
-        FirstPersonCamera.mouseSensitivity = value;
+        EnhancedFirstPersonCamera.mouseSensitivity = value;
         sensibilityText.text = value.ToString();
     }
     void HandleVolumeChange(float value)
