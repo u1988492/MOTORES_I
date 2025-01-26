@@ -60,18 +60,21 @@ Material:
     m_Ints: []
     m_Floats:
     - _Depth_Offset: 4
-    - _Foam_Cutoff: 0.44
+    - _Foam_Cutoff: 0.41
     - _Foam_Cutoff_Smoothness: 0
-    - _Foam_Line_Thickness: -0.72
-    - _Noise_Distortion: -0.33
+    - _Foam_Line_Thickness: -0.05
+    - _Noise_Distortion: -0.16
     - _Noise_Scale: 0.1
     - _Noise_Scroll_Speed: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Refraction_Distortion: 0.54
-    - _Ripple_Cutoff: 0.17
+    - _Refraction_Distortion: 4
+    - _Ripple_Cutoff: 4
+    - _Wave_Scale: 1
+    - _Wave_Size: -0.04
     m_Colors:
-    - _Depth_Color: {r: 0, g: 0.08993268, b: 0.2679245, a: 0}
-    - _Edge_Color: {r: 0.10767526, g: 0.35912395, b: 0.80377346, a: 0}
-    - _Main_Tint: {r: 0.30754706, g: 0.7781978, b: 1, a: 0}
+    - _Depth_Color: {r: 0, g: 0.0036433754, b: 0.13962269, a: 0}
+    - _Edge_Color: {r: 0.07183336, g: 0.109363355, b: 0.22264141, a: 0}
+    - _Main_Tint: {r: 0.011764725, g: 0.08341234, b: 0.827451, a: 0}
+    - _Wave_Direction: {r: 1, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
