@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems; 
+
+[System.Serializable] // Esto hace que la clase sea visible en el Inspector
+public class InventoryItem
+{
+    public string itemName;
+    public Sprite itemSprite;
+    public string itemDescription;
+    public bool showTooltipSprite;
+
+}
 
 public class InventorySystem : MonoBehaviour
 {
-    [System.Serializable] // Esto hace que la clase sea visible en el Inspector
-    public class InventoryItem
-    {
-        public string itemName;
-        public Sprite itemSprite;
-
-    }
-
     public InventoryItem[] availableItems; //"Diccionario" de los objetos de la sala
     public GameObject inventoryPanel; // Panel de Inventario
     public GameObject slotPrefab;     // Prefab del Slot (para intercambiarlo por la imagen de Sprite)
@@ -23,15 +26,33 @@ public class InventorySystem : MonoBehaviour
     private Dictionary<int, InventoryItem> inventoryItems = new Dictionary<int, InventoryItem>(); //Diccionario de la posición que tiene cada objeto en el inv y su objeto
 
 
-    void Start()
+    private void Start()
     {
-        for(int i= 0; i < slotsCount; i++) //Crear los slots vacíos
+        for (int i = 0; i < slotsCount; i++)
         {
             GameObject slot = Instantiate(slotPrefab, inventoryPanel.transform);
+
+            // Añadir eventos para el tooltip
+            var eventTrigger = slot.GetComponent<EventTrigger>();
+            if (eventTrigger == null)
+                eventTrigger = slot.AddComponent<EventTrigger>();
+
+            // Evento de entrada del ratón
+            EventTrigger.Entry entryPointerEnter = new EventTrigger.Entry();
+            entryPointerEnter.eventID = EventTriggerType.PointerEnter;
+            entryPointerEnter.callback.AddListener((data) => { OnPointerEnterSlot(slot); });
+            eventTrigger.triggers.Add(entryPointerEnter);
+
+            // Evento de salida del ratón
+            EventTrigger.Entry entryPointerExit = new EventTrigger.Entry();
+            entryPointerExit.eventID = EventTriggerType.PointerExit;
+            entryPointerExit.callback.AddListener((data) => { OnPointerExitSlot(); });
+            eventTrigger.triggers.Add(entryPointerExit);
+
             inventorySlots.Add(slot);
         }
 
-        inventoryPanel.SetActive(false); //Desactivamos inventario
+        inventoryPanel.SetActive(false);
     }
 
     public void ToggleVisibilityInventory()
@@ -123,5 +144,22 @@ public class InventorySystem : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    private void OnPointerEnterSlot(GameObject slot)
+    {
+        int slotIndex = inventorySlots.IndexOf(slot); //Buscamos el slot
+        if (inventoryItems.ContainsKey(slotIndex))
+        {
+            InventoryItem item = inventoryItems[slotIndex]; //Conseguimos el objeto
+            TooltipSystem.Instance.Show(item.showTooltipSprite, item.itemName, item.itemDescription, item.itemSprite);
+            //Podemos referenciar así al Tooltip ya que tiene un patrón Singleton
+            
+        }
+    }
+
+    private void OnPointerExitSlot()
+    {
+        TooltipSystem.Instance.Hide();
     }
 }

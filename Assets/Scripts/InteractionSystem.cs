@@ -6,14 +6,13 @@ using System;
 using Unity.Burst.CompilerServices;
 
 public class InteractionSystem : MonoBehaviour
-{
+{   
     public Camera mainCamera;
     public float interactionDistance = 5f;
     public TMP_Text interactionText;
     public TMP_Text zoomPromptText;
     public string interactionPrompt = "'E' to interact";
     public string zoomPrompt = "'E' to exit interaction";
-
 
     [HideInInspector]
     public EnhancedFirstPersonCamera cameraController; // Hacemos público el controlador de cámara
@@ -59,6 +58,8 @@ public class InteractionSystem : MonoBehaviour
             inventorySystem = gameObject.AddComponent<InventorySystem>();
         }
         cameraController = mainCamera.GetComponent<EnhancedFirstPersonCamera>();
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
