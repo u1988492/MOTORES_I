@@ -11457,7 +11457,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materials:
-  - {fileID: 2100000, guid: df17026c2ce8207489debb3a8599fa94, type: 2}
+  - {fileID: 2100000, guid: 7e19a9b7e4c1a5d428a0c07207873028, type: 2}
+  - {fileID: 2100000, guid: 97fa25e1a00caef49ad01743b2e4243c, type: 2}
+  - {fileID: 2100000, guid: 49bf41be3e74278488b618d1d16f8f36, type: 2}
+  - {fileID: 2100000, guid: 59f4a782097a01840a39515aff87d6b7, type: 2}
+  - {fileID: 2100000, guid: 587f21e2b8b67a64c9748728996b5d0f, type: 2}
+  - {fileID: 2100000, guid: 90bde276c8e7ab949b00ebfa80106d46, type: 2}
+  - {fileID: 2100000, guid: 20932f81c26872d4898241f321435da3, type: 2}
+  - {fileID: 2100000, guid: bbdaab310d494214f9f8642a6a733fb8, type: 2}
+  - {fileID: 2100000, guid: 1b3ba7df7c7e5bd4a9e7c0def3282931, type: 2}
   decalProjector: {fileID: 1164294145}
   timeSwitchImages: 5
 --- !u!114 &1164294144
