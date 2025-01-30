@@ -18,6 +18,7 @@ public class InventorySystem : MonoBehaviour
 {
     public InventoryItem[] availableItems; //"Diccionario" de los objetos de la sala
     public GameObject inventoryPanel; // Panel de Inventario
+    public GameObject toolTipInventoryPanel; 
     public GameObject slotPrefab;     // Prefab del Slot (para intercambiarlo por la imagen de Sprite)
     public int slotsCount = 5;        // Número de slots 
 
@@ -53,11 +54,13 @@ public class InventorySystem : MonoBehaviour
         }
 
         inventoryPanel.SetActive(false);
+        toolTipInventoryPanel.SetActive(inventoryPanel.activeSelf);
     }
 
     public void ToggleVisibilityInventory()
     {
         inventoryPanel.SetActive(!inventoryPanel.activeSelf); //Intercambiamos visibilidad
+        toolTipInventoryPanel.SetActive(inventoryPanel.activeSelf);
     }
 
     public void AddItemToSlot(string itemName, int slotIndex) //Añadir objeto a un Slot

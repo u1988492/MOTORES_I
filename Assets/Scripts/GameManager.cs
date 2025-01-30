@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
 
     public Vector3 positionBunker;
     public Vector3 positionGuardian;
+
+    public CanvasGroup transitionCanvas;
+    public float fadeDuration = 1.5f;
+
+    public GameObject guardianVisionObjects;
 
     void Awake()
     {
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        guardianVisionObjects.SetActive(false);
     }
 
     public bool IsVisionUnlocked()
@@ -39,11 +46,13 @@ public class GameManager : MonoBehaviour
     public void ActiveVision()
     {
         isGuardianVisionActive = true;
+        guardianVisionObjects.SetActive(true);
     }
 
     public void DesactiveVision()
     {
         isGuardianVisionActive = false;
+        guardianVisionObjects.SetActive(false);
     }
 
     public void SaveBunkerCoords(Vector3 pos)
@@ -64,5 +73,54 @@ public class GameManager : MonoBehaviour
     public Vector3 GetGuardianCoords()
     {
         return positionGuardian;
+    }
+
+
+    public void tpGuardian()
+    {
+        SaveBunkerCoords(GameObject.FindGameObjectWithTag("Player").transform.position);
+        StartCoroutine(Transition("AstralPlane", GetBunkerCoords()));
+    }
+
+    public void tpBunker()
+    {
+        SaveGuardianCoords(GameObject.FindGameObjectWithTag("Player").transform.position);
+        StartCoroutine(Transition("AstralPlane", GetBunkerCoords()));
+    }
+
+    private IEnumerator Transition(string sceneName, Vector3 newPosition)
+    {
+        transitionCanvas.gameObject.SetActive(true);
+        yield return StartCoroutine(Fade(1));
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            player.transform.position = newPosition;
+        }
+
+        yield return StartCoroutine(Fade(0));
+        transitionCanvas.gameObject.SetActive(false);
+    }
+
+    private IEnumerator Fade(float targetAlpha)
+    {
+        float startAlpha = transitionCanvas.alpha;
+        float time = 0;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            transitionCanvas.alpha = Mathf.Lerp(startAlpha, targetAlpha, time / fadeDuration);
+            yield return null;
+        }
+
+        transitionCanvas.alpha = targetAlpha;
     }
 }

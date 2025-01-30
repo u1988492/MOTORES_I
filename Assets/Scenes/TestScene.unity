@@ -266,9 +266,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 6
   Camera: {fileID: 0}
   interactionZone: {fileID: 686545242}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1 &39134474
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,9 +860,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 2
   Camera: {fileID: 0}
   interactionZone: {fileID: 1329924508}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &110539489
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1643,9 +1645,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 3
   Camera: {fileID: 0}
   interactionZone: {fileID: 0}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &218009122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2599,6 +2602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: Figure1Key
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1 &255278383
 GameObject:
   m_ObjectHideFlags: 0
@@ -8047,9 +8052,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 12
   Camera: {fileID: 1906143492}
   interactionZone: {fileID: 18160880}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1 &325857724
 GameObject:
   m_ObjectHideFlags: 0
@@ -9815,6 +9821,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: Cil_Azul
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!136 &535160599
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9961,9 +9969,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 7
   Camera: {fileID: 0}
   interactionZone: {fileID: 1304651020}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1 &568867889
 GameObject:
   m_ObjectHideFlags: 0
@@ -12622,9 +12631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 8
   Camera: {fileID: 0}
   interactionZone: {fileID: 840422553}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1 &921732072
 GameObject:
   m_ObjectHideFlags: 0
@@ -12745,9 +12755,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 0
   Camera: {fileID: 0}
   interactionZone: {fileID: 0}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1 &939414062
 GameObject:
   m_ObjectHideFlags: 0
@@ -12780,9 +12791,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 1
   Camera: {fileID: 0}
   interactionZone: {fileID: 0}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &939414064
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12992,6 +13004,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: Figure2Key
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1 &949627950
 GameObject:
   m_ObjectHideFlags: 0
@@ -13713,6 +13727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: Figure3Key
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!1 &1009369471
 GameObject:
   m_ObjectHideFlags: 0
@@ -13968,9 +13984,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 11
   Camera: {fileID: 1906143492}
   interactionZone: {fileID: 1571474990}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!114 &1027831838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14172,9 +14189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 9
   Camera: {fileID: 0}
   interactionZone: {fileID: 47237780}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &1058443856
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14735,9 +14753,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 0
   Camera: {fileID: 0}
   interactionZone: {fileID: 1902369914}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!114 &1209433160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16199,6 +16218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: ImagesProjector
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!136 &1354863637
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17492,6 +17513,8 @@ MonoBehaviour:
   interactionPrompt: Pulsa 'E' para interactuar
   zoomPrompt: '''E'' to exit interaction'
   cameraController: {fileID: 0}
+  normalPostProcess: {fileID: 0}
+  guardianPostProcess: {fileID: 0}
 --- !u!114 &1511964815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17507,8 +17530,12 @@ MonoBehaviour:
   availableItems:
   - itemName: LPuerta1
     itemSprite: {fileID: 21300000, guid: e833d70c4ddacbb4d91e6a8df32b834e, type: 3}
+    itemDescription: 
+    showTooltipSprite: 0
   - itemName: Figure3Key
     itemSprite: {fileID: 21300000, guid: 4f35cd6fc41df584a97a42899985e000, type: 3}
+    itemDescription: 
+    showTooltipSprite: 0
   inventoryPanel: {fileID: 1410962412}
   slotPrefab: {fileID: 3427537139271953025, guid: c66ba4762cd3d6c448e66f7657744628,
     type: 3}
@@ -17936,6 +17963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: Palanca
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!136 &1557601101
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18309,9 +18338,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 4
   Camera: {fileID: 0}
   interactionZone: {fileID: 225047966}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!65 &1577555288
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19251,6 +19281,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameObject: LPuerta1
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!136 &1672930163
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -24614,9 +24646,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1ba8017a007f4c8da5b88449a703d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomCameraIndex: 10
   Camera: {fileID: 0}
   interactionZone: {fileID: 189591340}
+  normalMaterial: {fileID: 0}
+  emissiveMaterial: {fileID: 0}
 --- !u!4 &7820294633176518584
 Transform:
   m_ObjectHideFlags: 0

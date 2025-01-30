@@ -14,4 +14,13 @@ public class AltarObject : MonoBehaviour
             Debug.LogError("No se encontr� InteractionSystem en la escena");
         }
     }
+
+    public void Exit()
+    {
+        gameObject.tag = "Untagged";
+        if (interactionSystem != null)
+        {
+            interactionSystem.ExitZoom(); //Salir del zoom 
+        }
+    }
 }

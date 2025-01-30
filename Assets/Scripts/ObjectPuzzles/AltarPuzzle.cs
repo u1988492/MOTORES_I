@@ -6,6 +6,7 @@ using UnityEngine;
 public class AltarPuzzle : MonoBehaviour, IPuzzle
 {
     private bool isUnlocked = false;
+    public GameObject altarObject;
 
     //figuras del altar 
     public string[] requiredFigureNames;
@@ -20,7 +21,7 @@ public class AltarPuzzle : MonoBehaviour, IPuzzle
     //inicializar como invisibles y no colocadas
     void Start(){
         placedFigures = new bool[requiredFigureNames.Length]; //misma longitud que la cantidad de figuras necesarias para desbloquear
-       for(int i=0; i<requiredFigureNames.Length; i++)
+        for(int i=0; i<requiredFigureNames.Length; i++)
         {
             figureSlots[i].SetActive(false);
             placedFigures[i] = false;
@@ -30,20 +31,24 @@ public class AltarPuzzle : MonoBehaviour, IPuzzle
 
      public void Interact(InventorySystem inventory)
     {
-        if (!isUnlocked) {
+        if (!isUnlocked && !checkFiguresPlaced()) {
             for(int i=0; i<requiredFigureNames.Length; i++){
                 //si está la figura en el inventario y no está colocada
                 if(inventory.GetItem(requiredFigureNames[i]) && !placedFigures[i]){
                     PlaceFigure(inventory, i); //colocar
                 }
             }
-        }
 
-        //desbloquear altar si están todas las figuras colocadas
-        if(checkFiguresPlaced()){
-            isUnlocked = true;
-            gameObject.tag = "Untagged";
-            Debug.Log("Altar desbloqueado");
+            //desbloquear altar si están todas las figuras colocadas
+            if (checkFiguresPlaced())
+            {
+                isUnlocked = true;
+                interactionZone.tag = "Untagged";
+                Debug.Log("Altar desbloqueado");
+
+                altarObject.GetComponent<AltarObject>().Exit();
+                GameManager.instance.tpGuardian();
+            }
         }
     }
 
