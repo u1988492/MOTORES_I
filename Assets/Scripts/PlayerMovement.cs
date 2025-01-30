@@ -15,8 +15,33 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+    bool isCheatMode = false; // Modo chetos desactivado al inicio
 
     void Update()
+    {
+        // Alternar modo chetos con F3 + F4
+        if (Input.GetKey(KeyCode.F3) && Input.GetKeyDown(KeyCode.F4))
+        {
+            isCheatMode = !isCheatMode;
+            velocity = Vector3.zero; // Reinicia la velocidad
+
+            if (isCheatMode)
+                controller.enabled = false; // Desactiva colisiones
+            else
+                controller.enabled = true; // Activa colisiones
+        }
+
+        if (isCheatMode)
+        {
+            CheatModeMovement();
+        }
+        else
+        {
+            NormalMovement();
+        }
+    }
+
+    void NormalMovement()
     {
         // Comprueba si el jugador está en el suelo
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -45,5 +70,19 @@ public class PlayerMovement : MonoBehaviour
         // Aplica la gravedad
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void CheatModeMovement()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        float y = 0f;
+
+        if (Input.GetKey(KeyCode.Space)) y = 1f; // Subir
+        if (Input.GetKey(KeyCode.LeftShift)) y = -1f; // Bajar
+
+        // Movimiento libre sin colisiones
+        Vector3 move = (transform.right * x + transform.forward * z + transform.up * y) * speed * Time.deltaTime;
+        transform.position += move;
     }
 }
