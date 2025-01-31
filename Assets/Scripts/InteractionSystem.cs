@@ -214,35 +214,13 @@ public class InteractionSystem : MonoBehaviour
         isZoomed = true;
         currentPuzzleCamera = interactableScript.Camera;
 
-        // desactivar audio listener de la camara principal
-        //AudioListener mainAudioListener = mainCamera.GetComponent<AudioListener>();
-        if(mainAudioListener != null){
-            mainAudioListener.enabled = false;
-        }
-
-        // asegurarse de que está activado el objeto de la camara de puzzle
-        currentPuzzleCamera.gameObject.SetActive(true);
-
-        // obtener o agregar audio listener
-        AudioListener puzzleAudioListener = currentPuzzleCamera.GetComponent<AudioListener>();
-        if(puzzleAudioListener == null){
-            puzzleAudioListener = currentPuzzleCamera.AddComponent<AudioListener>();
-        }
-
-        // activar el audio listener de la camara
-        puzzleAudioListener.enabled = true;
-
-        if (interactableScript.interactionZone != null)
-        {
-            interactableScript.interactionZone.enabled = false;
-        }
-
         // Aseguramos que el cameraController existe
         if (cameraController != null)
         {
             cameraController.TransitionToTarget(currentPuzzleCamera);
             isCameraChanging = true;
-            StartCoroutine(ActivateZoomCameraAfterTransition());
+            StartCoroutine(ActivateZoomCameraAfterTransition()); // PRIMERO ESTO    
+
         }
         else
         {
@@ -267,15 +245,21 @@ public class InteractionSystem : MonoBehaviour
 
         // en vez de desactivar todo el objeto de camara, desactivar el componente de camara
         mainCamera.GetComponent<Camera>().enabled = false;
-        currentPuzzleCamera.GetComponent<Camera>().enabled = true;
-
-        // mantener el audio listener activo
-        mainAudioListener.enabled = true;
-        if(puzzleAudioListener != null){
-            puzzleAudioListener.enabled = false;
+        // desactivar audio listener de la camara del jugador
+        if(mainAudioListener != null){
+            mainAudioListener.enabled = false;
         }
-        isCameraChanging = false;
+        mainCamera.gameObject.SetActive(false);
 
+        currentPuzzleCamera.gameObject.SetActive(true);
+        currentPuzzleCamera.GetComponent<Camera>().enabled = true;
+        // activar audio listener de camara de puzzle
+        puzzleAudioListener = currentPuzzleCamera.GetComponent<AudioListener>();
+        if(puzzleAudioListener == null){
+            puzzleAudioListener = currentPuzzleCamera.AddComponent<AudioListener>();
+        }
+        puzzleAudioListener.enabled = true;
+        isCameraChanging = false;
 
         // codigo que habia antes:
         //mainCamera.gameObject.SetActive(false);
@@ -337,28 +321,26 @@ public class InteractionSystem : MonoBehaviour
         }
 
         // Reactiva la cámara principal y hace la transición de vuelta
-
-        mainCamera.GetComponent<Camera>().enabled = true; // asegurarse de que está activada
-
-        //reactiva el audio listener de la camara principal
-        //AudioListener mainAudioListener = mainCamera.GetComponent<AudioListener>();
-        if(mainAudioListener != null){
-            mainAudioListener.enabled = true;
-        }
-
-        // desactiva audio listener de la camara de puzzle
-        AudioListener puzzleAudioListener = currentPuzzleCamera.GetComponent<AudioListener>();
-        if(puzzleAudioListener != null){
-            puzzleAudioListener.enabled = false;
-        }
-
         mainCamera.gameObject.SetActive(true);
-
+        mainCamera.GetComponent<Camera>().enabled = true; // asegurarse de que está activada
+        
+        AudioListener puzzleAudioListener = currentPuzzleCamera.GetComponent<AudioListener>();
         if (currentPuzzleCamera != null)
         {
             currentPuzzleCamera.GetComponent<Camera>().enabled = false;
             currentPuzzleCamera.gameObject.SetActive(false);
-            //currentPuzzleCamera = null;
+            currentPuzzleCamera = null;
+        }
+
+       // desactiva audio listener de la camara de puzzle;
+        if(puzzleAudioListener != null){
+            puzzleAudioListener.enabled = false;
+        }
+
+        //reactiva el audio listener de la camara principal
+        //AudioListener mainAudioListener = mainCamera.GetComponent<AudioListener>();
+        if(mainAudioListener == null){
+            mainAudioListener.enabled = true;
         }
 
         cameraController.TransitionBack();
@@ -381,8 +363,8 @@ public class InteractionSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(cameraController.transitionDuration);
         // reactivar componente de camara de la camara principal
-        mainCamera.GetComponent<Camera>().enabled = true;
-        mainAudioListener.enabled = true;
+        
+
 
         if(currentPuzzleCamera!= null){
             currentPuzzleCamera.GetComponent<Camera>().enabled = false;
@@ -392,6 +374,9 @@ public class InteractionSystem : MonoBehaviour
 
         isCameraChanging = false;
         GetComponent<PlayerMovement>().enabled = true;
+        mainCamera.gameObject.SetActive(true);
+        mainCamera.GetComponent<Camera>().enabled = true;
+        mainAudioListener.enabled = true;
 
         // codigo que había antes:
         //if (currentPuzzleCamera != null)
