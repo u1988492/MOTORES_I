@@ -10,6 +10,7 @@ public class InventoryItem
     public string itemName;
     public Sprite itemSprite;
     public string itemDescription;
+    public Sprite itemImage;
     public bool showTooltipSprite;
 
 }
@@ -155,7 +156,7 @@ public class InventorySystem : MonoBehaviour
         if (inventoryItems.ContainsKey(slotIndex))
         {
             InventoryItem item = inventoryItems[slotIndex]; //Conseguimos el objeto
-            TooltipSystem.Instance.Show(item.showTooltipSprite, item.itemName, item.itemDescription, item.itemSprite);
+            TooltipSystem.Instance.Show(item.showTooltipSprite, item.itemName, item.itemDescription, item.itemSprite, item.itemImage);
             //Podemos referenciar así al Tooltip ya que tiene un patrón Singleton
             
         }

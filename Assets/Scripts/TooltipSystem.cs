@@ -9,6 +9,7 @@ public class TooltipSystem : MonoBehaviour
     [SerializeField] private GameObject tooltipContainer;
 
     [SerializeField] private TextMeshProUGUI tooltipName;
+    [SerializeField] private Image tooltipSprite;
     [SerializeField] private Image tooltipImage;
     [SerializeField] private TextMeshProUGUI tooltipDesc;
 
@@ -24,20 +25,24 @@ public class TooltipSystem : MonoBehaviour
         tooltipContainer.SetActive(false);
     }
 
-    public void Show(bool showtooltipWithSprite, string name, string desc, Sprite img)
+    public void Show(bool showtooltipWithImage, string name, string desc, Sprite spri, Sprite img)
     {
         tooltipName.text = name;
         tooltipDesc.text = desc;
 
-        if (showtooltipWithSprite)
+        if (showtooltipWithImage)
         {
             tooltipImage.sprite = img;
             tooltipImage.color = Color.white;
+            tooltipSprite.sprite = null;
+            tooltipSprite.color = Color.clear;
         }
         else 
         {
             tooltipImage.sprite = null;
             tooltipImage.color = Color.clear;
+            tooltipSprite.sprite = spri;
+            tooltipSprite.color = Color.white;
         } 
 
         tooltipContainer.SetActive(true);
