@@ -82,10 +82,16 @@ public class PlayerMovement : MonoBehaviour
         if(isMoving && !wasMoving){
             // Comenzar sonido
             string surfaceType = SceneManager.GetActiveScene().name == "Bunker" ? "Metal" : "Sand"; // Tipo de superficie según la escena
-            SoundManager.Instance.PlayFootstep(transform.position, surfaceType);
+            if(SoundManager.Instance != null){
+                SoundManager.Instance.PlayFootstep(transform.position, surfaceType);
+            }
+            else Debug.LogWarning("Soundmanager instance is null");
         }
         else if(!isMoving && wasMoving){
-            SoundManager.Instance.StopFootstep(); // if player stoops moving
+            
+            if(SoundManager.Instance != null){
+                SoundManager.Instance.StopFootstep(); // if player stops moving
+            }
         }
     }
 
