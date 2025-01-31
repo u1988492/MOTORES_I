@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     bool isCheatMode = false; // Modo chetos desactivado al inicio
 
+    private bool isMoving = false; 
+
     void Update()
     {
         // Alternar modo chetos con F3 + F4
@@ -25,8 +28,10 @@ public class PlayerMovement : MonoBehaviour
             isCheatMode = !isCheatMode;
             velocity = Vector3.zero; // Reinicia la velocidad
 
-            if (isCheatMode)
+            if (isCheatMode){
                 controller.enabled = false; // Desactiva colisiones
+                SoundManager.Instance.StopFootstep(); // Desactiva sonido de caminar
+            }
             else
                 controller.enabled = true; // Activa colisiones
         }
@@ -43,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     void NormalMovement()
     {
-        // Comprueba si el jugador está en el suelo
+        // Comprueba si el jugador estï¿½ en el suelo
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -70,6 +75,18 @@ public class PlayerMovement : MonoBehaviour
         // Aplica la gravedad
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        // Sonido de caminar
+        bool wasMoving = isMoving; // guardar estado anterior
+        isMoving = (x != 0 || z != 0) && isGrounded; // actualizar estado de movimiento
+        if(isMoving && !wasMoving){
+            // Comenzar sonido
+            string surfaceType = SceneManager.GetActiveScene().name == "Bunker" ? "Metal" : "Sand"; // Tipo de superficie segÃºn la escena
+            SoundManager.Instance.PlayFootstep(transform.position, surfaceType);
+        }
+        else if(!isMoving && wasMoving){
+            SoundManager.Instance.StopFootstep(); // if player stoops moving
+        }
     }
 
     void CheatModeMovement()

@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject guardianVisionObjects;
 
+    private string currentAmbientSound;
+
     void Awake()
     {
         if(instance == null)
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         guardianVisionObjects.SetActive(false);
+        UpdateAmbientSound(SceneManager.GetActiveScene().name); // initialize ambient sound
     }
 
     public bool IsVisionUnlocked()
@@ -85,13 +88,17 @@ public class GameManager : MonoBehaviour
     public void tpBunker()
     {
         SaveGuardianCoords(GameObject.FindGameObjectWithTag("Player").transform.position);
-        StartCoroutine(Transition("AstralPlane", GetBunkerCoords()));
+        StartCoroutine(Transition("Bunker", GetBunkerCoords())); 
     }
 
     private IEnumerator Transition(string sceneName, Vector3 newPosition)
     {
         transitionCanvas.gameObject.SetActive(true);
         yield return StartCoroutine(Fade(1));
+
+        if(!string.IsNullOrEmpty(currentAmbientSound)){
+            SoundManager.Instance.StopAmbientSound(currentAmbientSound); // stop sound between scenes
+        }
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
@@ -104,6 +111,8 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = newPosition;
         }
+
+        UpdateAmbientSound(sceneName);
 
         yield return StartCoroutine(Fade(0));
         transitionCanvas.gameObject.SetActive(false);
@@ -122,5 +131,18 @@ public class GameManager : MonoBehaviour
         }
 
         transitionCanvas.alpha = targetAlpha;
+    }
+
+    // updates the ambient sound according to the scene
+    private void UpdateAmbientSound(string sceneName){
+        string newAmbientSound = sceneName == "Bunker" ? "BunkerAmbient" : "AstralAmbient";
+
+        if(currentAmbientSound != newAmbientSound){
+            if(!string.IsNullOrEmpty(currentAmbientSound)){
+                SoundManager.Instance.StopAmbientSound(currentAmbientSound); // stop sound if there is no set sound
+            }
+            currentAmbientSound = newAmbientSound;
+            SoundManager.Instance.PlayAmbientSound(currentAmbientSound);
+        }
     }
 }
