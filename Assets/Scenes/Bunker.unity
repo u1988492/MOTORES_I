@@ -19414,11 +19414,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d0b0dd6816aed8f409fabfc23c9da442, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
     is3D: 0
   - name: BunkerAmbient
-    clip: {fileID: 8300000, guid: db811735ca9111942b2f4c7965271037, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: aba2ac99980e06a4991a338e92b7b783, type: 3}
+    volume: 0.379
     pitch: 1
     loop: 0
     is3D: 0
