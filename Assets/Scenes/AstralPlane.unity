@@ -582,7 +582,7 @@ RectTransform:
   m_Children:
   - {fileID: 1042887168}
   - {fileID: 1526832650}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2017288522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2398,7 +2398,7 @@ RectTransform:
   m_Children:
   - {fileID: 404616480}
   - {fileID: 323310182}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2017288522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7618,7 +7618,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1016031110}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2017288522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9984,16 +9984,20 @@ MonoBehaviour:
   - itemName: Tarjeta
     itemSprite: {fileID: 21300000, guid: 108a42d10ea0fb64c92df2d63e751721, type: 3}
     itemDescription: 
+    itemImage: {fileID: 0}
     showTooltipSprite: 0
   - itemName: Palanca
     itemSprite: {fileID: 21300000, guid: eb2d65b728534d24eb4fa75c8216a950, type: 3}
     itemDescription: 
+    itemImage: {fileID: 0}
     showTooltipSprite: 0
   - itemName: Slides
     itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
     itemDescription: 
+    itemImage: {fileID: 0}
     showTooltipSprite: 0
   inventoryPanel: {fileID: 1016031109}
+  toolTipInventoryPanel: {fileID: 0}
   slotPrefab: {fileID: 3427537139271953025, guid: c66ba4762cd3d6c448e66f7657744628,
     type: 3}
   slotsCount: 5
@@ -10055,6 +10059,9 @@ Transform:
   - {fileID: 1181621964}
   - {fileID: 18545360}
   - {fileID: 1413011976}
+  - {fileID: 931216778}
+  - {fileID: 135616677}
+  - {fileID: 785843245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2041327286
@@ -10187,9 +10194,6 @@ SceneRoots:
   - {fileID: 1053545250}
   - {fileID: 847374848}
   - {fileID: 609105727}
-  - {fileID: 931216778}
-  - {fileID: 785843245}
-  - {fileID: 135616677}
   - {fileID: 1875675436}
   - {fileID: 163599610}
   - {fileID: 849391088}

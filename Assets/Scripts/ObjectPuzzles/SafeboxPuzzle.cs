@@ -96,12 +96,12 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
         float Rotation = rotationSpeed * Time.deltaTime; //Calculamos la rotación
         if (r == 'r')
         {
-            transform.Rotate(Vector3.right, Rotation);
-            acumulatedRotation += Rotation; //Sumamos la rotación
+            transform.Rotate(Vector3.down, Rotation, Space.Self); // Rota en el eje Y en sentido horario
+            acumulatedRotation += Rotation;
         }
         else
         {
-            transform.Rotate(Vector3.left, Rotation);
+            transform.Rotate(Vector3.up, Rotation, Space.Self); // Rota en el eje Y en sentido antihorario
             acumulatedRotation -= Rotation;
         }
 
@@ -149,8 +149,9 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
 
     private void OpenLock()
     {
-        door.GetComponent<DoorObject>().OpenDoor();
+        door.GetComponent<DoorObject>().OpenDoorWithoutPivot(Vector3.back);
         isUnlocked = true;
         interactionZone.tag = "Untagged";
+        interactionZone.enabled = false;
     }
 }

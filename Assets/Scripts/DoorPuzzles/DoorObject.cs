@@ -21,18 +21,17 @@ public class DoorObject : MonoBehaviour
         }
     }
 
-    private IEnumerator OpeningDoor() //"Animación" de abrir puerta
+    private IEnumerator OpeningDoor(Transform pivote, Vector3? pos = null) //"Animación" de abrir puerta
     {
         isOpening = true;
         Debug.Log("Puerta abriéndose...");
+
+        Vector3 finalPos = pos ?? Vector3.up;
 
         if (interactionSystem != null)
         {
             interactionSystem.ExitZoom(); //Salir del zoom 
         }
-
-        // Importante: Obtenemos el transform del padre (el pivote)
-        Transform pivote = transform.parent;
 
         while (currentRotation < rotationAmount)
         {
@@ -40,7 +39,7 @@ public class DoorObject : MonoBehaviour
             currentRotation += rotationThisFrame;
 
             // Rotamos el pivote en lugar de la puerta
-            pivote.Rotate(Vector3.up, rotationThisFrame);
+            pivote.Rotate(finalPos, rotationThisFrame);
 
             yield return null;
         }
@@ -52,7 +51,14 @@ public class DoorObject : MonoBehaviour
 
     public void OpenDoor()
     {
-        StartCoroutine(OpeningDoor()); //Empieza el método de abrir puerta 
+        Transform pivote = transform.parent; // Importante: Obtenemos el transform del padre (el pivote)
+        StartCoroutine(OpeningDoor(pivote)); //Empieza el método de abrir puerta 
+    }
+
+    public void OpenDoorWithoutPivot(Vector3? pos = null)
+    {
+        Transform pivote = transform;
+        StartCoroutine(OpeningDoor(pivote, pos)); //Empieza el método de abrir puerta 
     }
 }
 

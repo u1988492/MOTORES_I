@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -7,12 +8,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    
+
     public bool isGuardianVisionUnlocked = false;
     public bool isGuardianVisionActive = false;
 
     public Vector3 positionBunker;
+    public Quaternion rotationBunker;
     public Vector3 positionGuardian;
+    public Quaternion rotationGuardian;
 
     public CanvasGroup transitionCanvas;
     public float fadeDuration = 1.5f;
@@ -21,10 +24,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
-        } 
+        }
         else
         {
             Destroy(gameObject);
@@ -60,9 +63,19 @@ public class GameManager : MonoBehaviour
         positionBunker = pos;
     }
 
+    public void SaveBunkerRotation(Quaternion rot)
+    {
+        rotationBunker = rot;
+    }
+
     public Vector3 GetBunkerCoords()
     {
         return positionBunker;
+    }
+
+    public Quaternion GetBunkerRotation()
+    {
+        return rotationBunker;
     }
 
     public void SaveGuardianCoords(Vector3 pos)
@@ -70,25 +83,37 @@ public class GameManager : MonoBehaviour
         positionGuardian = pos;
     }
 
+    public void SaveGuardianRotation(Quaternion rot)
+    {
+        rotationGuardian = rot;
+    }
+
     public Vector3 GetGuardianCoords()
     {
         return positionGuardian;
+    }
+
+    public Quaternion GetGuardianRotation()
+    {
+        return rotationGuardian;
     }
 
 
     public void tpGuardian()
     {
         SaveBunkerCoords(GameObject.FindGameObjectWithTag("Player").transform.position);
-        StartCoroutine(Transition("AstralPlane", GetBunkerCoords()));
+        SaveBunkerRotation(GameObject.FindGameObjectWithTag("Player").transform.rotation);
+        StartCoroutine(Transition("AstralPlane", GetGuardianCoords(), GetGuardianRotation()));
     }
 
     public void tpBunker()
     {
         SaveGuardianCoords(GameObject.FindGameObjectWithTag("Player").transform.position);
-        StartCoroutine(Transition("AstralPlane", GetBunkerCoords()));
+        SaveGuardianRotation(GameObject.FindGameObjectWithTag("Player").transform.rotation);
+        StartCoroutine(Transition("AstralPlane", GetBunkerCoords(), GetBunkerRotation()));
     }
 
-    private IEnumerator Transition(string sceneName, Vector3 newPosition)
+    private IEnumerator Transition(string sceneName, Vector3 newPosition, Quaternion newRotation)
     {
         transitionCanvas.gameObject.SetActive(true);
         yield return StartCoroutine(Fade(1));
@@ -103,6 +128,7 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             player.transform.position = newPosition;
+            player.transform.rotation = newRotation;
         }
 
         yield return StartCoroutine(Fade(0));
