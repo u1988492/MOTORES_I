@@ -1964,7 +1964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Figure3Key
+  nameObject: Owl Totem
   normalMaterial: {fileID: 2100000, guid: 2d680de69c0b1404fa5701c745f735fa, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: 5c904b02a5393d349a3b0d671eb35c91, type: 2}
 --- !u!4 &124602732 stripped
@@ -6533,7 +6533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be599e154d4cd408018f137816e6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredToolName: Palanca
+  requiredToolName: Crowbar
 --- !u!65 &424419740
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7743,7 +7743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cf9e77990e30b4ca204a98b4ebca8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredKeyName: Tarjeta
+  requiredKeyName: KeyCard
   door: {fileID: 1490576426}
   interactionZone: {fileID: 1589230756}
 --- !u!64 &511872822
@@ -8157,7 +8157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be599e154d4cd408018f137816e6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredToolName: Palanca
+  requiredToolName: Crowbar
 --- !u!65 &549776023
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13581,9 +13581,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   altarObject: {fileID: 1455240679}
   requiredFigureNames:
-  - Figure1Key
-  - Figure2Key
-  - Figure3Key
+  - Deer Totem
+  - Bear Totem
+  - Owl Totem
   figureSlots:
   - {fileID: 259979544}
   - {fileID: 1864664214}
@@ -14877,7 +14877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Figure2Key
+  nameObject: Bear Totem
   normalMaterial: {fileID: 2100000, guid: 2d680de69c0b1404fa5701c745f735fa, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: 5c904b02a5393d349a3b0d671eb35c91, type: 2}
 --- !u!64 &1002219565
@@ -15041,7 +15041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Slides
+  nameObject: Slide-tape
   normalMaterial: {fileID: 0}
   emissiveMaterial: {fileID: 0}
 --- !u!65 &1014893637
@@ -16115,7 +16115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be599e154d4cd408018f137816e6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredToolName: Palanca
+  requiredToolName: Crowbar
 --- !u!65 &1059063487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16880,7 +16880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Palanca
+  nameObject: Crowbar
   normalMaterial: {fileID: 2100000, guid: d6546f33c4387d041ae71d0c9cef0b96, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: 0410557296e3a804ba865526b835232f, type: 2}
 --- !u!64 &1105340916
@@ -22098,7 +22098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Tarjeta
+  nameObject: KeyCard
   normalMaterial: {fileID: 2100000, guid: 24a410dbf09a1aa4caa0915505b5d16e, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: ac5a4f3eaf06a1f49bb104465d637b52, type: 2}
 --- !u!1 &1589230755
@@ -26681,35 +26681,121 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableItems:
-  - itemName: Tarjeta
-    itemSprite: {fileID: 21300000, guid: 108a42d10ea0fb64c92df2d63e751721, type: 3}
-    itemDescription: Una tarjeta... Debe abrir alguna cosa...
-    itemImage: {fileID: 21300000, guid: 84201dafbdf667b448cf49bbaccdcb69, type: 3}
-    showTooltipSprite: 1
-  - itemName: Palanca
-    itemSprite: {fileID: 21300000, guid: eb2d65b728534d24eb4fa75c8216a950, type: 3}
-    itemDescription: 
-    itemImage: {fileID: 0}
+  - itemName: KeyCard
+    itemSprite: {fileID: 21300000, guid: ce2098a822552e64c98fbedce8314606, type: 3}
+    itemDescription: I think I've seen a digital reader somewhere near.
+    itemImage: {fileID: 21300000, guid: ce2098a822552e64c98fbedce8314606, type: 3}
     showTooltipSprite: 0
-  - itemName: Slides
-    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
-    itemDescription: 
-    itemImage: {fileID: 0}
+  - itemName: Crowbar
+    itemSprite: {fileID: 21300000, guid: b8879d3b9146a7e42b6a57a62e8f9da2, type: 3}
+    itemDescription: Maybe I can use this to force open something.
+    itemImage: {fileID: 21300000, guid: b8879d3b9146a7e42b6a57a62e8f9da2, type: 3}
     showTooltipSprite: 0
-  - itemName: Figure1Key
-    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
-    itemDescription: 
-    itemImage: {fileID: 0}
+  - itemName: Slide-tape
+    itemSprite: {fileID: 21300000, guid: 4470bf318ca10a34a95475b15c6cdce7, type: 3}
+    itemDescription: '"The story of our town", what is this about? If I could find
+      a projector I would be able to watch this.'
+    itemImage: {fileID: 21300000, guid: 4470bf318ca10a34a95475b15c6cdce7, type: 3}
     showTooltipSprite: 0
-  - itemName: Figure2Key
-    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
-    itemDescription: 
-    itemImage: {fileID: 0}
+  - itemName: Deer Totem
+    itemSprite: {fileID: 21300000, guid: a4101ff1ed0a72340ac33bb95ce53397, type: 3}
+    itemDescription: A deer totem carved on hickory wood. For some reason, you are
+      drawn to hold it close to your chest and a sense of gentleness fills you from
+      within.
+    itemImage: {fileID: 21300000, guid: a4101ff1ed0a72340ac33bb95ce53397, type: 3}
     showTooltipSprite: 0
-  - itemName: Figure3Key
-    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
-    itemDescription: 
-    itemImage: {fileID: 0}
+  - itemName: Bear Totem
+    itemSprite: {fileID: 21300000, guid: 7568c1435ece2f94d8885a2bb1a54391, type: 3}
+    itemDescription: A bear totem carved on hickory wood. As you hold it firmly in
+      your hand, you can feel a new-found source of courage that is born within your
+      heart and flows to every inch of your soul.
+    itemImage: {fileID: 21300000, guid: 7568c1435ece2f94d8885a2bb1a54391, type: 3}
+    showTooltipSprite: 0
+  - itemName: Owl Totem
+    itemSprite: {fileID: 21300000, guid: 01bda8a155465dd4a905fbdfb9c8b908, type: 3}
+    itemDescription: An owl totem carved on hickory wood. When you look at it, you
+      are reminded of all the things you still do not know and yearn to learn about,
+      but there is no feeling of impatience. You know that anything can be found
+      at the right time and place when you most need it.
+    itemImage: {fileID: 21300000, guid: 01bda8a155465dd4a905fbdfb9c8b908, type: 3}
+    showTooltipSprite: 0
+  - itemName: Great Feather
+    itemSprite: {fileID: 21300000, guid: 3d73ed14abfe951428fe6894ce8067f1, type: 3}
+    itemDescription: A red and golden feather, larger than your own arm.
+    itemImage: {fileID: 21300000, guid: 3d73ed14abfe951428fe6894ce8067f1, type: 3}
+    showTooltipSprite: 0
+  - itemName: Claw Pendant
+    itemSprite: {fileID: 21300000, guid: 86fe0009ed89bef458e05aebc9f3d692, type: 3}
+    itemDescription: A simple pendant made with a leather cord from which hangs a
+      wolf claw and a crow feather. It was given by your mother as a lucky charm
+      that would keep you safe.
+    itemImage: {fileID: 21300000, guid: 86fe0009ed89bef458e05aebc9f3d692, type: 3}
+    showTooltipSprite: 0
+  - itemName: Diary Entry 1
+    itemSprite: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    itemDescription: '10/30/xxxx - The town does not feel safe any more. There is
+      something in the air. Something cold and heavy. Something unearthly. There
+      are rumours of shadows moving at the corner of the eye, of voices calling you
+      in the night. There is a fuss among the spirits, they are becoming more and
+      more anxious. I fear some have started to prey on us. I see them too, sneaking
+      between the buildings, hovering just outside my door. Have they finally grown
+      impatient with us? Have we done something to disturb the balance? I do not
+      know what to do, but I must protect my son. '
+    itemImage: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    showTooltipSprite: 0
+  - itemName: Diary Entry 2
+    itemSprite: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    itemDescription: "11/13/xxxx - More and more people speak of nightmares. I ran
+      into our neighbour next-door today. She looked pale, with dark circles under
+      her eyes. When I asked her, she told me she hears something whispering to her
+      at night, twisting her dreams into terrors. Her hands trembled as she told
+      me this. The poor woman believes she is going crazy. But she is not the only
+      one. Every day, I see others with that same look in their eyes \u2013 tired,
+      hollow, gone. The spirits do not simply walk among us no more; they are creeping
+      into our minds. The hissing sounds, I hear them too. But, I must resist. I
+      cannot let them in."
+    itemImage: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    showTooltipSprite: 0
+  - itemName: Diary Entry 3
+    itemSprite: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    itemDescription: 12/03/xxxx - I am afraid. My husband has started changing. He
+      no longer looks at me the way he used to do. His eyes have turned darker and
+      something corrupt lingers within them. He disappears at night, claiming he
+      is only going to get some air. But when he returns, his clothes are damp with
+      the morning dew, his breath heavy with something foul. I caught a glimpse of
+      his reflection in the window last night. What I saw made my heart stop for
+      a second. Horns curling from his head and scales falling from his skin. It
+      must have been a hallucination. I do not want to believe it, but I cannot stop
+      doubting him. Something is wrong. Something heinous is happening to him.
+    itemImage: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    showTooltipSprite: 0
+  - itemName: Diary Entry 4
+    itemSprite: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    itemDescription: "12/27/xxxx - I confronted him today. I begged him to tell me
+      the truth, to let me help him. He only stared at me with those empty eyes and
+      said, with a faltering voice: \u201CIt is too late now\u201D. He spoke of hunger,
+      of the whispers growing louder, of a force greater than himself pulling him
+      into a void and stripping him of his humanity. A tear slipped down his face
+      as he pronounced every word. I knew then that I had lost him to the shadows.
+      My love is no longer the man I once knew. His body was now controlled by something
+      else. A monster. Are we going to be next? I cannot let anything happen to my
+      son. He is still young, but he must understand \u2013 I must tell him everything
+      soon. "
+    itemImage: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    showTooltipSprite: 0
+  - itemName: Diary Entry 5
+    itemSprite: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
+    itemDescription: '01/12/xxxx - The whispers have grown louder; I cannot silence
+      them anymore. They are calling me now, and they will not stop until they have
+      me. My reflection is not my own; I barely recognize it. I see flickers of green
+      on my skin, and my vision is getting blurrier. I feel like I am drowning in
+      the darkness, little by little, becoming weaker. I thought I would have more
+      time left, but it is too late now. My whole body is shaking as I write this.
+      I will soon fall and become like the others. But I still can save my son. I
+      have to hurry. He is my last hope. He will be okay, I know. He is a smart boy.
+      He can get out of this and save the remains of the town. Good luck, my dear.
+      I love you. '
+    itemImage: {fileID: 21300000, guid: 4d9a8f166b8868042b3a97d688f4f734, type: 3}
     showTooltipSprite: 0
   inventoryPanel: {fileID: 1041256957}
   toolTipInventoryPanel: {fileID: 2126335545}
@@ -27786,7 +27872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Figure1Key
+  nameObject: Deer Totem
   normalMaterial: {fileID: 2100000, guid: 2d680de69c0b1404fa5701c745f735fa, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: 5c904b02a5393d349a3b0d671eb35c91, type: 2}
 --- !u!64 &1886882802
@@ -37706,7 +37792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7359c5c1beb8ed64bbd75a8fddccf014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredProjectorImages: Slides
+  requiredProjectorImages: Slide-tape
   projector: {fileID: 198630093}
 --- !u!65 &3469287838560579212
 BoxCollider:
