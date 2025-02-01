@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
     public float fadeDuration = 1.5f;
 
     public GameObject guardianVisionObjects;
+    public GameObject finalDoor;
+    public TutorialManager tutorialManager;
+    public FinalScene dialogue;
+
+    private bool morsecode;
+    private bool lightcode;
 
     void Awake()
     {
@@ -176,5 +182,31 @@ public class GameManager : MonoBehaviour
         }
 
         transitionCanvas.alpha = targetAlpha;
+    }
+
+    public void Morse()
+    {
+        morsecode = true;
+        EndGame();
+    }
+
+    public void Lights()
+    {
+        lightcode = true;
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        if(lightcode && morsecode)
+        {
+            finalDoor.SetActive(false);
+            tutorialManager.Exit();
+        }
+    }
+
+    public void ShowEnd()
+    {
+        dialogue.StartEnding();
     }
 }

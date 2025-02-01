@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class FinalScene : MonoBehaviour
 {
@@ -18,8 +19,6 @@ public class FinalScene : MonoBehaviour
     private TypewriterEffect typewriterEffect; // Referencia al efecto de máquina de escribir
     public float typingSpeed = 0.1f; // Velocidad de la máquina de escribir
     public bool hasFinished = false; // Variable para controlar si se ha acabado la cinemática
-
-    public TutorialManager tutorial;
 
     private InteractionSystem interactionSystem;
 
@@ -89,10 +88,15 @@ public class FinalScene : MonoBehaviour
         promptText.canvasRenderer.SetAlpha(0f);
 
         // Espera que el canvas haya hecho el fade out y lo destruye
-        yield return new WaitForSeconds(canvasFadeDuration); 
-        Destroy(fadeImage.transform.root.gameObject);
+        yield return new WaitForSeconds(canvasFadeDuration);
+        //Destroy(fadeImage.transform.root.gameObject);
 
-        tutorial.StartTutorial();
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("MainMenu");
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
         interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
     }
 

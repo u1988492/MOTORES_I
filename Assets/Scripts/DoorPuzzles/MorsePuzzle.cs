@@ -239,7 +239,11 @@ public class MorsePuzzle : MonoBehaviour
                 }
             }
 
-            if (isSolutionCorrect) Debug.Log("Ganaste");
+            if (isSolutionCorrect) 
+            {
+                Debug.Log("Ganaste");
+                GameManager.instance.Morse();
+            } 
         }
     }
 }

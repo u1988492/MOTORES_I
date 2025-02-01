@@ -31,6 +31,13 @@ public class TutorialManager : MonoBehaviour
         ShowMovementTutorial();
     }
 
+    public void Exit()
+    {
+        textCanvasGroup.alpha = 1;
+        StartCoroutine(WaitStartTime());
+        ShowExit();
+    }
+
     private void Update()
     {
         if (!showV && GameManager.instance.IsVisionUnlocked())
@@ -120,6 +127,11 @@ public class TutorialManager : MonoBehaviour
     private void ShowIKeyTutorial()
     {
         tutorialText.text = "Press I to open the inventory";
+    }
+
+    private void ShowExit()
+    {
+        tutorialText.text = "Go out...";
     }
 
     private IEnumerator WaitStartTime()

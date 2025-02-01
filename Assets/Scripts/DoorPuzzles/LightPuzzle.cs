@@ -43,6 +43,7 @@ public class LightPuzzle : MonoBehaviour
             if (isCorrect)
             {
                 Debug.Log("Felicidades");
+                GameManager.instance.Lights();
             }
             else
             {
