@@ -8853,7 +8853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &849391084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12605,7 +12605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!143 &2017288517
 CharacterController:
   m_ObjectHideFlags: 0
@@ -12717,6 +12717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1181621961}
+  crosshair: {fileID: 0}
   interactionDistance: 5
   interactionText: {fileID: 404616481}
   zoomPromptText: {fileID: 323310183}

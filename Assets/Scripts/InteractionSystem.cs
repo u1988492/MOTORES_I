@@ -8,6 +8,7 @@ using Unity.Burst.CompilerServices;
 public class InteractionSystem : MonoBehaviour
 {   
     public Camera mainCamera;
+    public GameObject crosshair;
     public float interactionDistance = 5f;
     public TMP_Text interactionText;
     public TMP_Text zoomPromptText;
@@ -44,12 +45,7 @@ public class InteractionSystem : MonoBehaviour
             Debug.LogWarning("Main Camera no asignada, usando Camera.main");
         }
 
-        cameraController = mainCamera?.GetComponent<EnhancedFirstPersonCamera>();
-        if (cameraController == null && mainCamera != null)
-        {
-            cameraController = mainCamera.gameObject.AddComponent<EnhancedFirstPersonCamera>();
-            Debug.LogWarning("EnhancedFirstPersonCamera no encontrado, añadido automáticamente");
-        }
+        ActivateCameraController();
 
         inventorySystem = GetComponent<InventorySystem>(); //Asegurarnos que tiene el inventario
         pauseSystem = GetComponent<PauseSystem>();
@@ -57,9 +53,22 @@ public class InteractionSystem : MonoBehaviour
         {
             inventorySystem = gameObject.AddComponent<InventorySystem>();
         }
-        cameraController = mainCamera.GetComponent<EnhancedFirstPersonCamera>();
+
+        
+        //cameraController = mainCamera.GetComponent<EnhancedFirstPersonCamera>();
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void ActivateCameraController() //Lo hacemos función porque se carga antes el diálogo que el start y para que no pete en el introDialogue
+    {
+        cameraController = mainCamera?.GetComponent<EnhancedFirstPersonCamera>();
+        if (cameraController == null && mainCamera != null)
+        {
+            cameraController = mainCamera.gameObject.AddComponent<EnhancedFirstPersonCamera>();
+            Debug.LogWarning("EnhancedFirstPersonCamera no encontrado, añadido automáticamente");
+        }
+        Debug.Log(cameraController);
     }
 
     void Update()
@@ -236,6 +245,7 @@ public class InteractionSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(cameraController.transitionDuration);
         mainCamera.gameObject.SetActive(false);
+        crosshair.SetActive(false);
         currentPuzzleCamera.gameObject.SetActive(true);
         isCameraChanging = false;
     }
@@ -296,6 +306,7 @@ public class InteractionSystem : MonoBehaviour
         // Reactiva la cámara principal y hace la transición de vuelta
 
         mainCamera.gameObject.SetActive(true);
+        crosshair.SetActive(true);
         if (currentPuzzleCamera != null)
         {
             currentPuzzleCamera.gameObject.SetActive(false);
@@ -397,15 +408,13 @@ public class InteractionSystem : MonoBehaviour
 
         if (!isDialogueActive)
         {
-            GetComponent<PlayerMovement>().enabled = true;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            ActivePlayer();
+            crosshair.SetActive(true);
         }
         else
         {
-            GetComponent<PlayerMovement>().enabled = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            DesactivePlayer();
+            crosshair.SetActive(false);
         }
     }
 

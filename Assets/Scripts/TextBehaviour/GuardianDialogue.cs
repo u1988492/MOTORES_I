@@ -87,6 +87,7 @@ public class GuardianDialogue : MonoBehaviour
         yield return new WaitForSeconds(canvasFadeDuration); 
         Destroy(fadeImage.transform.root.gameObject);
 
+        GameManager.instance.tpBunker();
         interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
     }
 

@@ -133,6 +133,8 @@ public class GameManager : MonoBehaviour
 
         yield return StartCoroutine(Fade(0));
         transitionCanvas.gameObject.SetActive(false);
+
+        if (sceneName == "AstralPlane") isGuardianVisionActive = true;
     }
 
     private IEnumerator Fade(float targetAlpha)

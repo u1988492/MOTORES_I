@@ -19,6 +19,8 @@ public class SceneTransition : MonoBehaviour
     public float typingSpeed = 0.1f; // Velocidad de la máquina de escribir
     public bool hasFinished = false; // Variable para controlar si se ha acabado la cinemática
 
+    public TutorialManager tutorial;
+
     private InteractionSystem interactionSystem;
 
     private void Awake() // Añade el script y configura la velocidad de la máquina de escribir
@@ -48,7 +50,8 @@ public class SceneTransition : MonoBehaviour
 
     private IEnumerator ShowIntro()
     {
-         interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
+        interactionSystem.ActivateCameraController(); 
+        interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
 
         // Se muestra el canvas al inicio y espera un poco antes de mostrar el texto
         fadeImage.canvasRenderer.SetAlpha(1f);
@@ -82,6 +85,7 @@ public class SceneTransition : MonoBehaviour
         yield return new WaitForSeconds(canvasFadeDuration); 
         Destroy(fadeImage.transform.root.gameObject);
 
+        tutorial.StartTutorial();
         interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
     }
 
