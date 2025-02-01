@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         transitionCanvas.gameObject.SetActive(true);
         yield return StartCoroutine(Fade(1));
 
-        if(sceneName == "AstralPlane")
+        if (sceneName == "AstralPlane")
         {
             Debug.Log("Guardando escena...");
             BunkerState.Instance.SaveBunkerState();
@@ -133,22 +133,31 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
+        // Añade un pequeño delay para asegurar que todo está cargado
+        yield return new WaitForSeconds(0.1f);
+
         if (sceneName == "Bunker")
         {
             isGuardianVisionUnlocked = true;
             BunkerState.Instance.RestoreBunkerState();
-        }
+            yield return new WaitForEndOfFrame(); // Espera a que termine el frame
 
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-        //GameObject player = 
-        //if (player != null)
-        //{
-            Debug.Log("Moviendo jugador");
-            PlayerManager.Instance.transform.position = newPosition;
-            PlayerManager.Instance.transform.rotation = newRotation;
-            Debug.Log(newPosition);
-            Debug.Log(PlayerManager.Instance.transform.position);
-        //}
+            if (PlayerManager.Instance != null)
+            {
+                Debug.Log($"Intentando mover jugador a: {newPosition}");
+                PlayerManager.Instance.SetPosition(newPosition, newRotation);
+            }
+        }
+        else
+        {
+            // Para el caso del plano astral
+            yield return new WaitForSeconds(0.1f);
+            if (PlayerManager.Instance != null)
+            {
+                PlayerManager.Instance.transform.position = newPosition;
+                PlayerManager.Instance.transform.rotation = newRotation;
+            }
+        }
 
         yield return StartCoroutine(Fade(0));
         transitionCanvas.gameObject.SetActive(false);
