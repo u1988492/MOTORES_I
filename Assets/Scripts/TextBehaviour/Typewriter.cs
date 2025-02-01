@@ -32,6 +32,11 @@ public class TypewriterEffect : MonoBehaviour
             else{
 
                 textComponent.text += letter; // Añade letra por letra
+
+                if(!char.IsWhiteSpace(letter)){
+                    SoundManager.Instance.PlaySFX("typewriter");
+                }
+
                 yield return new WaitForSeconds(typingSpeed); // Espera antes de la siguiente letra
             }
             

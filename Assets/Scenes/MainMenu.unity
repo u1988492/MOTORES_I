@@ -401,12 +401,18 @@ MonoBehaviour:
   - name: dial
     clips:
     - {fileID: 8300000, guid: fac9c2c2754b15c40a7a57e00e10e2b5, type: 3}
-    volume: 0.974
-    loop: 0
+    volume: 0.726
+    loop: 1
     minTimeBetweenPlays: 0
   - name: click
     clips:
     - {fileID: 8300000, guid: e05b097cbf4e72d479d34959d827559a, type: 3}
+    volume: 0.974
+    loop: 0
+    minTimeBetweenPlays: 0
+  - name: typewriter
+    clips:
+    - {fileID: 8300000, guid: a044abdb5834198408ca877f4f5194d8, type: 3}
     volume: 0.974
     loop: 0
     minTimeBetweenPlays: 0

@@ -200,7 +200,11 @@ private IEnumerator PlayContinuousFootsteps()
 
 // handles changing ambient sounds depending on the scene
     private void TransitionAmbientSound(string ambientType){
-        if (isTransitioningAmbient) return;
+        if (isTransitioningAmbient) {
+            // stop any existing transition
+            StopAllCoroutines();
+            isTransitioningAmbient = false;
+        }
         
         string key = $"ambient_{ambientType}";
         if (!soundSetLookup.TryGetValue(key, out SoundSet soundSet)) return;
@@ -250,6 +254,16 @@ private IEnumerator PlayContinuousFootsteps()
         if (soundSetLookup.TryGetValue(key, out SoundSet soundSet) && soundSet.CanPlay()){
             PlayRandomClip(sfxSource, soundSet);
             soundSet.UpdatePlayTime();
+        }
+    }
+
+// stops a specific sound effect
+    public void StopSFX(string effectName)
+    {
+        string key = $"sfx_{effectName}";
+        if (soundSetLookup.TryGetValue(key, out SoundSet soundSet))
+        {
+            sfxSource.Stop();
         }
     }
 

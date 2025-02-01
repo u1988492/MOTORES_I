@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO.IsolatedStorage;
 using UnityEngine;
 
 public enum RotationType
@@ -34,6 +35,7 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
     private float varemo;
     private float acumulatedRotation = 0f;
     private Coroutine verificationCoroutine = null;
+    private bool isPlayingDialSound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,10 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
         {
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             {
+                if(!isPlayingDialSound){
+                    SoundManager.Instance.PlaySFX("dial");
+                    isPlayingDialSound = true;
+                }
                 // Si estaba verificando, cancelamos la verificaci�n
                 if (verificationCoroutine != null)
                 {
@@ -67,6 +73,9 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
             }
             else if (Rotating)
             {
+                if(isPlayingDialSound){
+                    SoundManager.Instance.StopSFX("dial");
+                }
                 // Si no hay ninguna verificaci�n en curso, iniciamos una nueva
                 if (verificationCoroutine == null)
                 {
@@ -85,6 +94,12 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
     public void StopInteract()
     {
         Debug.Log("Se sali� del Puzzle");
+
+        if(isPlayingDialSound){
+            SoundManager.Instance.StopSFX("dial");
+            isPlayingDialSound  = false;
+        }
+
         Interactable = false;
     }
 
