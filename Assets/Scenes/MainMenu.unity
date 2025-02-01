@@ -343,16 +343,28 @@ MonoBehaviour:
   - name: astral
     clips:
     - {fileID: 8300000, guid: e9470aa8e94b7c044853ae7268839485, type: 3}
-    volume: 1
+    volume: 0.483
     loop: 1
     minTimeBetweenPlays: 0
   - name: mainMenu
     clips:
     - {fileID: 8300000, guid: e9470aa8e94b7c044853ae7268839485, type: 3}
-    volume: 1
+    volume: 0.419
     loop: 1
     minTimeBetweenPlays: 0
-  sfxSets: []
+  sfxSets:
+  - name: door_open
+    clips:
+    - {fileID: 8300000, guid: dbd767f83317fd2468e0024f51868f1b, type: 3}
+    volume: 0.974
+    loop: 0
+    minTimeBetweenPlays: 0
+  - name: beep
+    clips:
+    - {fileID: 8300000, guid: 0a876c09821d3a542ac86b8df5ff853d, type: 3}
+    volume: 0.974
+    loop: 0
+    minTimeBetweenPlays: 0
   footstepSource: {fileID: 1531194385}
   primaryAmbientSource: {fileID: 1493298747}
   secondaryAmbientSource: {fileID: 510600205}
