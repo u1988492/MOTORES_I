@@ -168,6 +168,7 @@ public class InteractionSystem : MonoBehaviour
             }
             else if (hitCollider.CompareTag("Recolectable"))
             {
+                SoundManager.Instance.PlaySFX("pick_up");
                 Recolect();
             }
             else if (hitCollider.CompareTag("Usable"))

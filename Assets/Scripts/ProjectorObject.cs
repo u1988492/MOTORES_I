@@ -16,6 +16,7 @@ public class ProjectorObject : MonoBehaviour, IUsable
 
     public void Usar(InventorySystem inventory)
     {
+        SoundManager.Instance.PlaySFX("click");
         if (!isObtained)
         {
             if(inventory.GetItem(requiredProjectorImages))

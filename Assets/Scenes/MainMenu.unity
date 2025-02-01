@@ -351,7 +351,7 @@ MonoBehaviour:
     minTimeBetweenPlays: 0
   - name: mainMenu
     clips:
-    - {fileID: 8300000, guid: e9470aa8e94b7c044853ae7268839485, type: 3}
+    - {fileID: 8300000, guid: 49e4e834266be1042a6080909c0d46c7, type: 3}
     volume: 0.419
     loop: 1
     minTimeBetweenPlays: 0
@@ -389,6 +389,24 @@ MonoBehaviour:
   - name: morse_long
     clips:
     - {fileID: 8300000, guid: 95fc296ff1451be43b3e0693ed51713b, type: 3}
+    volume: 0.974
+    loop: 0
+    minTimeBetweenPlays: 0
+  - name: pick_up
+    clips:
+    - {fileID: 8300000, guid: 22f04b9ec5c6630499ce4b2e0ed4f8a9, type: 3}
+    volume: 0.974
+    loop: 0
+    minTimeBetweenPlays: 0
+  - name: dial
+    clips:
+    - {fileID: 8300000, guid: fac9c2c2754b15c40a7a57e00e10e2b5, type: 3}
+    volume: 0.974
+    loop: 0
+    minTimeBetweenPlays: 0
+  - name: click
+    clips:
+    - {fileID: 8300000, guid: e05b097cbf4e72d479d34959d827559a, type: 3}
     volume: 0.974
     loop: 0
     minTimeBetweenPlays: 0
@@ -2136,7 +2154,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.764
       inSlope: 0
       outSlope: 0
       tangentMode: 0
