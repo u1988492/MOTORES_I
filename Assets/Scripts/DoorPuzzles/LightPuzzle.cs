@@ -41,6 +41,8 @@ public class LightPuzzle : MonoBehaviour
                 }
             }
 
+            for (int i = 0;i < numberLights; i++) Debug.Log("Luz " + i + " : " + userInput[i]);
+
             if (isCorrect)
             {
                 Debug.Log("Felicidades");

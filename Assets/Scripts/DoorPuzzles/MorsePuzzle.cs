@@ -97,7 +97,7 @@ public class MorsePuzzle : MonoBehaviour
     public GameObject lightMain;
 
     private List<Letter> userInput;
-    private Light pointLight;
+    public Light pointLight;
     private Material lightMaterial;
     private MeshRenderer meshRenderer;
 
@@ -105,7 +105,7 @@ public class MorsePuzzle : MonoBehaviour
 
     void Start()
     {
-        pointLight = lightMain.GetComponentInChildren<Light>();
+        //pointLight = lightMain.GetComponentInChildren<Light>();
         meshRenderer = lightMain.GetComponent<MeshRenderer>();
         if (meshRenderer != null)
         {
@@ -164,10 +164,18 @@ public class MorsePuzzle : MonoBehaviour
 
     void OperateLight(bool state)
     {
-        pointLight.enabled = state;
+        if (GameManager.instance.IsVisionActive())
+        {
+            pointLight.enabled = state;
 
-        if (state) lightMaterial.EnableKeyword("_EMISSION");
-        else lightMaterial.DisableKeyword("_EMISSION");
+            if (state) lightMaterial.EnableKeyword("_EMISSION");
+            else lightMaterial.DisableKeyword("_EMISSION");
+        }
+        else
+        {
+            pointLight.enabled = false;
+            lightMaterial.DisableKeyword("_EMISSION");
+        }
     }
 
     public void LetterUp(int pos)
