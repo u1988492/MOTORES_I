@@ -1655,7 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Figure3Key
+  nameObject: Owl Totem
   normalMaterial: {fileID: 2100000, guid: 2d680de69c0b1404fa5701c745f735fa, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: 5c904b02a5393d349a3b0d671eb35c91, type: 2}
 --- !u!4 &124602732 stripped
@@ -4687,7 +4687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be599e154d4cd408018f137816e6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredToolName: Palanca
+  requiredToolName: Crowbar
 --- !u!65 &424419740
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5726,7 +5726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cf9e77990e30b4ca204a98b4ebca8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredKeyName: Tarjeta
+  requiredKeyName: KeyCard
   door: {fileID: 1490576426}
   interactionZone: {fileID: 1589230756}
 --- !u!64 &511872822
@@ -5863,7 +5863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be599e154d4cd408018f137816e6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredToolName: Palanca
+  requiredToolName: Crowbar
 --- !u!65 &549776023
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11498,7 +11498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Figure2Key
+  nameObject: Bear Totem
   normalMaterial: {fileID: 2100000, guid: 2d680de69c0b1404fa5701c745f735fa, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: 5c904b02a5393d349a3b0d671eb35c91, type: 2}
 --- !u!64 &1002219565
@@ -12630,7 +12630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be599e154d4cd408018f137816e6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredToolName: Palanca
+  requiredToolName: Crowbar
 --- !u!65 &1059063487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13394,7 +13394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Palanca
+  nameObject: Crowbar
   normalMaterial: {fileID: 2100000, guid: d6546f33c4387d041ae71d0c9cef0b96, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: 0410557296e3a804ba865526b835232f, type: 2}
 --- !u!64 &1105340916
@@ -17481,7 +17481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Tarjeta
+  nameObject: KeyCard
   normalMaterial: {fileID: 2100000, guid: 24a410dbf09a1aa4caa0915505b5d16e, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: ac5a4f3eaf06a1f49bb104465d637b52, type: 2}
 --- !u!1 &1589230755
@@ -21186,36 +21186,80 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableItems:
-  - itemName: Tarjeta
-    itemSprite: {fileID: 21300000, guid: 108a42d10ea0fb64c92df2d63e751721, type: 3}
-    itemDescription: Una tarjeta... Debe abrir alguna cosa...
-    itemImage: {fileID: 21300000, guid: 84201dafbdf667b448cf49bbaccdcb69, type: 3}
+  - itemName: KeyCard
+    itemSprite: {fileID: 21300000, guid: ce2098a822552e64c98fbedce8314606, type: 3}
+    itemDescription: A key card... It must open something.
+    itemImage: {fileID: 21300000, guid: ce2098a822552e64c98fbedce8314606, type: 3}
     showTooltipSprite: 1
-  - itemName: Palanca
-    itemSprite: {fileID: 21300000, guid: eb2d65b728534d24eb4fa75c8216a950, type: 3}
-    itemDescription: 
-    itemImage: {fileID: 0}
-    showTooltipSprite: 0
+  - itemName: Crowbar
+    itemSprite: {fileID: 21300000, guid: b8879d3b9146a7e42b6a57a62e8f9da2, type: 3}
+    itemDescription: I could use it to force something out of my way.
+    itemImage: {fileID: 21300000, guid: b8879d3b9146a7e42b6a57a62e8f9da2, type: 3}
+    showTooltipSprite: 1
   - itemName: Slides
     itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
     itemDescription: 
     itemImage: {fileID: 0}
-    showTooltipSprite: 0
-  - itemName: Figure1Key
+    showTooltipSprite: 1
+  - itemName: Deer Totem
+    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
+    itemDescription: 'A deer totem carved on hickory wood. For some reason, you are
+      drawn to hold it close to your chest and a sense of gentleness fills you from
+      within. '
+    itemImage: {fileID: 0}
+    showTooltipSprite: 1
+  - itemName: Bear Totem
+    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
+    itemDescription: A bear totem carved on hickory wood. As you hold it firmly in
+      your hand, you can feel a new-found source of courage that is born within your
+      heart and flows to every inch of your soul.
+    itemImage: {fileID: 0}
+    showTooltipSprite: 1
+  - itemName: Owl Totem
+    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
+    itemDescription: An owl totem carved on hickory wood. When you look at it, you
+      are reminded of all the things you still do not know and yearn to learn about,
+      but there is no feeling of impatience. You know that anything can be found
+      at the right time and place when you most need it.
+    itemImage: {fileID: 0}
+    showTooltipSprite: 1
+  - itemName: Diary Entry 1
     itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
     itemDescription: 
     itemImage: {fileID: 0}
-    showTooltipSprite: 0
-  - itemName: Figure2Key
+    showTooltipSprite: 1
+  - itemName: Diary Entry 2
     itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
     itemDescription: 
     itemImage: {fileID: 0}
-    showTooltipSprite: 0
-  - itemName: Figure3Key
+    showTooltipSprite: 1
+  - itemName: Diary Entry 3
     itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
     itemDescription: 
     itemImage: {fileID: 0}
-    showTooltipSprite: 0
+    showTooltipSprite: 1
+  - itemName: Diary Entry 4
+    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
+    itemDescription: 
+    itemImage: {fileID: 0}
+    showTooltipSprite: 1
+  - itemName: Diary Entry 5
+    itemSprite: {fileID: 21300038, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
+    itemDescription: 
+    itemImage: {fileID: 0}
+    showTooltipSprite: 1
+  - itemName: Claw Pendant
+    itemSprite: {fileID: 21300000, guid: 86fe0009ed89bef458e05aebc9f3d692, type: 3}
+    itemDescription: 'A simple pendant made with a leather cord from which hangs
+      a wolf claw and a crow feather. It was given by your mother as a lucky charm
+      that would keep you safe. '
+    itemImage: {fileID: 21300000, guid: 86fe0009ed89bef458e05aebc9f3d692, type: 3}
+    showTooltipSprite: 1
+  - itemName: Great Feather
+    itemSprite: {fileID: 21300000, guid: 3d73ed14abfe951428fe6894ce8067f1, type: 3}
+    itemDescription: A red and golden feather, larger than your own arm.
+    itemImage: {fileID: 21300000, guid: 3d73ed14abfe951428fe6894ce8067f1, type: 3}
+    showTooltipSprite: 1
   inventoryPanel: {fileID: 1041256957}
   toolTipInventoryPanel: {fileID: 2126335545}
   slotPrefab: {fileID: 3427537139271953025, guid: c66ba4762cd3d6c448e66f7657744628,
@@ -22291,7 +22335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecc6d2ea05b2e2499db39700377a5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameObject: Figure1Key
+  nameObject: Deer Totem
   normalMaterial: {fileID: 2100000, guid: 2d680de69c0b1404fa5701c745f735fa, type: 2}
   emissiveMaterial: {fileID: 2100000, guid: 5c904b02a5393d349a3b0d671eb35c91, type: 2}
 --- !u!64 &1886882802
