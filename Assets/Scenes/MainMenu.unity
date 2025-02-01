@@ -326,13 +326,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 402096cbfeb8d03418df7d3bf3cb8759, type: 3}
     volume: 1
     loop: 0
-    minTimeBetweenPlays: 0
+    minTimeBetweenPlays: 0.3
   - name: sand
     clips:
     - {fileID: 8300000, guid: 402096cbfeb8d03418df7d3bf3cb8759, type: 3}
     volume: 1
     loop: 0
-    minTimeBetweenPlays: 0
+    minTimeBetweenPlays: 0.3
   ambientSets:
   - name: bunker
     clips:

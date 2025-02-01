@@ -8,23 +8,23 @@ public class DoorObject : MonoBehaviour
     public float rotationAmount = 90f;
 
     private float currentRotation = 0f;
-    private InteractionSystem interactionSystem; //Importante para poder salir de la cï¿½mara al abrir la puerta
+    private InteractionSystem interactionSystem; //Importante para poder salir de la cámara al abrir la puerta
 
     public bool isOpening = false;
 
     private void Start()
     {
-        interactionSystem = FindObjectOfType<InteractionSystem>(); //Detectar zona de Interacciï¿½n
+        interactionSystem = FindObjectOfType<InteractionSystem>(); //Detectar zona de Interacción
         if (interactionSystem == null)
         {
-            Debug.LogError("No se encontrï¿½ InteractionSystem en la escena");
+            Debug.LogError("No se encontró InteractionSystem en la escena");
         }
     }
 
-    private IEnumerator OpeningDoor(Transform pivote, Vector3? pos = null) //"Animaciï¿½n" de abrir puerta
+    private IEnumerator OpeningDoor(Transform pivote, Vector3? pos = null) //"Animación" de abrir puerta
     {
         isOpening = true;
-        Debug.Log("Puerta abriï¿½ndose...");
+        Debug.Log("Puerta abriéndose...");
 
         Vector3 finalPos = pos ?? Vector3.up;
 
@@ -52,14 +52,13 @@ public class DoorObject : MonoBehaviour
     public void OpenDoor()
     {
         Transform pivote = transform.parent; // Importante: Obtenemos el transform del padre (el pivote)
-        StartCoroutine(OpeningDoor(pivote)); //Empieza el mï¿½todo de abrir puerta 
-        SoundManager.Instance.PlaySFX("door_open");
+        StartCoroutine(OpeningDoor(pivote)); //Empieza el método de abrir puerta 
     }
 
     public void OpenDoorWithoutPivot(Vector3? pos = null)
     {
         Transform pivote = transform;
-        StartCoroutine(OpeningDoor(pivote, pos)); //Empieza el mï¿½todo de abrir puerta 
+        StartCoroutine(OpeningDoor(pivote, pos)); //Empieza el método de abrir puerta 
     }
 }
 
