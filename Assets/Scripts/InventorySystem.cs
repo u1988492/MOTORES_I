@@ -150,8 +150,9 @@ public class InventorySystem : MonoBehaviour
         return -1;
     }
 
-    private void OnPointerEnterSlot(GameObject slot)
+    public void OnPointerEnterSlot(GameObject slot)
     {
+        Debug.Log("AAAAA");
         int slotIndex = inventorySlots.IndexOf(slot); //Buscamos el slot
         if (inventoryItems.ContainsKey(slotIndex))
         {
@@ -162,8 +163,9 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    private void OnPointerExitSlot()
+    public void OnPointerExitSlot()
     {
+        Debug.Log("bbbbb");
         TooltipSystem.Instance.Hide();
     }
 }

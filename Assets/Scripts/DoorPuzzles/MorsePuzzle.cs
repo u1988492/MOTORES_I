@@ -205,17 +205,20 @@ public class MorsePuzzle : MonoBehaviour
 
     void CheckSolution()
     {
-        bool isSolutionCorrect = true;
-        for(int i = 0; i<word.Count; i++)
+        if (GameManager.instance.IsVisionUnlocked())
         {
-            if (userInput[i].let != word[i])
+            bool isSolutionCorrect = true;
+            for (int i = 0; i < word.Count; i++)
             {
-                isSolutionCorrect = false;
-                break;
+                if (userInput[i].let != word[i])
+                {
+                    isSolutionCorrect = false;
+                    break;
+                }
             }
-        }
 
-        if(isSolutionCorrect) Debug.Log("Ganaste");
+            if (isSolutionCorrect) Debug.Log("Ganaste");
+        }
     }
 }
 

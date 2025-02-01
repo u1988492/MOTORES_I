@@ -367,7 +367,6 @@ public class InteractionSystem : MonoBehaviour
 
     void DisplayInventory()
     {
-
         isInventoryOpen = !isInventoryOpen;
 
         if (!isInventoryOpen)
@@ -387,11 +386,17 @@ public class InteractionSystem : MonoBehaviour
         if (!pauseSystem.isESCPressed())
         {
             ActivePlayer();
+            isMenuOpen = false;
         }
         else
         {
             DesactivePlayer();
-
+            if (isInventoryOpen)
+            {
+                isInventoryOpen = false;
+                inventorySystem.ToggleVisibilityInventory();
+            }
+            isMenuOpen = true;
         }
 
         //pauseSystem.isESCPressed(ref isMenuOpen);

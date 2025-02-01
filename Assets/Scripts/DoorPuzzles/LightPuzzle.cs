@@ -29,24 +29,28 @@ public class LightPuzzle : MonoBehaviour
 
     void VerifySolution()
     {
-        bool isCorrect = true;
-        for(int i = 0; i < numberLights; i++)
+        if (GameManager.instance.IsVisionUnlocked())
         {
-            if(solutionLights[i] != userInput[i])
+            bool isCorrect = true;
+            for (int i = 0; i < numberLights; i++)
             {
-                isCorrect = false;
-                break;
+                if (solutionLights[i] != userInput[i])
+                {
+                    isCorrect = false;
+                    break;
+                }
+            }
+
+            if (isCorrect)
+            {
+                Debug.Log("Felicidades");
+            }
+            else
+            {
+                Debug.Log("Vuelve a casa");
             }
         }
-
-        if (isCorrect)
-        {
-            Debug.Log("Felicidades");
-        }
-        else
-        {
-            Debug.Log("Vuelve a casa");
-        }
+        
     }
 
 }

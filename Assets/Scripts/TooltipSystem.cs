@@ -43,8 +43,9 @@ public class TooltipSystem : MonoBehaviour
             tooltipImage.color = Color.clear;
             tooltipSprite.sprite = spri;
             tooltipSprite.color = Color.white;
-        } 
+        }
 
+        Debug.Log("Tooltip");
         tooltipContainer.SetActive(true);
     }
 
