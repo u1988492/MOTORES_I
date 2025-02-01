@@ -212,6 +212,9 @@ public class InteractionSystem : MonoBehaviour
             interactableScript.interactionZone.enabled = false;
         }
 
+        // stop walking sound before transitioning to puzzle view
+        SoundManager.Instance.StopWalking();
+
         // Aseguramos que el cameraController existe
         if (cameraController != null)
         {

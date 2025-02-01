@@ -320,6 +320,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 2b2370c751c1ef94585bbcbadc019575, type: 2}
+  baseFootstepVolume: 0.3
+  baseAmbientVolume: 0.2
+  baseSFXVolume: 0.5
   footstepSets:
   - name: metal
     clips:
