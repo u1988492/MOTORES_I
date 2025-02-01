@@ -10,12 +10,13 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 3f;
 
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.2f;
     public LayerMask groundMask;
 
     Vector3 velocity;
     bool isGrounded;
     bool isCheatMode = false; // Modo chetos desactivado al inicio
+    private bool wasMoving = false;
 
     void Update()
     {
@@ -38,13 +39,14 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             NormalMovement();
+            moveSound();
         }
     }
 
     void NormalMovement()
     {
         // Comprueba si el jugador est� en el suelo
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isGrounded = Physics.Raycast(groundCheck.position, Vector3.down, out RaycastHit hit, groundDistance + 0.1f, groundMask);
 
         if (isGrounded && velocity.y < 0)
         {
@@ -70,11 +72,6 @@ public class PlayerMovement : MonoBehaviour
         // Aplica la gravedad
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-        // sonido
-        if(isGrounded && (x!= 0 || z != 0)){
-            SoundManager.Instance.PlayFootstep();
-        }
     }
 
     void CheatModeMovement()
@@ -89,5 +86,17 @@ public class PlayerMovement : MonoBehaviour
         // Movimiento libre sin colisiones
         Vector3 move = (transform.right * x + transform.forward * z + transform.up * y) * speed * Time.deltaTime;
         transform.position += move;
+    }
+
+    void moveSound(){
+        bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
+        if(isMoving && !wasMoving){
+            SoundManager.Instance.StartWalking();
+        }
+        else if(!isMoving && wasMoving){
+            SoundManager.Instance.StopWalking();
+        }
+
+        wasMoving = isMoving;
     }
 }
