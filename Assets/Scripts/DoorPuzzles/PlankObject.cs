@@ -16,6 +16,7 @@ public class PlankObject : MonoBehaviour, IPuzzle{
         {
             if (coroutineAllowed)
             {
+                SoundManager.Instance.PlaySFX("plank");
                 StartCoroutine(RemovePlank());
             }
         }

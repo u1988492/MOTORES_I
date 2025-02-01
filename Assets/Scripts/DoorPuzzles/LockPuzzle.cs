@@ -17,10 +17,11 @@ public class LockPuzzle : MonoBehaviour, IPuzzle
             {
                 inventory.RemoveItem(requiredKeyName);
                 OpenLock();
+                SoundManager.Instance.PlaySFX("beep");
             }
             else if (door.GetComponent<DoorObject>().isOpening)
             {
-                Debug.Log("El candado ya se está abriendo.");
+                Debug.Log("El candado ya se estï¿½ abriendo.");
             }
             else
             {
@@ -31,7 +32,7 @@ public class LockPuzzle : MonoBehaviour, IPuzzle
 
     public void StopInteract()
     {
-        //Vacío
+        //Vacï¿½o
     }
 
     private void OpenLock()

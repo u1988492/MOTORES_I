@@ -10,8 +10,8 @@ public class ButtonScript : MonoBehaviour, IPuzzle
 
     private Vector3 originalPosition;
     private Vector3 pressedPosition;
-    private float pressDepth = -0.05f; // Profundidad de la pulsación en unidades de Unity
-    private float pressDuration = 0.3f; // Duración de la animación en segundos
+    private float pressDepth = -0.05f; // Profundidad de la pulsaciï¿½n en unidades de Unity
+    private float pressDuration = 0.3f; // Duraciï¿½n de la animaciï¿½n en segundos
     private bool isAnimating = false;
 
     private void Start()
@@ -22,9 +22,10 @@ public class ButtonScript : MonoBehaviour, IPuzzle
 
     public void Interact(InventorySystem inventory)
     {
-        if (!isAnimating) //Que no se pueda pulsar si está animándose
+        if (!isAnimating) //Que no se pueda pulsar si estï¿½ animï¿½ndose
         {
-            StartCoroutine(AnimateButtonPress()); //Empezar animación
+            StartCoroutine(AnimateButtonPress()); //Empezar animaciï¿½n
+            SoundManager.Instance.PlaySFX("button_press");
             KeyPadClicked.Invoke();
         }
     }
@@ -33,17 +34,17 @@ public class ButtonScript : MonoBehaviour, IPuzzle
     {
         isAnimating = true;
 
-        // Animación de presionar
+        // Animaciï¿½n de presionar
         float elapsedTime = 0;
         while (elapsedTime < pressDuration / 2) //Dura la mitad del tiempo
         {
             elapsedTime += Time.deltaTime;
-            float t = elapsedTime / (pressDuration / 2); //Calculamos un valor entre 0-1 para saber por donde vamos de la animación
-            transform.localPosition = Vector3.Lerp(originalPosition, pressedPosition, t); //Interpolación de la animación (t=0 inicio / t=1 final)
+            float t = elapsedTime / (pressDuration / 2); //Calculamos un valor entre 0-1 para saber por donde vamos de la animaciï¿½n
+            transform.localPosition = Vector3.Lerp(originalPosition, pressedPosition, t); //Interpolaciï¿½n de la animaciï¿½n (t=0 inicio / t=1 final)
             yield return null;
         }
 
-        // Animación de soltar
+        // Animaciï¿½n de soltar
         elapsedTime = 0;
         while (elapsedTime < pressDuration / 2)
         {

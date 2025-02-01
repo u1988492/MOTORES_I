@@ -368,13 +368,25 @@ MonoBehaviour:
     volume: 0.974
     loop: 0
     minTimeBetweenPlays: 0
+  - name: button_press
+    clips:
+    - {fileID: 8300000, guid: 2080d2f4218b8a145be0d4de1c52a20e, type: 3}
+    volume: 0.974
+    loop: 0
+    minTimeBetweenPlays: 0
+  - name: plank
+    clips:
+    - {fileID: 8300000, guid: a93f288980353b344b7529e0e8df02d7, type: 3}
+    volume: 0.974
+    loop: 0
+    minTimeBetweenPlays: 0
   footstepSource: {fileID: 1531194385}
   primaryAmbientSource: {fileID: 1493298747}
   secondaryAmbientSource: {fileID: 510600205}
   sfxSource: {fileID: 1078571186}
   bunkerSceneName: Bunker
   beachSceneName: AstralPlane
-  ambientFadeDuration: 2
+  ambientFadeDuration: 1
 --- !u!4 &406015642
 Transform:
   m_ObjectHideFlags: 0
