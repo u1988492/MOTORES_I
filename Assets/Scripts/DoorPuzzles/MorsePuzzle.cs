@@ -102,6 +102,7 @@ public class MorsePuzzle : MonoBehaviour
     private MeshRenderer meshRenderer;
 
     private bool isWordShowing = false;
+    private bool currentLightState = false;
 
     void Start()
     {
@@ -124,6 +125,23 @@ public class MorsePuzzle : MonoBehaviour
 
     void Update()
     {
+        // Verificación constante de la visión
+        if (!GameManager.instance.IsVisionActive())
+        {
+            pointLight.enabled = false;
+            lightMaterial.DisableKeyword("_EMISSION");
+        }
+        else
+        {
+            // Si la visión está activa, restauramos el estado que debería tener la luz
+            pointLight.enabled = currentLightState;
+            if (currentLightState)
+                lightMaterial.EnableKeyword("_EMISSION");
+            else
+                lightMaterial.DisableKeyword("_EMISSION");
+        }
+
+        // El resto del Update original
         if (!isWordShowing)
         {
             StartCoroutine(ShowWord());
@@ -164,17 +182,13 @@ public class MorsePuzzle : MonoBehaviour
 
     void OperateLight(bool state)
     {
+        currentLightState = state; // Guardamos el estado deseado
+
         if (GameManager.instance.IsVisionActive())
         {
             pointLight.enabled = state;
-
             if (state) lightMaterial.EnableKeyword("_EMISSION");
             else lightMaterial.DisableKeyword("_EMISSION");
-        }
-        else
-        {
-            pointLight.enabled = false;
-            lightMaterial.DisableKeyword("_EMISSION");
         }
     }
 
