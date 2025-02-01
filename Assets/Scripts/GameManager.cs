@@ -207,6 +207,19 @@ public class GameManager : MonoBehaviour
 
     public void ShowEnd()
     {
+        StartCoroutine(End());
+        
+    }
+
+    IEnumerator End()
+    {
+        transitionCanvas.gameObject.SetActive(true);
+        yield return StartCoroutine(Fade(4));
+        dialogue.gameObject.SetActive(true);
         dialogue.StartEnding();
+    }
+    public void RemoveFinalText()
+    {
+        tutorialManager.gameObject.SetActive(false);
     }
 }
