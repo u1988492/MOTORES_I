@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void tpGuardian()
     {
+        
         SaveBunkerCoords(GameObject.FindGameObjectWithTag("Player").transform.position);
         SaveBunkerRotation(GameObject.FindGameObjectWithTag("Player").transform.rotation);
         StartCoroutine(Transition("AstralPlane", GetGuardianCoords(), GetGuardianRotation()));
@@ -108,9 +109,11 @@ public class GameManager : MonoBehaviour
 
     public void tpBunker()
     {
-        SaveGuardianCoords(GameObject.FindGameObjectWithTag("Player").transform.position);
-        SaveGuardianRotation(GameObject.FindGameObjectWithTag("Player").transform.rotation);
-        StartCoroutine(Transition("AstralPlane", GetBunkerCoords(), GetBunkerRotation()));
+        //SaveGuardianCoords(GameObject.FindGameObjectWithTag("Player").transform.position);
+        //SaveGuardianRotation(GameObject.FindGameObjectWithTag("Player").transform.rotation);
+        Debug.Log(GetBunkerCoords());
+        StartCoroutine(Transition("Bunker", GetBunkerCoords(), GetBunkerRotation()));
+
     }
 
     private IEnumerator Transition(string sceneName, Vector3 newPosition, Quaternion newRotation)
@@ -118,23 +121,37 @@ public class GameManager : MonoBehaviour
         transitionCanvas.gameObject.SetActive(true);
         yield return StartCoroutine(Fade(1));
 
+        if(sceneName == "AstralPlane")
+        {
+            Debug.Log("Guardando escena...");
+            BunkerState.Instance.SaveBunkerState();
+        }
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        if (sceneName == "Bunker")
         {
-            player.transform.position = newPosition;
-            player.transform.rotation = newRotation;
+            isGuardianVisionUnlocked = true;
+            BunkerState.Instance.RestoreBunkerState();
         }
+
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //GameObject player = 
+        //if (player != null)
+        //{
+            Debug.Log("Moviendo jugador");
+            PlayerManager.Instance.transform.position = newPosition;
+            PlayerManager.Instance.transform.rotation = newRotation;
+            Debug.Log(newPosition);
+            Debug.Log(PlayerManager.Instance.transform.position);
+        //}
 
         yield return StartCoroutine(Fade(0));
         transitionCanvas.gameObject.SetActive(false);
-
-        if (sceneName == "AstralPlane") isGuardianVisionActive = true;
     }
 
     private IEnumerator Fade(float targetAlpha)

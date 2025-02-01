@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     private bool eKeyTutorialCompleted = false;
     private bool vKeyTutorialCompleted = false;
     private bool iKeyTutorialCompleted = false;
+    private bool showV = false;
 
     private void Start()
     {
@@ -32,6 +33,11 @@ public class TutorialManager : MonoBehaviour
 
     private void Update()
     {
+        if (!showV && GameManager.instance.IsVisionUnlocked())
+        {
+            showV = true;
+            StartCoroutine(ShowNextTutorial(ShowVKeyTutorial));
+        }
         if (!movementTutorialCompleted)
         {
             CheckMovementInput();
@@ -76,7 +82,7 @@ public class TutorialManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             StartCoroutine(FadeOutText());
-            vKeyTutorialCompleted = true;
+            iKeyTutorialCompleted = true;
             Debug.Log("Tutorial completado! (sin V)");
         }
     }
@@ -91,7 +97,7 @@ public class TutorialManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             StartCoroutine(FadeOutText());
-            iKeyTutorialCompleted = true;
+            vKeyTutorialCompleted = true;
             Debug.Log("Tutorial completado! (con V)");
         }
     }
@@ -108,7 +114,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ShowVKeyTutorial()
     {
-        tutorialText.text = "Press V to activate the guardian's vision";
+        tutorialText.text = "Press V to activate and desactivate the guardian's vision";
     }
 
     private void ShowIKeyTutorial()

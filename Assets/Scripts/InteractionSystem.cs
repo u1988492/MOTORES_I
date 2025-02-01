@@ -57,7 +57,7 @@ public class InteractionSystem : MonoBehaviour
         
         //cameraController = mainCamera.GetComponent<EnhancedFirstPersonCamera>();
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void ActivateCameraController() //Lo hacemos función porque se carga antes el diálogo que el start y para que no pete en el introDialogue
