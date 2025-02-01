@@ -38,7 +38,7 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
     // Start is called before the first frame update
     void Start()
     {
-        varemo = 360f / numbersAvailable; //Así sabemos el varemo entre los números
+        varemo = 360f / numbersAvailable; //Asï¿½ sabemos el varemo entre los nï¿½meros
     }
 
     // Update is called once per frame
@@ -48,14 +48,14 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
         {
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             {
-                // Si estaba verificando, cancelamos la verificación
+                // Si estaba verificando, cancelamos la verificaciï¿½n
                 if (verificationCoroutine != null)
                 {
                     StopCoroutine(verificationCoroutine);
                     verificationCoroutine = null;
                 }
 
-                // Rotamos según la tecla presionada
+                // Rotamos segï¿½n la tecla presionada
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     Rotate('l');
@@ -67,7 +67,7 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
             }
             else if (Rotating)
             {
-                // Si no hay ninguna verificación en curso, iniciamos una nueva
+                // Si no hay ninguna verificaciï¿½n en curso, iniciamos una nueva
                 if (verificationCoroutine == null)
                 {
                     verificationCoroutine = StartCoroutine(VerifyPosition());
@@ -84,16 +84,16 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
 
     public void StopInteract()
     {
-        Debug.Log("Se salió del Puzzle");
+        Debug.Log("Se saliï¿½ del Puzzle");
         Interactable = false;
     }
 
     void Rotate(char r)
     {
-        orientation = (r == 'l') ? RotationType.Left : RotationType.Right; //Depende de la letra guardamos su orientación
+        orientation = (r == 'l') ? RotationType.Left : RotationType.Right; //Depende de la letra guardamos su orientaciï¿½n
 
         Rotating = true; 
-        float Rotation = rotationSpeed * Time.deltaTime; //Calculamos la rotación
+        float Rotation = rotationSpeed * Time.deltaTime; //Calculamos la rotaciï¿½n
         if (r == 'r')
         {
             transform.Rotate(Vector3.down, Rotation, Space.Self); // Rota en el eje Y en sentido horario
@@ -125,13 +125,14 @@ public class SafeboxPuzzle : MonoBehaviour, IPuzzle
         Rotating = false;
         yield return new WaitForSeconds(1f); //En un segundo
 
-        int numeroFinal = (int)Mathf.Round(acumulatedRotation / varemo) % (numbersAvailable + 1); //Conseguimos tras 1 segundo el número actual
-        Debug.Log($"Posición final: {numeroFinal}");
+        int numeroFinal = (int)Mathf.Round(acumulatedRotation / varemo) % (numbersAvailable + 1); //Conseguimos tras 1 segundo el nï¿½mero actual
+        Debug.Log($"Posiciï¿½n final: {numeroFinal}");
 
         if (solution[verificationpoint].n == numeroFinal &&
         ((solution[verificationpoint].rot == RotationType.Left && orientation == RotationType.Left) ||
-        (solution[verificationpoint].rot == RotationType.Right && orientation == RotationType.Right))) //Si número actual y rotación actual es correcta
+        (solution[verificationpoint].rot == RotationType.Right && orientation == RotationType.Right))) //Si nï¿½mero actual y rotaciï¿½n actual es correcta
         {
+            SoundManager.Instance.PlaySFX("click");
             verificationpoint++;
         }
         else

@@ -20,6 +20,7 @@ public class Wheel : MonoBehaviour, IPuzzle {
 
     public void Interact(InventorySystem inventory) { //Llama a RotateWheel solo cuando esté en la interfaz IPuzzle
         if(coroutineAllowed){
+            SoundManager.Instance.PlaySFX("click");
             StartCoroutine("RotateWheel");
         }
     }
