@@ -96,7 +96,7 @@ public class PauseSystem : MonoBehaviour
     void HandleVolumeChange(float value)
     {
         SoundManager.Instance.UpdateMasterVolume(value);
-//        audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(0.0001f, value)) * 20f); 
-        volumeText.text = (value*10).ToString();
+        //audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(0.0001f, value)) * 20f); 
+        volumeText.text = (value * 10).ToString("F0");
     }
 }
