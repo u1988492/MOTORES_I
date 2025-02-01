@@ -33,6 +33,14 @@ public class SoundManager : MonoBehaviour
     [Header("Audio Mixer")]
     public AudioMixer audioMixer;
 
+    [Header("Base Volume Levels")]
+    [Range(0f, 1f)]
+    public float baseFootstepVolume = 0.3f;
+    [Range(0f, 1f)]
+    public float baseAmbientVolume = 0.2f;
+    [Range(0f, 1f)]
+    public float baseSFXVolume = 0.5f;
+
     [Header("Sound Sets")]
     public SoundSet[] footstepSets; // different for each surface type
     public SoundSet[] ambientSets;  // different according to the scene
@@ -53,6 +61,8 @@ public class SoundManager : MonoBehaviour
     private Dictionary<string, SoundSet> soundSetLookup = new Dictionary<string, SoundSet>();
     private string currentScene;
     private bool isTransitioningAmbient = false;
+    private bool isWalking = false;
+    private Coroutine footstepCoroutine;
 
     private void Awake()
     {
@@ -67,6 +77,17 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start(){
+        // set initial volumes
+        footstepSource.volume = baseFootstepVolume;
+        primaryAmbientSource.volume = baseAmbientVolume;
+        secondaryAmbientSource.volume = baseAmbientVolume;
+        sfxSource.volume = baseSFXVolume;
+
+        // set initial mixer volume
+        UpdateMasterVolume(1f);
     }
 
     private void OnDestroy(){
@@ -112,16 +133,69 @@ public class SoundManager : MonoBehaviour
         return currentScene == bunkerSceneName ? "metal" : "sand";
     }
 
+    // detects if the player is walking and plays sound
+    public void StartWalking(){
+        if (!isWalking){
+            isWalking = true;
+            if (footstepCoroutine != null)
+                StopCoroutine(footstepCoroutine);
+            footstepCoroutine = StartCoroutine(PlayContinuousFootsteps());
+        }
+    }
+
+    // stops playing sound when player isn't walking
+        public void StopWalking(){
+        if (isWalking){
+            isWalking = false;
+            if (footstepCoroutine != null){
+                StopCoroutine(footstepCoroutine);
+                footstepCoroutine = null;
+            }
+            footstepSource.Stop();
+        }
+    }
+
+private IEnumerator PlayContinuousFootsteps()
+    {
+        string surface = GetCurrentSurfaceType();
+        string key = $"footstep_{surface}";
+
+        if (soundSetLookup.TryGetValue(key, out SoundSet soundSet)){
+            while (isWalking){
+                if (soundSet.clips.Length > 0){
+                    AudioClip clip = soundSet.clips[Random.Range(0, soundSet.clips.Length)];
+                    footstepSource.clip = clip;
+                    footstepSource.volume = baseFootstepVolume * soundSet.volume;
+                    footstepSource.Play();
+                
+                    yield return new WaitForSeconds(clip.length * 0.85f);
+                }
+                else{
+                    yield return null;
+                }
+            }
+        }
+    }
+
 
 // plays a footstep sound according the surface type
     public void PlayFootstep(){
         string surface = GetCurrentSurfaceType();
         string key = $"footstep_{surface}";
+        Debug.Log($"Footstep sound requested for surface: {surface}");
         
         if (soundSetLookup.TryGetValue(key, out SoundSet soundSet) && soundSet.CanPlay()){
+            if (soundSet.CanPlay()) {
+            Debug.Log("Playing footstep sound...");
             PlayRandomClip(footstepSource, soundSet);
             soundSet.UpdatePlayTime();
-        }
+            } 
+            else {
+                Debug.Log("Footstep sound blocked by timing constraints.");
+            } 
+        }  else {
+                Debug.LogError($"No footstep sound found for key: {key}");
+            }
     }
 
 // handles changing ambient sounds depending on the scene
@@ -183,13 +257,18 @@ public class SoundManager : MonoBehaviour
     private void PlayRandomClip(AudioSource source, SoundSet soundSet){
         if (soundSet.clips.Length > 0){
             AudioClip clip = soundSet.clips[Random.Range(0, soundSet.clips.Length)];
-            source.PlayOneShot(clip, soundSet.volume);
+            float baseVolume = source == footstepSource ? baseFootstepVolume :
+                              source == sfxSource ? baseSFXVolume :
+                              baseAmbientVolume;
+            source.PlayOneShot(clip, baseVolume * soundSet.volume);
         }
     }
 
 // updates the volume based on the pause system settings
     public void UpdateMasterVolume(float volume){
-        audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(0.0001f, volume)) * 20f);
+        // convert linear volume to decibels 
+        float volumeDB = volume > 0.0001f ? 20f * Mathf.Log10(volume) : -80f;
+        audioMixer.SetFloat("MasterVolume", volumeDB);
     }
 
 
