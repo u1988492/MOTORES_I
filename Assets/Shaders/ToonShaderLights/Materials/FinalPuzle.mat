@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Keypad
+  m_Name: FinalPuzle
   m_Shader: {fileID: -6465566751694194690, guid: cd5563f3bdb96484b943752ce18c25ed,
     type: 3}
   m_Parent: {fileID: 0}
@@ -59,11 +59,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Ambient_Light_Strength: 0
+    - _Ambient_Light_Strength: 0.574
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Base_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0}
-    - _Cutoff_Threshold: {r: -10, g: 10, b: 0, a: 0}
+    - _Base_Color: {r: 0.3568394, g: 0.16260235, b: 0.5471698, a: 0}
+    - _Cutoff_Threshold: {r: -1.5, g: 14.71, b: 0, a: 0}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -7,11 +7,14 @@ public class TooltipSystem : MonoBehaviour
     public static TooltipSystem Instance { get; private set; } //Singleton
 
     [SerializeField] private GameObject tooltipContainer;
+    [SerializeField] private GameObject tooltipImageContainer;
 
     [SerializeField] private TextMeshProUGUI tooltipName;
     [SerializeField] private Image tooltipSprite;
-    [SerializeField] private Image tooltipImage;
     [SerializeField] private TextMeshProUGUI tooltipDesc;
+
+    [SerializeField] private TextMeshProUGUI imageContent;
+    [SerializeField] private Image imageObject;
 
     private void Awake()
     {
@@ -23,34 +26,45 @@ public class TooltipSystem : MonoBehaviour
         Instance = this;
 
         tooltipContainer.SetActive(false);
+        tooltipImageContainer.SetActive(false);
     }
 
     public void Show(bool showtooltipWithImage, string name, string desc, Sprite spri, Sprite img)
     {
         tooltipName.text = name;
         tooltipDesc.text = desc;
+        imageContent.text = desc;
 
         if (showtooltipWithImage)
         {
-            tooltipImage.sprite = img;
-            tooltipImage.color = Color.white;
             tooltipSprite.sprite = null;
+            tooltipName.enabled = false;
+            tooltipDesc.enabled = false;
+            imageContent.enabled = true;
             tooltipSprite.color = Color.clear;
+            imageObject.sprite = img;
+            imageObject.color = Color.white;
+            tooltipImageContainer.SetActive(true);
+            tooltipContainer.SetActive(false);
         }
         else 
         {
-            tooltipImage.sprite = null;
-            tooltipImage.color = Color.clear;
+            tooltipContainer.SetActive(false);
+            tooltipContainer.SetActive(true);
+            tooltipName.enabled = true;
+            tooltipDesc.enabled = true;
+            imageContent.enabled = false;
             tooltipSprite.sprite = spri;
             tooltipSprite.color = Color.white;
         }
 
         Debug.Log("Tooltip");
-        tooltipContainer.SetActive(true);
+        //tooltipContainer.SetActive(true);
     }
 
     public void Hide()
     {
         tooltipContainer.SetActive(false);
+        tooltipImageContainer.SetActive(false);
     }
 }
