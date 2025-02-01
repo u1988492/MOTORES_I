@@ -44,6 +44,9 @@ public class PauseSystem : MonoBehaviour
         optionReturnButton.onClick.AddListener(OptionMenu);
         mouseSensiblity.onValueChanged.AddListener(HandleSensitivityChange);
         volume.onValueChanged.AddListener(HandleVolumeChange);
+
+        HandleSensitivityChange(100);
+        HandleVolumeChange(1);
     }
 
     public bool isESCPressed()
@@ -94,6 +97,6 @@ public class PauseSystem : MonoBehaviour
     {
         SoundManager.Instance.UpdateMasterVolume(value);
 //        audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(0.0001f, value)) * 20f); 
-        volumeText.text = value.ToString();
+        volumeText.text = (value*10).ToString();
     }
 }
