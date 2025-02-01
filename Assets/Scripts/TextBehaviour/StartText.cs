@@ -83,7 +83,8 @@ public class SceneTransition : MonoBehaviour
 
         // Espera que el canvas haya hecho el fade out y lo destruye
         yield return new WaitForSeconds(canvasFadeDuration); 
-        Destroy(fadeImage.transform.root.gameObject);
+        //Destroy(fadeImage.transform.root.gameObject);
+        gameObject.SetActive(false);
 
         tutorial.StartTutorial();
         interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo

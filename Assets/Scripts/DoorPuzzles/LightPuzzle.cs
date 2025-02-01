@@ -22,7 +22,6 @@ public class LightPuzzle : MonoBehaviour
     public void LightClicked(int number)
     {
         userInput[number] = !userInput[number];
-        Debug.Log("La luz está encendida? " + userInput[number]);
 
         VerifySolution();
     }
@@ -40,8 +39,6 @@ public class LightPuzzle : MonoBehaviour
                     break;
                 }
             }
-
-            for (int i = 0;i < numberLights; i++) Debug.Log("Luz " + i + " : " + userInput[i]);
 
             if (isCorrect)
             {
