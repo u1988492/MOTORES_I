@@ -15,7 +15,7 @@ public class MorseButtonPuzzle : MonoBehaviour, IPuzzle
     void Start()
     {
         originalPosition = transform.localPosition;
-        pressedPosition = originalPosition - (Vector3.right * pressDepth);
+        pressedPosition = originalPosition - (Vector3.back * pressDepth);
     }
 
     public void Interact(InventorySystem inventory)
