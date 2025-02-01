@@ -97,7 +97,7 @@ public class FinalScene : MonoBehaviour
             yield return null;
         }
 
-        interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
+        //interactionSystem.OnDialogue(); // Bloquea el movimiento del jugador al iniciar el diálogo
     }
 
     private IEnumerator ShowDialogue(string dialogue) //Aplicación del efecto de máquina de escibrir en la línea

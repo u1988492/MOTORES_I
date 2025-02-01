@@ -8,8 +8,8 @@ public class EndZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.ShowEnd();
             GameManager.instance.RemoveFinalText();
+            GameManager.instance.ShowEnd();
         }
     }
 }
