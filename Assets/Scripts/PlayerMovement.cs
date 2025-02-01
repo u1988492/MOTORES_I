@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     void NormalMovement()
     {
-        // Comprueba si el jugador está en el suelo
+        // Comprueba si el jugador estï¿½ en el suelo
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -70,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
         // Aplica la gravedad
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        // sonido
+        if(isGrounded && (x!= 0 || z != 0)){
+            SoundManager.Instance.PlayFootstep();
+        }
     }
 
     void CheatModeMovement()

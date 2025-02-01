@@ -10,14 +10,14 @@ using TMPro;
 
 public class PauseSystem : MonoBehaviour
 {
-    [Header("Menú Principal")]
+    [Header("Menï¿½ Principal")]
     public GameObject pauseMenu;
     public Button returnButton;
     public Button optionButton;
     public Button exitButton;
-    public UnityEvent returnButtonEvent; //Referenciamos a la función de ActiveMenu del interactionSystem
+    public UnityEvent returnButtonEvent; //Referenciamos a la funciï¿½n de ActiveMenu del interactionSystem
 
-    [Header("Configuración")]
+    [Header("Configuraciï¿½n")]
     public AudioMixer audioMixer;
     public GameObject configMenu;
     public Button optionReturnButton;
@@ -34,13 +34,13 @@ public class PauseSystem : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
-        //Botones Menú Principal:
+        //Botones Menï¿½ Principal:
         returnButton.onClick.AddListener(ReturnGame);
         optionButton.onClick.AddListener(OptionMenu);
         exitButton.onClick.AddListener(ExitGame);
 
         configMenu.SetActive(false);
-        //Configuración
+        //Configuraciï¿½n
         optionReturnButton.onClick.AddListener(OptionMenu);
         mouseSensiblity.onValueChanged.AddListener(HandleSensitivityChange);
         volume.onValueChanged.AddListener(HandleVolumeChange);
@@ -62,7 +62,7 @@ public class PauseSystem : MonoBehaviour
     }
     void ReturnGame()
     {
-        returnButtonEvent.Invoke(); //Invocamos la función
+        returnButtonEvent.Invoke(); //Invocamos la funciï¿½n
     }
 
     void ExitGame()
@@ -92,7 +92,8 @@ public class PauseSystem : MonoBehaviour
     }
     void HandleVolumeChange(float value)
     {
-        audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(0.0001f, value)) * 20f);
+        SoundManager.Instance.UpdateMasterVolume(value);
+//        audioMixer.SetFloat("MasterVolume", Mathf.Log10(Mathf.Max(0.0001f, value)) * 20f); 
         volumeText.text = value.ToString();
     }
 }
