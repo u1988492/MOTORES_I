@@ -35,15 +35,19 @@ public class GuardianDialogue : MonoBehaviour
             "Who dares trespass into mine domain and disturb my slumber?",
             "What’s this? A mortal soul? How dost a human come to know of this sacred place?",
             "Ah… I scent the blood of the ancient giant coursing through thy veins.",
-            "Speak then, mortal. What dost thou seek from me?",
-
-            "I have brought you an offering, hoping to gain your aid in exchange.",
-            "Evil souls have conquered our town, and we lack the power to defend ourselves.",
+            "But no – there is more… the faintest hint of the ancient wolf’s spirit.",
+            "Thou bearest the scent of the claw. The very essence of the wolf who stood against the storm and spirits themselves.",
+            "How dost thou come to possess suck a token?",
+            "Thou seekest something, do thee not? I know what it is.",
+            "I can smell it… The spirits have risen once more, have they?",
+            "Worry not, for I shall not turn thee away, but I must ask in return: the wolf's claw is no mere trinket – it is the very lifeblood of its spirit.",
+            "If thou wouldst seek my aid, it is only fair that I receive an offering. Will you barter this gift for the safety of thy town?",
             
-            "I see. And thy offering is well chosen – the claw of the wolf, a most potent gift indeed.",
-            "Very well, mortal. I shall grant thee thy request.",
-            "Thou seekest to save thy kin, and so, I shall offer thee mine aid.",
-            "Take this—one of the sacred feathers plucked from mine own tail.",
+            "[You take out the claw pendant from your pocket and take a look at it.]",
+            "[Is this what your mother meant? Is this the key to finding a safe place?]",
+            "[You raise the pendant above your head and offer it to the figure in front of you. A gust of wind takes it away from you, and the pendant flies before the guardian]",
+            
+            "Then take this — one of the sacred feathers plucked from mine own tail.",
             "Though I cannot depart from this place, raise mine golden feather to the heavens, and the very thunder shall smite those who threaten thy people.",
             "Go now, hasten. Time slips swiftly from thy grasp."
         };
