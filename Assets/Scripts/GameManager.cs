@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public GameObject finalDoor;
     public TutorialManager tutorialManager;
     public FinalScene dialogue;
+    public MorsePuzzle morse;
 
     private bool morsecode;
     private bool lightcode;
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log($"Intentando mover jugador a: {newPosition}");
                 PlayerManager.Instance.SetPosition(newPosition, newRotation);
             }
+            morse.StartMorse();
         }
         else
         {

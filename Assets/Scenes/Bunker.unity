@@ -9548,6 +9548,7 @@ MonoBehaviour:
   finalDoor: {fileID: 710981056}
   tutorialManager: {fileID: 1986380261}
   dialogue: {fileID: 776068618}
+  morse: {fileID: 1547612375}
 --- !u!4 &595176670
 Transform:
   m_ObjectHideFlags: 0

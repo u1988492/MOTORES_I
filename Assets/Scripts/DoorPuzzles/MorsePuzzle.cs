@@ -148,6 +148,11 @@ public class MorsePuzzle : MonoBehaviour
         }
     }
 
+    public void StartMorse()
+    {
+        StartCoroutine(ShowWord());
+    }
+
     IEnumerator ShowWord()
     {
         isWordShowing = true;
