@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Paper
+  m_Name: Emissive_paper
   m_Shader: {fileID: -6465566751694194690, guid: cd5563f3bdb96484b943752ce18c25ed,
     type: 3}
   m_Parent: {fileID: 0}
@@ -63,7 +63,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Base_Color: {r: 0.735849, g: 0.6918476, b: 0.5928444, a: 0}
+    - _Base_Color: {r: 0.5773585, g: 0.5289416, b: 0.4215806, a: 0}
     - _Cutoff_Threshold: {r: -10, g: 10, b: 0, a: 0}
-    - _Emissive_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Emissive_Color: {r: 3.4415903, g: 3.4415903, b: 3.4415903, a: 0}
   m_BuildTextureStacks: []

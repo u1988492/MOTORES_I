@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Paper
+  m_Name: Pink
   m_Shader: {fileID: -6465566751694194690, guid: cd5563f3bdb96484b943752ce18c25ed,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,7 +38,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base_Texture:
-        m_Texture: {fileID: 2800000, guid: a32058a35b7a24e45a6753fe4eaa1269, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive_Texture:
@@ -63,7 +63,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Base_Color: {r: 0.735849, g: 0.6918476, b: 0.5928444, a: 0}
+    - _Base_Color: {r: 0.6150943, g: 0.17988598, b: 0.31755397, a: 0}
     - _Cutoff_Threshold: {r: -10, g: 10, b: 0, a: 0}
     - _Emissive_Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
