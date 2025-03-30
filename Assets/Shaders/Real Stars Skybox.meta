@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Shaders/Real Stars Skybox.meta
+guid: d8d37ce6720d3204084b2a9e987662be
+folderAsset: yes
+DefaultImporter:
+========
+guid: 070c8845e6e3f1d4190df66a97359407
+NativeFormatImporter:
+>>>>>>>> shader:Assets/Shaders/ToonShaderLights/Materials/Crowbar.mat.meta
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Shaders/water.meta
+guid: 10534d0f730350c4883b19576cab773e
+folderAsset: yes
+DefaultImporter:
+========
+guid: e172d57e139cf2641b910038290e2220
+NativeFormatImporter:
+>>>>>>>> shader:Assets/Scenes/Bunker/Guardian Vision Post Process Profile.asset.meta
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
